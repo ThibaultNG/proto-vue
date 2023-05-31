@@ -11,8 +11,8 @@ const router = createRouter({
             component: Meteo
         },
         {
-            path: "/about",
-            name: "about",
+            path: "/album",
+            name: "album",
             // route level code-splitting
             // this generates a separate chunk (About.[hash].js) for this route
             // which is lazy-loaded when the route is visited.

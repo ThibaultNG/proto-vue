@@ -3,7 +3,7 @@
 </script>
 
 <template>
-
+	<h1>Meteo</h1>
 </template>
 
 <style>
