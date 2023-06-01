@@ -38,16 +38,21 @@ const navDrawerPinned = ref(false);
                 </v-btn>
             </v-navigation-drawer>
 
-            <v-main class="container">
-                <RouterView />
+            <v-main>
+                <div class="main-container">
+                    <RouterView />
+                </div>
             </v-main>
         </v-layout>
     </v-card>
 </template>
 
 <style scoped>
-.container {
-    padding: 10%; /* Add padding of 5% on all sides */
+.main-container {
+    padding-left: 10%; /* Add padding of 5% on all sides */
+    padding-right: 10%;
+    padding-top: 100px;
+    padding-bottom: 100px;
     box-sizing: border-box;
 }
 </style>
