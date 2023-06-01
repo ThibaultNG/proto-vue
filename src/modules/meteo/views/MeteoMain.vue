@@ -1,39 +1,52 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue";
-import { getInfoMeteo } from "../service/meteoService";
-import MeteoData from "../component/MeteoData.vue";
+import {ref} from 'vue'
+import {getInfoMeteo} from "../service/meteoService"
+import MeteoData from '../component/MeteoData.vue'
+import Randomizer from '../component/Randomizer.vue'
 
-const longitude = ref(1);
-const latitude = ref(-1);
-let data = ref("");
-let valuesPresent = ref(false);
-function clicked() {
+let latitude = ref(-1);
+let longitude = ref(1);
+let data = ref('')
+let valuesPresent = ref(false)
+function clicked(){
     getInfoMeteo(longitude.value, latitude.value)
-        .then((response) => {
-            data.value = response;
-            valuesPresent.value = true;
-            console.log(data.value);
-        })
-        .catch((error) => {
-            console.log("error = " + error);
-        });
+    .then((response) => {
+        data.value = response
+        valuesPresent.value = true
+    }).catch((error) => {console.log("error = "+ error)})
 }
 
-const inputCSS = "background-color: white";
+function updateValueRandomized(latitudeNewValue: number, longitudeNewValue: number){
+    latitude.value = latitudeNewValue
+    longitude.value = longitudeNewValue
+    clicked();
+}
+
+const inputCSS = "background-color: white"
 </script>
 
 <template>
-    <div>
-        <label> longitude : </label>
-        <input :style="inputCSS" v-model="longitude" type="number" />
-        <label> latitude : </label>
-        <input :style="inputCSS" v-model="latitude" type="number" />
-        <br />
+    <div  @keyup.enter="clicked()">
+        <div class="inputValues">
+            <div>
+                <div class="getRandomValues">
+                    <Randomizer @randomized="updateValueRandomized">Au pif !</Randomizer>
+                </div>
+                <div class="inputWantedValues">
+                    <label> latitude : </label>
+                    <input  :style="inputCSS" v-model="latitude" type="number"/>
 
-        <p>{{ longitude }} + {{ latitude }}</p>
-        <button @click="clicked()">click</button>
-
-        <br />
+                    <label> longitude : </label>
+                    <input  :style="inputCSS" v-model="longitude" type="number"/>
+                </div>    
+            </div>
+            <br><br>
+            <div class="validateValues">
+                <v-btn @click="clicked()" prepend-icon="$vuetify" append-icon="$vuetify">Valider</v-btn>
+            </div>
+        </div>
+        
+        <br>
         <MeteoData :data="data" :valuesPresent="valuesPresent"></MeteoData>
     </div>
 </template>

@@ -22,5 +22,4 @@ const props = defineProps(["data", "valuesPresent"]);
             <br />
         </template>
     </ul>
-    <!-- <button @click="seeDataPropContent"> click meteo data</button> -->
 </template>
