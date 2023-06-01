@@ -19,22 +19,20 @@ const shopNames = ["Steam", "Origin", "Epic Games", "Ubisoft"];
 </script>
 
 <template>
-    <v-toolbar>
-        <v-autocomplete
-            v-model="selectedShop"
-            v-model:search="searchShop"
-            :loading="loading"
-            :items="shopNames"
-            class="mx-4"
-            density="comfortable"
-            hide-no-data
-            hide-details
-            label="Select shop"
-            style="max-width: 300px"
-        ></v-autocomplete>
+    <v-autocomplete
+        v-model="selectedShop"
+        v-model:search="searchShop"
+        :loading="loading"
+        :items="shopNames"
+        class="mx-4"
+        density="comfortable"
+        hide-no-data
+        hide-details
+        label="Select shop"
+        style="max-width: 300px"
+    ></v-autocomplete>
 
-        <v-btn icon="mdi-dots-vertical"></v-btn>
-    </v-toolbar>
+    <v-btn icon="mdi-dots-vertical"></v-btn>
 </template>
 
 <style></style>

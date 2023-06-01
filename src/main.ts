@@ -15,7 +15,10 @@ import * as directives from "vuetify/directives";
 
 const vuetify = createVuetify({
     components,
-    directives
+    directives,
+    display: {
+        mobileBreakpoint: "xs"
+    }
 });
 
 const app = createApp(App);

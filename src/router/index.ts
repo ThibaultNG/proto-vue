@@ -20,7 +20,8 @@ const router = createRouter({
             component: Album
         },
         {
-            path: "/games",
+            path: "/",
+            alias: "/games",
             name: "games",
             // route level code-splitting
             // this generates a separate chunk (About.[hash].js) for this route
