@@ -8,6 +8,7 @@ import { RouterLink, RouterView } from "vue-router";
 
         <div class="wrapper">
             <nav>
+                <RouterLink to="/games">Games</RouterLink>
                 <RouterLink to="/meteo">Meteo</RouterLink>
                 <RouterLink to="/album">Album</RouterLink>
             </nav>

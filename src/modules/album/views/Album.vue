@@ -3,8 +3,7 @@ import { reactive } from "vue";
 import { getMemes } from "../service/memeService";
 
 const album = reactive({ memes: [] });
-getMemes()
-    .then((m) => (album.memes = m))
+getMemes().then((m) => (album.memes = m));
 </script>
 
 <template>
