@@ -3,8 +3,8 @@ import { ref, computed } from "vue";
 import { getInfoMeteoService } from "../service/meteoService";
 
 export const useMeteoStore = defineStore("meteoStore", () => {
-    const latitude = ref(1);
-    const longitude = ref(1);
+    const latitude = ref(1.0);
+    const longitude = ref(1.0);
     const data = ref();
 
     function updateInfoMeteo(latitudeNewValue: number, longitudeNewValue: number) {

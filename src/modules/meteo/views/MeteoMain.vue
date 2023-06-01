@@ -21,15 +21,19 @@ function updateValueRandomized(latitudeNewValue: number, longitudeNewValue: numb
     clicked();
 }
 
-function splitIfComma(event: any){
-    let pastedText: string = event.clipboardData.getData('text');
-    let textPieces = pastedText.split(',')
-    if(textPieces.length == 2){
-        meteoStore.latitude = parseFloat(textPieces[0])
-        meteoStore.longitude = parseFloat(textPieces[1])
+function splitIfComma(event: any) {
+    let pastedText: string = event.clipboardData.getData("text");
+    let textPieces = pastedText.split(",");
+    if (textPieces.length == 2) {
+        meteoStore.latitude = parseFloat(textPieces[0]);
+        meteoStore.longitude = parseFloat(textPieces[1]);
+        console.log(textPieces[0]);
+        console.log(textPieces[1]);
     }
 }
-
+const langage = "en";
+let h = document.querySelector("html");
+h?.setAttribute("lang", langage);
 </script>
 
 <template>
@@ -41,10 +45,26 @@ function splitIfComma(event: any){
                 </div>
                 <div class="inputWantedValues">
                     <label> latitude : </label>
-                    <input class="inputWantedValue1" @paste="splitIfComma" v-model="meteoStore.latitude" type="number" />
+                    <input
+                        class="inputWantedValue1"
+                        @paste="splitIfComma"
+                        :lang="langage"
+                        step="any"
+                        v-model="meteoStore.latitude"
+                        type="number"
+                    />
 
                     <label> longitude : </label>
-                    <input class="inputWantedValue2" @paste="splitIfComma" v-model="meteoStore.longitude" type="number" />
+                    <input
+                        class="inputWantedValue2"
+                        @paste="splitIfComma"
+                        :lang="langage"
+                        v-model="meteoStore.longitude"
+                        type="number"
+                    />
+
+                    <p>for copy pasting :</p>
+                    <p>{{ meteoStore.latitude }}, {{ meteoStore.longitude }}</p>
                 </div>
             </div>
             <br /><br />
@@ -62,7 +82,8 @@ function splitIfComma(event: any){
 </template>
 
 <style>
-.inputWantedValue1, .inputWantedValue2{
+.inputWantedValue1,
+.inputWantedValue2 {
     background-color: whitesmoke;
     width: 20%;
 }

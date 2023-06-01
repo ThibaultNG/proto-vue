@@ -8,6 +8,7 @@ const props = defineProps(["data"]);
             <!-- <p>{{ typeof value }}</p> -->
 
             <template v-if="typeof value === 'object'">
+                <br />
                 <span v-for="(valueBis, keyBis, indexBis) in value">
                     [{{ index }}.{{ indexBis }}]{{ keyBis }}: {{ valueBis }}
                     <br />
