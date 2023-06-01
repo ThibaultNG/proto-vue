@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function getStores(): Promise<any[]> {
+export async function getShops(): Promise<any[]> {
     return await axios
         .get("https://www.cheapshark.com/api/1.0/stores")
         .then((res) => res.data)

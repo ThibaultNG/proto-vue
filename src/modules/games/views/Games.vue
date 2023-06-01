@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import SelectGameStore from "../component/SelectGameStore.vue";
+import SelectGameShop from "../component/SelectGameShop.vue";
 </script>
 
 <template>
-    <SelectGameStore />
+    <SelectGameShop />
 </template>
 
 <style></style>
