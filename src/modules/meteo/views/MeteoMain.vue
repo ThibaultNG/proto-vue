@@ -30,7 +30,6 @@ function splitIfComma(event: any){
     }
 }
 
-const inputCSS = "background-color: white";
 </script>
 
 <template>
@@ -42,10 +41,10 @@ const inputCSS = "background-color: white";
                 </div>
                 <div class="inputWantedValues">
                     <label> latitude : </label>
-                    <input @paste="splitIfComma" :style="inputCSS" v-model="meteoStore.latitude" type="number" />
+                    <input class="inputWantedValue1" @paste="splitIfComma" v-model="meteoStore.latitude" type="number" />
 
                     <label> longitude : </label>
-                    <input @paste="splitIfComma" :style="inputCSS" v-model="meteoStore.longitude" type="number" />
+                    <input class="inputWantedValue2" @paste="splitIfComma" v-model="meteoStore.longitude" type="number" />
                 </div>
             </div>
             <br /><br />
@@ -62,3 +61,9 @@ const inputCSS = "background-color: white";
     </div>
 </template>
 
+<style>
+.inputWantedValue1, .inputWantedValue2{
+    background-color: whitesmoke;
+    width: 20%;
+}
+</style>

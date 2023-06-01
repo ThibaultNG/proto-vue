@@ -18,7 +18,8 @@ export async function getInfoMeteoService(latitude: number, longitude: number) {
                 latitude +
                 "&longitude=" +
                 longitude +
-                "&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m"
+                "&current_weather=" +
+                true
         )
         .catch((error) => {
             console.log("error = " + error);

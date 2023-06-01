@@ -7,7 +7,6 @@ export const useMeteoStore = defineStore("meteoStore", () => {
     const longitude = ref(1);
     const data = ref();
 
-    //TODO : calculate value of time, temperature and other array of values with getters/computed
     function updateInfoMeteo(latitudeNewValue: number, longitudeNewValue: number) {
         getInfoMeteoService(latitudeNewValue, longitudeNewValue)
             .then((response) => {
