@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Album from "../modules/album/views/Album.vue";
-import Meteo from "../modules/meteo/views/Meteo.vue";
+import Meteo from "../modules/meteo/views/MeteoMain.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
