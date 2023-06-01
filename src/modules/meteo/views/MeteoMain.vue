@@ -1,27 +1,23 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { getInfoMeteo } from "../service/meteoService";
 import MeteoData from "../component/MeteoData.vue";
 import Randomizer from "../component/Randomizer.vue";
+import { useMeteoStore } from "../store/meteoStore";
 
-let latitude = ref(-1);
-let longitude = ref(1);
-let data = ref("");
+const meteoStore = useMeteoStore();
+// let data = meteoStore.data;
+
+let firstRender = ref(true);
 let valuesPresent = ref(false);
 function clicked() {
-    getInfoMeteo(longitude.value, latitude.value)
-        .then((response) => {
-            data.value = response;
-            valuesPresent.value = true;
-        })
-        .catch((error) => {
-            console.log("error = " + error);
-        });
+    meteoStore.updateInfoMeteo(meteoStore.latitude, meteoStore.longitude);
+    valuesPresent.value = true;
+    firstRender.value = false;
 }
 
 function updateValueRandomized(latitudeNewValue: number, longitudeNewValue: number) {
-    latitude.value = latitudeNewValue;
-    longitude.value = longitudeNewValue;
+    meteoStore.latitude = latitudeNewValue;
+    meteoStore.longitude = longitudeNewValue;
     clicked();
 }
 
@@ -37,10 +33,10 @@ const inputCSS = "background-color: white";
                 </div>
                 <div class="inputWantedValues">
                     <label> latitude : </label>
-                    <input :style="inputCSS" v-model="latitude" type="number" />
+                    <input :style="inputCSS" v-model="meteoStore.latitude" type="number" />
 
                     <label> longitude : </label>
-                    <input :style="inputCSS" v-model="longitude" type="number" />
+                    <input :style="inputCSS" v-model="meteoStore.longitude" type="number" />
                 </div>
             </div>
             <br /><br />
@@ -50,9 +46,10 @@ const inputCSS = "background-color: white";
                 >
             </div>
         </div>
-
         <br />
-        <MeteoData :data="data" :valuesPresent="valuesPresent"></MeteoData>
+        <MeteoData v-if="valuesPresent" :data="meteoStore.data"></MeteoData>
+        <p v-else-if="firstRender">ah chargement initial ou le site météo à buguer !</p>
+        <p v-else>ah chargement initial ou le site météo à buguer !</p>
     </div>
 </template>
 

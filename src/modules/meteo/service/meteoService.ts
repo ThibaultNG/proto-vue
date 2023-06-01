@@ -10,7 +10,7 @@ import axios from "axios";
 //     )
 // }
 
-export async function getInfoMeteo(longitude: number, latitude: number) {
+export async function getInfoMeteoService(latitude: number, longitude: number) {
     return await axios
         .get(
             "https://api.open-meteo.com/v1/forecast" +
@@ -20,9 +20,6 @@ export async function getInfoMeteo(longitude: number, latitude: number) {
                 longitude +
                 "&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m"
         )
-        .then((response) => {
-            return response.data;
-        })
         .catch((error) => {
             console.log("error = " + error);
             return null;
