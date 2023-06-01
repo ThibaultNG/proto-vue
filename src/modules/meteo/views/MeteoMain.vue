@@ -21,6 +21,15 @@ function updateValueRandomized(latitudeNewValue: number, longitudeNewValue: numb
     clicked();
 }
 
+function splitIfComma(event: any){
+    let pastedText: string = event.clipboardData.getData('text');
+    let textPieces = pastedText.split(',')
+    if(textPieces.length == 2){
+        meteoStore.latitude = parseFloat(textPieces[0])
+        meteoStore.longitude = parseFloat(textPieces[1])
+    }
+}
+
 const inputCSS = "background-color: white";
 </script>
 
@@ -33,10 +42,10 @@ const inputCSS = "background-color: white";
                 </div>
                 <div class="inputWantedValues">
                     <label> latitude : </label>
-                    <input :style="inputCSS" v-model="meteoStore.latitude" type="number" />
+                    <input @paste="splitIfComma" :style="inputCSS" v-model="meteoStore.latitude" type="number" />
 
                     <label> longitude : </label>
-                    <input :style="inputCSS" v-model="meteoStore.longitude" type="number" />
+                    <input @paste="splitIfComma" :style="inputCSS" v-model="meteoStore.longitude" type="number" />
                 </div>
             </div>
             <br /><br />
@@ -53,8 +62,3 @@ const inputCSS = "background-color: white";
     </div>
 </template>
 
-<style>
-/* input{
-    background-color: white;    
-} */
-</style>
