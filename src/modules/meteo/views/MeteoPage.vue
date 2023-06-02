@@ -3,7 +3,7 @@ import { ref } from "vue";
 import MeteoData from "../component/MeteoData.vue";
 import MeteoRandomizer from "../component/MeteoRandomizer.vue";
 import MeteoInputValues from "../component/MeteoInputValues.vue";
-import { useMeteoStore } from "../store/MeteoStore";
+import { useMeteoStore } from "../store/meteoStore";
 
 const meteoStore = useMeteoStore();
 
