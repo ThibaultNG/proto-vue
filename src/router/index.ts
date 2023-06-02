@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Album from "../modules/album/views/Album.vue";
-import Meteo from "../modules/meteo/views/MeteoMain.vue";
+import Meteo from "../modules/meteo/views/MeteoPage.vue";
 import Games from "../modules/games/views/Games.vue";
 
 const router = createRouter({
