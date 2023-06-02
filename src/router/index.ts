@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Album from "../modules/album/views/Album.vue";
 import gameRoutes from "@/modules/games/router/gameRoutes";
-import MeteoRouter from "@/modules/meteo/router/MeteoRouter";
+import meteoRoutes from "@/modules/meteo/router/meteoRoutes";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
-        ...MeteoRouter,
+        ...meteoRoutes,
         {
             path: "/album",
             name: "album",
