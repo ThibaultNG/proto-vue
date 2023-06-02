@@ -12,6 +12,10 @@ function splitIfComma(event: any) {
         emits("updateLatitudeLongitude", latitudeNewValue, longitudeNewValue);
     }
 }
+
+function copyText() {
+    navigator.clipboard.writeText(props.latitude + ", " + props.longitude);
+}
 </script>
 <template>
     <div class="inputValues">
@@ -21,8 +25,7 @@ function splitIfComma(event: any) {
         <label> longitude : </label>
         <input @paste="splitIfComma" v-model="props.longitude" type="number" />
 
-        <p>for copy pasting :</p>
-        <p>{{ props.latitude }}, {{ props.longitude }}</p>
+        <v-btn @click="copyText" variant="tonal" outlined>Copier les coordonées</v-btn>
     </div>
 </template>
 
@@ -30,5 +33,6 @@ function splitIfComma(event: any) {
 input {
     background-color: whitesmoke;
     width: 20%;
+    margin-right: 1em;
 }
 </style>
