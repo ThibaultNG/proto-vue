@@ -51,7 +51,7 @@ const navDrawerPinned = ref(false);
 .main-container {
     padding-left: 10%; /* Add padding of 5% on all sides */
     padding-right: 10%;
-    padding-top: 100px;
+    padding-top: 50px;
     padding-bottom: 100px;
     box-sizing: border-box;
 }
