@@ -21,7 +21,11 @@ const router: Router = createRouter({
             name: "album",
             component: Album
         },
-        ...gameRoutes
+        ...gameRoutes,
+		{
+			path: "/:pathMatch(.*)*",
+			component: ()=>import("@/views/Error404Page.vue")
+		}
     ]
 });
 
