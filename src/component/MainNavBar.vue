@@ -5,7 +5,7 @@
         <v-divider />
 
         <v-card class="mx-auto" width="300">
-            <v-list v-model:opened="open">
+            <v-list v-model:opened="open" open-strategy="single">
                 <v-list-item prepend-icon="mdi-home" title="Home" value="Home" to="/"></v-list-item>
 
                 <v-divider />
