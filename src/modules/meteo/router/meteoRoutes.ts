@@ -1,4 +1,5 @@
 import MeteoHome from "../MeteoHome.vue";
+const meteoPage = () => import("../views/MeteoPage.vue")
 
 export default [
     {
@@ -9,7 +10,8 @@ export default [
             {
                 path: "home",
                 name: "MeteoHome",
-                component: MeteoHome
+                //component: MeteoHome
+                component: meteoPage
             }
         ]
     }
