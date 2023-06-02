@@ -22,10 +22,10 @@ const router: Router = createRouter({
             component: Album
         },
         ...gameRoutes,
-		{
-			path: "/:pathMatch(.*)*",
-			component: ()=>import("@/views/Error404Page.vue")
-		}
+        {
+            path: "/:pathMatch(.*)*",
+            component: () => import("@/views/Error404Page.vue")
+        }
     ]
 });
 
