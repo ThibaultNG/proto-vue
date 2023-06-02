@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import gameNavLinks from "../modules/games/constants/gameGroupLinks";
+import gameNavLinks from "../modules/games/constants/gameNavLinks";
 import meteoNavLinks from "../modules/meteo/constants/meteoNavLinks";
 
 const navDrawerPinned = ref(false);
-const open = ref(["Games"]);
+const open = ref(["Home"]);
 
 const groups = [...gameNavLinks, ...meteoNavLinks];
 </script>
@@ -18,7 +18,7 @@ const groups = [...gameNavLinks, ...meteoNavLinks];
 
         <v-card class="mx-auto" width="300">
             <v-list v-model:opened="open">
-                <v-list-item prepend-icon="mdi-home" title="Home" to="/"></v-list-item>
+                <v-list-item prepend-icon="mdi-home" title="Home" value="Home" to="/"></v-list-item>
 
                 <v-divider />
 
@@ -31,7 +31,10 @@ const groups = [...gameNavLinks, ...meteoNavLinks];
                         />
                     </template>
 
-                    <v-list-group v-for="item in group.itemList" :value="item.name">
+                    <v-list-group
+                        v-for="item in group.itemList"
+                        :value="group.groupName + item.name"
+                    >
                         <template v-slot:activator="{ props }">
                             <v-list-item
                                 v-bind="props"
