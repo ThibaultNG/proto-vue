@@ -1,15 +1,3 @@
-<script setup lang="ts">
-import { ref } from "vue";
-
-import { gameNavLinks } from "../modules/games/routes/gameRoutes";
-import { meteoNavLinks } from "../modules/meteo/routes/meteoRoutes";
-
-const navDrawerPinned = ref(false);
-const open = ref(["Home"]);
-
-const groups = [...gameNavLinks, ...meteoNavLinks];
-</script>
-
 <template>
     <v-navigation-drawer v-model:rail="navDrawerPinned">
         <v-list-item prepend-icon="mdi-vuejs" title="Proto-Vue"></v-list-item>
@@ -59,3 +47,15 @@ const groups = [...gameNavLinks, ...meteoNavLinks];
         </v-card>
     </v-navigation-drawer>
 </template>
+
+<script setup lang="ts">
+import { ref } from "vue";
+
+import { gameNavLinks } from "../modules/games/routes/gameRoutes";
+import { meteoNavLinks } from "../modules/meteo/routes/meteoRoutes";
+
+const navDrawerPinned = ref(false);
+const open = ref(["Home"]);
+
+const groups = [...gameNavLinks, ...meteoNavLinks];
+</script>

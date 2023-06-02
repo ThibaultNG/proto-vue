@@ -1,3 +1,9 @@
+<template>
+    <v-btn @click="randomize()" prepend-icon="$vuetify" stacked>
+        <slot />
+    </v-btn>
+</template>
+
 <script lang="ts" setup>
 const emit = defineEmits(["randomized"]);
 function randomize() {
@@ -13,9 +19,3 @@ function randomize() {
     emit("randomized", latitudeNewValue, longitudeNewValue);
 }
 </script>
-
-<template>
-    <v-btn @click="randomize()" prepend-icon="$vuetify" stacked>
-        <slot />
-    </v-btn>
-</template>

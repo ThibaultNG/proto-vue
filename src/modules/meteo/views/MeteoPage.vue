@@ -1,3 +1,23 @@
+<template>
+    <div @keyup.enter="clicked()">
+        <div class="inputValues">
+            <MeteoRandomizer @randomized="updateValues">Au pif !</MeteoRandomizer>
+            <MeteoInputValues
+                @updateLatitudeLongitude="updateValues"
+                :latitude="meteoStore.latitude"
+                :longitude="meteoStore.longitude"
+            ></MeteoInputValues>
+
+            <v-btn @click="clicked()" prepend-icon="$vuetify" append-icon="$vuetify">Valider</v-btn>
+        </div>
+        <br />
+
+        <MeteoData v-if="valuesPresent" :data="meteoStore.data"></MeteoData>
+        <p v-else-if="firstRender">ah chargement initial ou le site météo à buguer !</p>
+        <p v-else>ah chargement initial ou le site météo à buguer !</p>
+    </div>
+</template>
+
 <script setup lang="ts">
 import { ref } from "vue";
 import MeteoData from "../component/MeteoData.vue";
@@ -21,25 +41,5 @@ function clicked() {
     firstRender.value = false;
 }
 </script>
-
-<template>
-    <div @keyup.enter="clicked()">
-        <div class="inputValues">
-            <MeteoRandomizer @randomized="updateValues">Au pif !</MeteoRandomizer>
-            <MeteoInputValues
-                @updateLatitudeLongitude="updateValues"
-                :latitude="meteoStore.latitude"
-                :longitude="meteoStore.longitude"
-            ></MeteoInputValues>
-
-            <v-btn @click="clicked()" prepend-icon="$vuetify" append-icon="$vuetify">Valider</v-btn>
-        </div>
-        <br />
-
-        <MeteoData v-if="valuesPresent" :data="meteoStore.data"></MeteoData>
-        <p v-else-if="firstRender">ah chargement initial ou le site météo à buguer !</p>
-        <p v-else>ah chargement initial ou le site météo à buguer !</p>
-    </div>
-</template>
 
 <style scoped></style>

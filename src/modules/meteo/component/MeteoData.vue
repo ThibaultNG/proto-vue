@@ -1,8 +1,3 @@
-<script lang="ts" setup>
-import MeteoDataValueWithIcon from "./MeteoDataValueWithIcon.vue";
-const props = defineProps(["data"]);
-</script>
-
 <template>
     <ul>
         <span v-for="(value, key, index) in props.data">
@@ -42,3 +37,8 @@ const props = defineProps(["data"]);
         <br />
     </ul>
 </template>
+
+<script lang="ts" setup>
+import MeteoDataValueWithIcon from "./MeteoDataValueWithIcon.vue";
+const props = defineProps(["data"]);
+</script>

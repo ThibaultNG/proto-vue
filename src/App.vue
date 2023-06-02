@@ -1,8 +1,3 @@
-<script setup lang="ts">
-import { RouterView } from "vue-router";
-import MainNavBar from "./component/MainNavBar.vue";
-</script>
-
 <template>
     <v-card>
         <v-layout>
@@ -16,6 +11,11 @@ import MainNavBar from "./component/MainNavBar.vue";
         </v-layout>
     </v-card>
 </template>
+
+<script setup lang="ts">
+import { RouterView } from "vue-router";
+import MainNavBar from "./component/MainNavBar.vue";
+</script>
 
 <style scoped>
 .main-container {

@@ -1,3 +1,15 @@
+<template>
+    <div class="inputValues">
+        <label> latitude : </label>
+        <input @paste="splitIfComma" v-model="props.latitude" type="number" />
+
+        <label> longitude : </label>
+        <input @paste="splitIfComma" v-model="props.longitude" type="number" />
+
+        <v-btn @click="copyText" variant="tonal" outlined>Copier les coordonées</v-btn>
+    </div>
+</template>
+
 <script setup lang="ts">
 const props = defineProps(["latitude", "longitude"]);
 const emits = defineEmits(["updateLatitudeLongitude"]);
@@ -17,17 +29,6 @@ function copyText() {
     navigator.clipboard.writeText(props.latitude + ", " + props.longitude);
 }
 </script>
-<template>
-    <div class="inputValues">
-        <label> latitude : </label>
-        <input @paste="splitIfComma" v-model="props.latitude" type="number" />
-
-        <label> longitude : </label>
-        <input @paste="splitIfComma" v-model="props.longitude" type="number" />
-
-        <v-btn @click="copyText" variant="tonal" outlined>Copier les coordonées</v-btn>
-    </div>
-</template>
 
 <style scoped>
 input {

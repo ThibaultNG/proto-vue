@@ -1,11 +1,3 @@
-<script setup lang="ts">
-import { reactive } from "vue";
-import { getMemes } from "../service/memeService";
-
-const album = reactive({ memes: [] });
-getMemes().then((m) => (album.memes = m));
-</script>
-
 <template>
     <div class="grid-container">
         <v-img
@@ -23,6 +15,14 @@ getMemes().then((m) => (album.memes = m));
         </v-img>
     </div>
 </template>
+
+<script setup lang="ts">
+import { reactive } from "vue";
+import { getMemes } from "../service/memeService";
+
+const album = reactive({ memes: [] });
+getMemes().then((m) => (album.memes = m));
+</script>
 
 <style>
 .grid-container {
