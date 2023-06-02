@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import gameLinks from "../modules/games/constants/gameGroupLinks";
+import gameNavLinks from "../modules/games/constants/gameGroupLinks";
+import meteoNavLinks from "../modules/meteo/constants/meteoNavLinks";
 
 const navDrawerPinned = ref(false);
 const open = ref(["Games"]);
 
-const groups = [...gameLinks];
+const groups = [...gameNavLinks, ...meteoNavLinks];
 </script>
 
 <template>
@@ -26,7 +27,7 @@ const groups = [...gameLinks];
                         <v-list-item
                             v-bind="props"
                             prepend-icon="mdi-account-circle"
-                            title="Games"
+                            :title="group.groupName"
                         />
                     </template>
 
