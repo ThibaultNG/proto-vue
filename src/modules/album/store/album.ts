@@ -5,7 +5,7 @@ export const useAlbumStore = defineStore("counter", () => {
     const query = ref("");
     const photos = ref([]);
 
-    const getQuery = computed(() => (query ? query : "Null"));
+    const getQuery = computed(() => (query.value ? query.value : "Null"));
 
     function increment() {
         // test
