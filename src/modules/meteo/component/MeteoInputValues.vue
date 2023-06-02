@@ -9,9 +9,6 @@ function splitIfComma(event: any) {
         let latitudeNewValue = parseFloat(textPieces[0]);
         let longitudeNewValue = parseFloat(textPieces[1]);
 
-        // console.log(textPieces[0]);
-        // console.log(textPieces[1]);
-
         emits("updateLatitudeLongitude", latitudeNewValue, longitudeNewValue);
     }
 }

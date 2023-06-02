@@ -31,8 +31,7 @@ function clicked() {
                 :latitude="meteoStore.latitude"
                 :longitude="meteoStore.longitude"
             ></MeteoInputValues>
-            <br />
-            <br />
+
             <v-btn @click="clicked()" prepend-icon="$vuetify" append-icon="$vuetify">Valider</v-btn>
         </div>
         <br />
