@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import gameNavLinks from "../modules/games/constants/gameNavLinks";
-import meteoNavLinks from "../modules/meteo/constants/meteoNavLinks";
+import { gameNavLinks } from "../modules/games/routes/gameRoutes";
+import { meteoNavLinks } from "../modules/meteo/routes/meteoRoutes";
 
 const navDrawerPinned = ref(false);
 const open = ref(["Home"]);

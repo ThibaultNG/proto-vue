@@ -2,8 +2,9 @@ import GamesVue from "../Games.vue";
 import GamesHomeVue from "../views/GamesHome.vue";
 import GameDeals from "../views/GameDeals.vue";
 import GameShopList from "../views/GameShopsList.vue";
+import type { RouteRecordRaw } from "vue-router";
 
-export default [
+export const gameRoutes: RouteRecordRaw[] = [
     {
         path: "/games",
         component: GamesVue,
@@ -24,6 +25,17 @@ export default [
                 name: "game-shop",
                 component: GameShopList
             }
+        ]
+    }
+];
+
+export const gameNavLinks = [
+    {
+        groupName: "Games",
+        itemList: [
+            { name: "Home", link: "/games/home" },
+            { name: "Shops", link: "/games/shops" },
+            { name: "Deals", link: "/games/deals" }
         ]
     }
 ];
