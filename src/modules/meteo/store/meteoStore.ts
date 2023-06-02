@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
-import { getInfoMeteoService } from "../service/meteoService";
+import { getInfoMeteoService } from "../service/MeteoService";
 
 export const useMeteoStore = defineStore("meteoStore", () => {
     const latitude = ref(1.0);

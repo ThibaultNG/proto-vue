@@ -5,8 +5,6 @@ const props = defineProps(["data"]);
 <template>
     <ul>
         <span v-for="(value, key, index) in props.data">
-            <!-- <p>{{ typeof value }}</p> -->
-
             <template v-if="typeof value === 'object'">
                 <br />
                 <span v-for="(valueBis, keyBis, indexBis) in value">
@@ -15,6 +13,7 @@ const props = defineProps(["data"]);
                 </span>
             </template>
             <template v-else> [{{ index }}]{{ key }}: {{ value }} </template>
+
             <br />
         </span>
         <br />

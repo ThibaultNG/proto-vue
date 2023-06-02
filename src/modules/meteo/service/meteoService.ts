@@ -1,15 +1,4 @@
 import axios from "axios";
-// export function getInfoMeteo(longitude: string, latitude: string) : Promise<String>{
-//         return (axios.get("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m")
-//         .then(
-//             resp => {
-//                 console.log(resp)
-//                 return resp.data.current_weather
-//             }
-//         )
-//     )
-// }
-
 export async function getInfoMeteoService(latitude: number, longitude: number) {
     return await axios
         .get(
