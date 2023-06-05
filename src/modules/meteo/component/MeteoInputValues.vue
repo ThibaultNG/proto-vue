@@ -1,7 +1,5 @@
 <template>
 	<div class="inputValues">
-		<p>Latitude must be between {{ MAX_LATITUDE }} and {{ MIN_LATITUDE }}</p>
-		<p>Longitude must be between {{ MAX_LONGITUDE }} and {{ MIN_LONGITUDE }}</p>
 		<label> latitude : </label>
 		<input @paste="splitIfComma" v-model="meteoStore.latitude" type="number" />
 
@@ -14,7 +12,6 @@
 
 <script setup lang="ts">
 import { useMeteoStore } from "../store/meteoStore";
-import { MAX_LATITUDE, MIN_LATITUDE, MAX_LONGITUDE, MIN_LONGITUDE } from "../constants/coordinate";
 
 const meteoStore = useMeteoStore();
 
