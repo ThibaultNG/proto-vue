@@ -5,13 +5,18 @@
             <v-app-bar-title class="text-h4">PROTOTYPE VUE 3</v-app-bar-title>
         </v-app-bar>
 
-        <MainNavBar />
-
         <v-main>
             <div class="main-container">
                 <RouterView />
             </div>
         </v-main>
+
+        <MainNavBar />
+        <v-footer app>
+            <div class="text-center w-100">
+                {{ new Date().getFullYear() }} — <strong>DUNG</strong>
+            </div>
+        </v-footer>
     </v-app>
 </template>
 
