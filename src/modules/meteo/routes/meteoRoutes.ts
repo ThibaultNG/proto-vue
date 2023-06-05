@@ -1,6 +1,5 @@
 import type { RouteRecordRaw } from "vue-router";
-import MeteoHome from "../MeteoHome.vue";
-const meteoPage = () => import("../views/MeteoPage.vue");
+const meteoHome = () => import("../views/MeteoHome.vue")
 
 export const meteoRoutes: RouteRecordRaw[] = [
     {
@@ -11,8 +10,7 @@ export const meteoRoutes: RouteRecordRaw[] = [
             {
                 path: "home",
                 name: "MeteoHome",
-                component: MeteoHome
-                //component: meteoPage //TODO : change this from Page to Home
+                component: meteoHome
             }
         ]
     }
