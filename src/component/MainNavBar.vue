@@ -37,7 +37,7 @@
 					:prepend-icon="
 						navDrawerPinned ? 'mdi-chevron-double-right' : 'mdi-chevron-double-left'
 					"
-					@click="navDrawerPinned = !navDrawerPinned"
+					@click="toggleNavPin"
 				>
 				</v-list-item>
 			</v-list>
@@ -50,9 +50,19 @@ import { ref } from "vue";
 
 import { gameNavLinks } from "../modules/games/routes/gameRoutes";
 import { meteoNavLinks } from "../modules/meteo/routes/meteoRoutes";
+import { watch } from "vue";
 
 const navDrawerPinned = ref(false);
 const open = ref(["Home"]);
 
 const groups = [...gameNavLinks, ...meteoNavLinks];
+
+function toggleNavPin() {
+	if (navDrawerPinned) open.value = ["Home"];
+	navDrawerPinned.value = !navDrawerPinned.value;
+}
+
+watch(open, (newOpen) => {
+	if (newOpen[0] != undefined && newOpen[0] != "Home") navDrawerPinned.value = false;
+});
 </script>
