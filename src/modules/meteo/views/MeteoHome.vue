@@ -1,14 +1,13 @@
 <template>
 	<div>
 		<div class="inputValues">
-			<MeteoRandomizer>Au pif !</MeteoRandomizer>
+			<MeteoRandomizer>Random</MeteoRandomizer>
 			<MeteoInputValues></MeteoInputValues>
-			<v-btn prepend-icon="$vuetify" append-icon="$vuetify">Valider</v-btn>
 		</div>
 		<br />
 
 		<MeteoData v-if="meteoStore.data != null" :data="meteoStore.data"></MeteoData>
-		<p v-else>Veuillez rafraîchir !</p>
+		<p v-else>Please refresh the page...</p>
 
 		<v-btn
 			:href="
@@ -18,7 +17,7 @@
 			rel="noopener noreferrer"
 			prepend-icon="$vuetify"
 			append-icon="$vuetify"
-			>Regarder sur google map</v-btn
+			>See on Google Map</v-btn
 		>
 	</div>
 </template>
