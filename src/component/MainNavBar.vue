@@ -10,7 +10,7 @@
                     <template v-slot:activator="{ props }">
                         <v-list-item
                             v-bind="props"
-                            prepend-icon="mdi-account-circle"
+                            :prepend-icon="group.groupIcon"
                             :title="group.groupName"
                         />
                     </template>
@@ -24,6 +24,7 @@
                                 v-bind="props"
                                 :title="item.name"
                                 :to="item.link"
+								:prepend-icon="item.icon"
                             ></v-list-item>
                         </template>
                     </v-list-group>
