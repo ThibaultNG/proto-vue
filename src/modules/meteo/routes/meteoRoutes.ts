@@ -19,6 +19,9 @@ export const meteoRoutes: RouteRecordRaw[] = [
 export const meteoNavLinks = [
     {
         groupName: "Meteo",
-        itemList: [{ name: "Home", link: "/meteo/home" }]
+		groupIcon: "mdi-weather-cloudy",
+        itemList: [
+			{ name: "Home", link: "/meteo/home", icon: "mdi-home-outline" }
+		]
     }
 ];

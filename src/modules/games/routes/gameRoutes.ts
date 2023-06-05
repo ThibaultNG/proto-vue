@@ -32,10 +32,11 @@ export const gameRoutes: RouteRecordRaw[] = [
 export const gameNavLinks = [
     {
         groupName: "Games",
+		groupIcon: "mdi-controller",
         itemList: [
-            { name: "Home", link: "/games/home" },
-            { name: "Shops", link: "/games/shops" },
-            { name: "Deals", link: "/games/deals" }
+            { name: "Home", link: "/games/home", icon: "mdi-home-outline" },
+            { name: "Shops", link: "/games/shops", icon: "mdi-store-outline" },
+            { name: "Deals", link: "/games/deals", icon: "mdi-tag-text-outline" }
         ]
     }
 ];
