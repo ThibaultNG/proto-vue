@@ -29,7 +29,7 @@ function splitIfComma(event: any) {
 }
 
 function copyText() {
-    navigator.clipboard.writeText(props.latitude + ", " + props.longitude);
+    navigator.clipboard.writeText(meteoStore.latitude + ", " + meteoStore.longitude);
 }
 </script>
 
