@@ -24,7 +24,7 @@
                                 v-bind="props"
                                 :title="item.name"
                                 :to="item.link"
-								:prepend-icon="item.icon"
+                                :prepend-icon="item.icon"
                             ></v-list-item>
                         </template>
                     </v-list-group>
