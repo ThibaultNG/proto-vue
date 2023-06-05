@@ -13,10 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import { useMeteoStore } from "../store/meteoStore";
+import { useWeatherStore } from "../store/weatherStore";
 import { MAX_LATITUDE, MIN_LATITUDE, MAX_LONGITUDE, MIN_LONGITUDE } from "../constants/coordinate";
 
-const meteoStore = useMeteoStore();
+const meteoStore = useWeatherStore();
 
 //update coordinates according to pasted values if the syntax is correct
 //i.e. '-59.91232133' + ',' + '12.029222' with -59.xxx for latitude and 12.xxx for longitude

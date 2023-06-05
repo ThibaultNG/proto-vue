@@ -49,13 +49,13 @@
 import { ref } from "vue";
 
 import { gameNavLinks } from "../modules/games/routes/gameRoutes";
-import { meteoNavLinks } from "../modules/meteo/routes/meteoRoutes";
+import { weatherNavLinks as weatherNavLinks } from "../modules/weather/routes/weatherRoutes";
 import { watch } from "vue";
 
 const navDrawerPinned = ref(false);
 const open = ref(["Home"]);
 
-const groups = [...gameNavLinks, ...meteoNavLinks];
+const groups = [...gameNavLinks, ...weatherNavLinks];
 
 function toggleNavPin() {
 	if (navDrawerPinned) open.value = ["Home"];

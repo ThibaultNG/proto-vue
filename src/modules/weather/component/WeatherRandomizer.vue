@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useMeteoStore } from "../store/meteoStore";
+import { useWeatherStore } from "../store/weatherStore";
 import { MAX_LATITUDE, MIN_LATITUDE, MAX_LONGITUDE, MIN_LONGITUDE } from "../constants/coordinate";
 
-const meteoStore = useMeteoStore();
+const meteoStore = useWeatherStore();
 
 //randomize and update the coordinate values
 function randomize(): void {

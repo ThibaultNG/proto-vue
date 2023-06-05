@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, type Router } from "vue-router";
 import Album from "@/modules/album/views/Album.vue";
 import { gameRoutes } from "@/modules/games/routes/gameRoutes";
-import { meteoRoutes } from "@/modules/meteo/routes/meteoRoutes";
+import { weatherRoutes } from "@/modules/weather/routes/weatherRoutes";
 import HomePageVue from "@/views/HomePage.vue";
 
 const router: Router = createRouter({
@@ -15,7 +15,7 @@ const router: Router = createRouter({
 			path: "/home",
 			component: HomePageVue
 		},
-		...meteoRoutes,
+		...weatherRoutes,
 		{
 			path: "/album",
 			name: "album",

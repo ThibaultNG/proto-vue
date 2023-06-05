@@ -1,7 +1,7 @@
 <template>
 	<ul>
-		<template v-if="meteoStore.data != undefined && meteoStore.data != null">
-			<span v-for="(value, key, index) in meteoStore.data">
+		<template v-if="weatherStore.data != undefined && weatherStore.data != null">
+			<span v-for="(value, key, index) in weatherStore.data">
 				<template v-if="typeof value === 'object'">
 					<br />
 					<span v-for="(valueBis, indexBis, keyBis) in value">
@@ -44,8 +44,8 @@
 </template>
 
 <script lang="ts" setup>
-import MeteoDataValueWithIcon from "./MeteoDataValueWithIcon.vue";
-import { useMeteoStore } from "../store/meteoStore";
+import MeteoDataValueWithIcon from "./WeatherDataValueWithIcon.vue";
+import { useWeatherStore } from "../store/weatherStore";
 
-const meteoStore = useMeteoStore();
+const weatherStore = useWeatherStore();
 </script>
