@@ -1,18 +1,16 @@
 <template>
-    <div @keyup.enter="clicked()">
+    <div @keyup.enter="updateData">
         <div class="inputValues">
-            <MeteoRandomizer @randomized="updateValues">Au pif !</MeteoRandomizer>
-            <MeteoInputValues
-                @updateLatitudeLongitude="updateValues"
-                :latitude="meteoStore.latitude"
-                :longitude="meteoStore.longitude"
-            ></MeteoInputValues>
+            <MeteoRandomizer @randomized="updateData">Au pif !</MeteoRandomizer>
+            <MeteoInputValues @updateLatitudeLongitude="updateData"></MeteoInputValues>
 
-            <v-btn @click="clicked()" prepend-icon="$vuetify" append-icon="$vuetify">Valider</v-btn>
+            <v-btn @click="updateData" prepend-icon="$vuetify" append-icon="$vuetify"
+                >Valider</v-btn
+            >
         </div>
         <br />
 
-        <MeteoData v-if="valuesPresent" :data="meteoStore.data"></MeteoData>
+        <MeteoData v-if="dataPresent" :data="meteoStore.data"></MeteoData>
         <p v-else-if="firstRender">Ici la météo !</p>
         <p v-else>Veuillez rafraîchir !</p>
 
@@ -39,16 +37,11 @@ import { useMeteoStore } from "../store/meteoStore";
 const meteoStore = useMeteoStore();
 
 let firstRender = ref(true);
-let valuesPresent = ref(false);
-
-function updateValues(latitudeNewValue: number, longitudeNewValue: number) {
-    meteoStore.latitude = latitudeNewValue;
-    meteoStore.longitude = longitudeNewValue;
-    clicked();
-}
-function clicked() {
+let dataPresent = ref(false);
+function updateData(): void {
     meteoStore.updateInfoMeteo(meteoStore.latitude, meteoStore.longitude);
-    valuesPresent.value = true;
+    //TODO : add a check to verify that Data has been updated according to new values
+    dataPresent.value = true;
     firstRender.value = false;
 }
 </script>

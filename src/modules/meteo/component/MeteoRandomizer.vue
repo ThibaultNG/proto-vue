@@ -5,17 +5,21 @@
 </template>
 
 <script lang="ts" setup>
-const emit = defineEmits(["randomized"]);
-function randomize() {
+import { useMeteoStore } from "../store/meteoStore";
+
+const meteoStore = useMeteoStore();
+const emit = defineEmits(["coordinatesUpdated"]);
+
+//randomize and update the coordinate values
+function randomize(): void {
     const maxLatitude = 90;
     const minLatitude = -90;
     const maxLongitude = 180;
     const minLLongitude = -180;
 
-    Math.random();
+    meteoStore.latitude = Math.random() * (maxLatitude - minLatitude) + minLatitude;
+    meteoStore.longitude = Math.random() * (maxLongitude - minLLongitude) + minLLongitude;
 
-    let latitudeNewValue = Math.random() * (maxLatitude - minLatitude) + minLatitude;
-    let longitudeNewValue = Math.random() * (maxLongitude - minLLongitude) + minLLongitude;
-    emit("randomized", latitudeNewValue, longitudeNewValue);
+    emit("coordinatesUpdated");
 }
 </script>

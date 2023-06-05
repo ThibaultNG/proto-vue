@@ -6,7 +6,7 @@
         <label> longitude : </label>
         <input @paste="splitIfComma" v-model="meteoStore.longitude" type="number" />
 
-        <v-btn @click="copyText" variant="tonal" outlined>Copier les coordonées</v-btn>
+        <v-btn @click="copyCoordinates" variant="tonal" outlined>Copier les coordonées</v-btn>
     </div>
 </template>
 
@@ -14,21 +14,22 @@
 import { useMeteoStore } from "../store/meteoStore";
 
 const meteoStore = useMeteoStore();
+const emits = defineEmits(["coordinatesUpdated"]);
 
-const emits = defineEmits(["updateLatitudeLongitude"]);
-
-function splitIfComma(event: any) {
+//update coordinates according to pasted values if the syntax is correct
+//i.e. '-59.91232133' + ',' + '12.029222' with -59.xxx for latitude and 12.xxx for longitude
+function splitIfComma(event: any): void {
     let pastedText: string = event.clipboardData.getData("text");
     let textPieces = pastedText.split(",");
     if (textPieces.length == 2) {
-        let latitudeNewValue = parseFloat(textPieces[0]);
-        let longitudeNewValue = parseFloat(textPieces[1]);
+        meteoStore.latitude = parseFloat(textPieces[0]);
+        meteoStore.longitude = parseFloat(textPieces[1]);
 
-        emits("updateLatitudeLongitude", latitudeNewValue, longitudeNewValue);
+        emits("coordinatesUpdated");
     }
 }
 
-function copyText() {
+function copyCoordinates(): void {
     navigator.clipboard.writeText(meteoStore.latitude + ", " + meteoStore.longitude);
 }
 </script>

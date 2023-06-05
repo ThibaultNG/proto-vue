@@ -1,5 +1,5 @@
 import axios from "axios";
-export async function getInfoMeteoService(latitude: number, longitude: number) {
+export async function getInfoMeteoService(latitude: number, longitude: number): Promise<any> {
     return await axios
         .get(
             "https://api.open-meteo.com/v1/forecast" +
