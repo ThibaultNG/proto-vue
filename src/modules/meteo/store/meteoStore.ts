@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref, computed } from "vue";
+import { ref, watchEffect } from "vue";
 import { getInfoMeteoService } from "../service/meteoService";
 
 export const useMeteoStore = defineStore("meteoStore", () => {
@@ -7,15 +7,12 @@ export const useMeteoStore = defineStore("meteoStore", () => {
     const longitude = ref(0);
     const data = ref();
 
-    function updateInfoMeteo(latitudeNewValue: number, longitudeNewValue: number): void {
-        getInfoMeteoService(latitudeNewValue, longitudeNewValue)
-            .then((response) => {
+    watchEffect(() => {
+        if (latitude.value != null && longitude.value != null)
+            getInfoMeteoService(latitude.value, longitude.value).then((response) => {
                 data.value = response ? response.data : "";
-            })
-            .catch((error) => {
-                console.log("error = " + error);
             });
-    }
+    });
 
-    return { latitude, longitude, data, updateInfoMeteo };
+    return { latitude, longitude, data };
 });

@@ -14,7 +14,6 @@
 import { useMeteoStore } from "../store/meteoStore";
 
 const meteoStore = useMeteoStore();
-const emits = defineEmits(["coordinatesUpdated"]);
 
 //update coordinates according to pasted values if the syntax is correct
 //i.e. '-59.91232133' + ',' + '12.029222' with -59.xxx for latitude and 12.xxx for longitude
@@ -24,8 +23,6 @@ function splitIfComma(event: any): void {
     if (textPieces.length == 2) {
         meteoStore.latitude = parseFloat(textPieces[0]);
         meteoStore.longitude = parseFloat(textPieces[1]);
-
-        emits("coordinatesUpdated");
     }
 }
 

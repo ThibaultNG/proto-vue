@@ -8,7 +8,6 @@
 import { useMeteoStore } from "../store/meteoStore";
 
 const meteoStore = useMeteoStore();
-const emit = defineEmits(["coordinatesUpdated"]);
 
 //randomize and update the coordinate values
 function randomize(): void {
@@ -19,7 +18,5 @@ function randomize(): void {
 
     meteoStore.latitude = Math.random() * (maxLatitude - minLatitude) + minLatitude;
     meteoStore.longitude = Math.random() * (maxLongitude - minLLongitude) + minLLongitude;
-
-    emit("coordinatesUpdated");
 }
 </script>
