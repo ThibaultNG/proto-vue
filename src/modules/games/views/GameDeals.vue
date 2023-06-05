@@ -1,5 +1,5 @@
 <template>
-    <h1>Deals !</h1>
+	<h1>Deals !</h1>
 </template>
 
 <script setup lang="ts">

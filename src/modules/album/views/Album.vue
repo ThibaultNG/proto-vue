@@ -1,19 +1,19 @@
 <template>
-    <div class="grid-container">
-        <v-img
-            v-for="meme in album.memes"
-            :src="meme['url']"
-            max-width="200px"
-            max-height="200px"
-            class="bg-transparent"
-        >
-            <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                    <v-progress-circular indeterminate color="grey-lighten-5"></v-progress-circular>
-                </v-row>
-            </template>
-        </v-img>
-    </div>
+	<div class="grid-container">
+		<v-img
+			v-for="meme in album.memes"
+			:src="meme['url']"
+			max-width="200px"
+			max-height="200px"
+			class="bg-transparent"
+		>
+			<template v-slot:placeholder>
+				<v-row class="fill-height ma-0" align="center" justify="center">
+					<v-progress-circular indeterminate color="grey-lighten-5"></v-progress-circular>
+				</v-row>
+			</template>
+		</v-img>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -26,9 +26,9 @@ getMemes().then((m) => (album.memes = m));
 
 <style>
 .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    gap: 10px;
-    columns: 5;
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+	gap: 10px;
+	columns: 5;
 }
 </style>

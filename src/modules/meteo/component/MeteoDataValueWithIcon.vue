@@ -1,7 +1,7 @@
 <template>
-    <p>
-        <v-icon>{{ props.icon }}</v-icon> {{ props.value }} {{ props.unit }}
-    </p>
+	<p>
+		<v-icon>{{ props.icon }}</v-icon> {{ props.value }} {{ props.unit }}
+	</p>
 </template>
 
 <script lang="ts" setup>

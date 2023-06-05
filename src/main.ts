@@ -14,11 +14,11 @@ import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 
 const vuetify = createVuetify({
-    components,
-    directives,
-    display: {
-        mobileBreakpoint: "xs"
-    }
+	components,
+	directives,
+	display: {
+		mobileBreakpoint: "xs"
+	}
 });
 
 const app = createApp(App);

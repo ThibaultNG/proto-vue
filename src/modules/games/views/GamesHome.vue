@@ -1,5 +1,5 @@
 <template>
-    <SelectGameShop />
+	<SelectGameShop />
 </template>
 
 <script setup lang="ts">
