@@ -1,17 +1,20 @@
 <template>
     <div class="inputValues">
         <label> latitude : </label>
-        <input @paste="splitIfComma" v-model="props.latitude" type="number" />
+        <input @paste="splitIfComma" v-model="meteoStore.latitude" type="number" />
 
         <label> longitude : </label>
-        <input @paste="splitIfComma" v-model="props.longitude" type="number" />
+        <input @paste="splitIfComma" v-model="meteoStore.longitude" type="number" />
 
         <v-btn @click="copyText" variant="tonal" outlined>Copier les coordonées</v-btn>
     </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps(["latitude", "longitude"]);
+import { useMeteoStore } from "../store/meteoStore";
+
+const meteoStore = useMeteoStore();
+
 const emits = defineEmits(["updateLatitudeLongitude"]);
 
 function splitIfComma(event: any) {
