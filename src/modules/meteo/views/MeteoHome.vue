@@ -13,8 +13,19 @@
         <br />
 
         <MeteoData v-if="valuesPresent" :data="meteoStore.data"></MeteoData>
-        <p v-else-if="firstRender">ah chargement initial ou le site météo à buguer !</p>
-        <p v-else>ah chargement initial ou le site météo à buguer !</p>
+        <p v-else-if="firstRender">Ici la météo !</p>
+        <p v-else>Veuillez rafraîchir !</p>
+
+        <v-btn
+            :href="
+                'https://google.fr/maps/search/' + meteoStore.latitude + ', ' + meteoStore.longitude
+            "
+            target="_blank"
+            rel="noopener noreferrer"
+            prepend-icon="$vuetify"
+            append-icon="$vuetify"
+            >Regarder sur google map</v-btn
+        >
     </div>
 </template>
 
