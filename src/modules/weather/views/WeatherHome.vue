@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<div class="inputValues">
-			<MeteoRandomizer>Random</MeteoRandomizer>
-			<MeteoInputValues></MeteoInputValues>
+			<WeatherRandomizer>Random</WeatherRandomizer>
+			<WeatherInputValues></WeatherInputValues>
 		</div>
 		<br />
 
-		<MeteoData v-if="weatherStore.data != null" :data="weatherStore.data"></MeteoData>
+		<WeatherData v-if="weatherStore.data != null" :data="weatherStore.data"></WeatherData>
 		<p v-else>Please refresh the page...</p>
 
 		<v-btn
@@ -26,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import MeteoData from "../component/WeatherData.vue";
-import MeteoRandomizer from "../component/WeatherRandomizer.vue";
-import MeteoInputValues from "../component/WeatherInputValues.vue";
+import WeatherData from "../component/WeatherDataDisplay.vue";
+import WeatherRandomizer from "../component/WeatherRandomizer.vue";
+import WeatherInputValues from "../component/WeatherInputValues.vue";
 import { useWeatherStore } from "../store/weatherStore";
 
 const weatherStore = useWeatherStore();

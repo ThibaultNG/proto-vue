@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, type Ref } from "vue";
 import { getInfoWeatherService } from "../service/weatherService";
+import type WeatherData from "../models/WeatherData";
 
 export const useWeatherStore = defineStore("weatherStore", () => {
 	const latitude = ref(0);
 	const longitude = ref(0);
-	const data = ref();
+	const data: Ref<WeatherData | undefined> = ref();
 
 	watchEffect(() => {
 		if (latitude.value != null && longitude.value != null)
