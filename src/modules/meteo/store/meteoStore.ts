@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref, watchEffect } from "vue";
+import { readonly, ref, watchEffect } from "vue";
 import { getInfoMeteoService } from "../service/meteoService";
 
 export const useMeteoStore = defineStore("meteoStore", () => {
