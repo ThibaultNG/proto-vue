@@ -21,18 +21,16 @@
 				lg="3"
 				class="d- align-center"
 			>
-				<GameCard
-					:game="game"
-					@show-game-deals.prevent="(e) => showGameDeals(e, game.gameID)"
-				/>
+				<GameCard :game="game" @show-game-deals="showGameDeals" />
 			</v-col>
 		</v-row>
-		<v-overlay v-model="dealsOverlay" contained :scrim="true">
-			<v-card :style="overlayStyle">
-				<v-card-text>{{ gameDeals }}</v-card-text>
-			</v-card>
-		</v-overlay>
 	</v-container>
+
+	<v-overlay v-model="dealsOverlay" :scrim="true">
+		<v-card class="pop-up-card">
+			<v-card-text>{{ gameDeals }}</v-card-text>
+		</v-card>
+	</v-overlay>
 </template>
 
 <script setup lang="ts">
@@ -42,14 +40,10 @@ import type GameBrief from "../models/GameBrief";
 import { getDealsByGameID, getGamesByTitle } from "../service/gameService";
 import GameCard from "../component/GameCard.vue";
 import type GameDeals from "../models/GameDeals";
-import { type CSSProperties } from "vue";
 
 const searchedGame = ref("");
 const dealsOverlay = ref(false);
 const gameDeals = ref<GameDeals>();
-const overlayStyle = ref<CSSProperties>({
-	position: "relative"
-});
 
 const searchRules = [
 	(input: string) => {
@@ -65,12 +59,7 @@ function search() {
 	getGamesByTitle(searchedGame.value).then((g) => (gameList.value = g));
 }
 
-function showGameDeals(event: PointerEvent, gameID: number) {
-	overlayStyle.value.top = event.y + "px";
-	overlayStyle.value.left = event.x + "px";
-	console.log(overlayStyle.value);
-	console.log(event);
-
+function showGameDeals(gameID: number) {
 	getDealsByGameID(gameID).then((g) => {
 		gameDeals.value = g;
 		dealsOverlay.value = true;
@@ -78,4 +67,13 @@ function showGameDeals(event: PointerEvent, gameID: number) {
 }
 </script>
 
-<style></style>
+<style scoped>
+.pop-up-card {
+	position: sticky;
+	margin-top: 5%;
+	margin-left: 20%;
+	overflow: scroll;
+	width: 60%;
+	max-height: 60%;
+}
+</style>

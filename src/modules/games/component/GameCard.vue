@@ -12,7 +12,7 @@
 				scrim="#03A9F4"
 				class="align-center justify-center"
 			>
-				<v-btn variant="flat" @click.prevent="$emit('showGameDeals', $event, game.gameID)"
+				<v-btn variant="flat" @click.prevent="$emit('showGameDeals', game.gameID)"
 					>See more info</v-btn
 				>
 			</v-overlay>
@@ -21,13 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 defineProps(["game"]);
 
 defineEmits<{
-	(e: "showGameDeals", event: PointerEvent, gameID: number): void;
+	(e: "showGameDeals", gameID: number): void;
 }>();
-
-const dealsOverlay = ref(false);
 </script>
