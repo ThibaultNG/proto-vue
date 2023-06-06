@@ -27,8 +27,22 @@
 	</v-container>
 
 	<v-overlay v-model="dealsOverlay" :scrim="true">
-		<v-card class="pop-up-card">
+		<v-card class="pop-up-card bg-grey-darken-4">
+			<v-card-title
+				class="bg-blue text-h3 font-weight-bold"
+				style="line-height:50px;height:64px;"
+			>
+				{{ gameDeals?.info.title }}
+				<v-btn @click="dealsOverlay = false" icon="mdi-close" class="bg-red" style="float: right"/>
+
+			</v-card-title>
+			<v-img :src="gameDeals?.info.thumb" />
 			<v-card-text>{{ gameDeals }}</v-card-text>
+			<v-card-actions>
+				<v-btn @click="dealsOverlay = false" prepend-icon="mdi-close" class="bg-red"
+					>Close</v-btn
+				>
+			</v-card-actions>
 		</v-card>
 	</v-overlay>
 </template>
@@ -72,8 +86,9 @@ function showGameDeals(gameID: number) {
 	position: sticky;
 	margin-top: 5%;
 	margin-left: 20%;
-	overflow: scroll;
+	margin-bottom: 10%;
+	overflow: auto;
 	width: 60%;
-	max-height: 60%;
+	max-height: 80vh;
 }
 </style>
