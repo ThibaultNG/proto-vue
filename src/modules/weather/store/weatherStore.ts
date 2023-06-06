@@ -6,7 +6,8 @@ import type WeatherData from "../models/WeatherData";
 export const useWeatherStore = defineStore("weatherStore", () => {
 	const latitude = ref(0);
 	const longitude = ref(0);
-	const data: Ref<WeatherData | undefined> = ref();
+	//	const data: Ref<WeatherData | undefined> = ref();
+	const data = ref<WeatherData>();
 
 	watchEffect(() => {
 		if (latitude.value != null && longitude.value != null)
