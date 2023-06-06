@@ -1,6 +1,6 @@
 <template>
 	<h1>Deals !</h1>
-	<v-sheet width="50vw">
+	<v-sheet max-width="1000">
 		<v-form @submit.prevent @submit="search" class="d-flex" row>
 			<v-text-field
 				v-model="searchedGame"
@@ -10,7 +10,7 @@
 			<v-btn type="submit" class="mt-2 ml-10">Search</v-btn>
 		</v-form>
 	</v-sheet>
-	<v-container>
+	<v-container style="position: relative">
 		<v-row class="v-row-wrap align-center">
 			<v-col
 				v-for="game in gameList"
@@ -21,18 +21,17 @@
 				lg="3"
 				class="d- align-center"
 			>
-				<v-card>
-					<div class="text-center">
-						<h3 class="headline pink--text text--accent-2">{{ game.external }}</h3>
-						<div></div>
-					</div>
-					<v-spacer>
-						<v-img :src="game.thumb"></v-img>
-					</v-spacer>
-					<v-card-subtitle>{{ "Price " + game.cheapest + "$" }}</v-card-subtitle>
-				</v-card>
+				<GameCard
+					:game="game"
+					@show-game-deals.prevent="(e) => showGameDeals(e, game.gameID)"
+				/>
 			</v-col>
 		</v-row>
+		<v-overlay v-model="dealsOverlay" contained :scrim="true">
+			<v-card :style="overlayStyle">
+				<v-card-text>{{ gameDeals }}</v-card-text>
+			</v-card>
+		</v-overlay>
 	</v-container>
 </template>
 
@@ -40,9 +39,17 @@
 import type { Ref } from "vue";
 import { ref } from "vue";
 import type GameBrief from "../models/GameBrief";
-import { getGamesByTitle } from "../service/gameService";
+import { getDealsByGameID, getGamesByTitle } from "../service/gameService";
+import GameCard from "../component/GameCard.vue";
+import type GameDeals from "../models/GameDeals";
+import { type CSSProperties } from "vue";
 
 const searchedGame = ref("");
+const dealsOverlay = ref(false);
+const gameDeals = ref<GameDeals>();
+const overlayStyle = ref<CSSProperties>({
+	position: "relative"
+});
 
 const searchRules = [
 	(input: string) => {
@@ -56,6 +63,18 @@ const gameList: Ref<GameBrief[]> = ref([]);
 
 function search() {
 	getGamesByTitle(searchedGame.value).then((g) => (gameList.value = g));
+}
+
+function showGameDeals(event: PointerEvent, gameID: number) {
+	overlayStyle.value.top = event.y + "px";
+	overlayStyle.value.left = event.x + "px";
+	console.log(overlayStyle.value);
+	console.log(event);
+
+	getDealsByGameID(gameID).then((g) => {
+		gameDeals.value = g;
+		dealsOverlay.value = true;
+	});
 }
 </script>
 
