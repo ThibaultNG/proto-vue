@@ -27,8 +27,8 @@ import MainNavBar from "./component/MainNavBar.vue";
 
 <style scoped>
 .main-container {
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 5%;
+	padding-right: 5%;
 	padding-top: 50px;
 	padding-bottom: 100px;
 	box-sizing: border-box;
