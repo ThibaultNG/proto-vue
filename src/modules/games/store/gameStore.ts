@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref, type Ref } from "vue";
 import { getShops } from "../service/gameService";
-import type Shop from "../models/shop";
+import type Shop from "../models/Shop";
 
 export const useGameStore = defineStore("gameStore", () => {
 	const shops: Ref<Shop[]> = ref([]);

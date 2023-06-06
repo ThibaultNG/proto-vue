@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
 import { ref } from "vue";
-import type GameBrief from "../models/game";
+import type GameBrief from "../models/GameBrief";
 import { getGamesByTitle } from "../service/gameService";
 
 const searchedGame = ref("");
