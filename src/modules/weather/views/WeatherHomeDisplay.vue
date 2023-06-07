@@ -1,34 +1,25 @@
 <template>
-	<div>
-		<div class="inputValues">
-			<WeatherRandomizer>Random</WeatherRandomizer>
-			<WeatherInputValues></WeatherInputValues>
-		</div>
-		<br />
-
-		<WeatherData v-if="weatherStore.data != null" :data="weatherStore.data"></WeatherData>
-		<p v-else>Please refresh the page...</p>
-
-		<v-btn
-			:href="
-				'https://google.fr/maps/search/' +
-				weatherStore.latitude +
-				', ' +
-				weatherStore.longitude
-			"
-			target="_blank"
-			rel="noopener noreferrer"
-			prepend-icon="$vuetify"
-			append-icon="$vuetify"
-			>See on Google Map</v-btn
-		>
-	</div>
+	<br />
+	<v-container>
+		<v-row>
+			<v-col>
+				<WeatherInputValues></WeatherInputValues>
+				<WeatherSeeOnGoogleMapButton></WeatherSeeOnGoogleMapButton>
+			</v-col>
+			<v-divider vertical></v-divider>
+			<v-col>
+				<WeatherData :data="weatherStore.data"></WeatherData>
+				<WeatherRandomizer>Random</WeatherRandomizer>
+			</v-col>
+		</v-row>
+	</v-container>
 </template>
 
 <script setup lang="ts">
-import WeatherData from "../component/WeatherDataDisplay.vue";
-import WeatherRandomizer from "../component/WeatherRandomizer.vue";
-import WeatherInputValues from "../component/WeatherInputValues.vue";
+import WeatherData from "../component/home/WeatherDataDisplay.vue";
+import WeatherRandomizer from "../component/home/WeatherRandomizer.vue";
+import WeatherInputValues from "../component/home/WeatherInputValues.vue";
+import WeatherSeeOnGoogleMapButton from "../component/home/WeatherSeeGoogleMapButton.vue";
 import { useWeatherStore } from "../store/weatherStore";
 
 const weatherStore = useWeatherStore();
