@@ -46,14 +46,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
+import { ref, watch } from "vue";
 import { gameNavLinks } from "../modules/games/routes/gameRoutes";
 import { weatherNavLinks as weatherNavLinks } from "../modules/weather/routes/weatherRoutes";
-import { watch } from "vue";
 
-const navDrawerPinned = ref(false);
-const open = ref(["Home"]);
+const navDrawerPinned = ref<boolean>(false);
+const open = ref<string[]>(["Home"]);
 
 const groups = [...gameNavLinks, ...weatherNavLinks];
 

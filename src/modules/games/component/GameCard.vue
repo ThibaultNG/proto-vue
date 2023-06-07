@@ -4,8 +4,10 @@
 			<div class="text-center">
 				<h3 class="headline pink--text text--accent-2">{{ game.external }}</h3>
 			</div>
+
 			<v-img :src="game.thumb" />
 			<v-card-subtitle>{{ "Price : " + game.cheapest + "$" }}</v-card-subtitle>
+
 			<v-overlay
 				:model-value="isHovering"
 				contained
@@ -21,7 +23,11 @@
 </template>
 
 <script setup lang="ts">
-defineProps(["game"]);
+import type GameBrief from "../models/GameBrief";
+
+defineProps<{
+	game: GameBrief;
+}>();
 
 defineEmits<{
 	(e: "showGameDeals", gameID: number): void;

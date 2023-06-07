@@ -37,9 +37,10 @@ import GameCard from "../component/GameCard.vue";
 import type GameDeals from "../models/GameDeals";
 import DealOverlay from "../component/DealOverlay.vue";
 
-const searchedGame = ref("");
-const dealsOverlayIsActive = ref(false);
+const searchedGame = ref<string>("");
+const dealsOverlayIsActive = ref<boolean>(false);
 const gameDeals = ref<GameDeals>();
+const gameList = ref<GameBrief[]>([]);
 
 const searchRules = [
 	(input: string) => {
@@ -49,13 +50,11 @@ const searchRules = [
 	}
 ];
 
-const gameList = ref<GameBrief[]>([]);
-
-function search() {
+function search(): void {
 	getGamesByTitle(searchedGame.value).then((g) => (gameList.value = g));
 }
 
-function showGameDeals(gameID: number) {
+function showGameDeals(gameID: number): void {
 	getDealsByGameID(gameID).then((g) => {
 		gameDeals.value = g;
 		dealsOverlayIsActive.value = true;

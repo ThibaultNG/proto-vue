@@ -15,12 +15,12 @@ const router: Router = createRouter({
 			path: "/home",
 			component: HomePageVue
 		},
-		...weatherRoutes,
 		{
 			path: "/album",
 			name: "album",
 			component: Album
 		},
+		...weatherRoutes,
 		...gameRoutes,
 		{
 			path: "/:pathMatch(.*)*",

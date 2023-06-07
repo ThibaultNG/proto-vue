@@ -40,7 +40,9 @@ defineProps<{
 	gameDeals: GameDeals | undefined;
 }>();
 
-defineEmits(["update:dealsOverlayIsActive"]);
+defineEmits<{
+	(e: "update:dealsOverlayIsActive", dealsOverlayIsActive: boolean): void;
+}>();
 </script>
 
 <style scoped>
