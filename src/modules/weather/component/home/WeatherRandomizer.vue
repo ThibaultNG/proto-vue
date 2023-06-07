@@ -6,7 +6,12 @@
 
 <script lang="ts" setup>
 import { useWeatherStore } from "../../store/weatherStore";
-import { MAX_LATITUDE, MIN_LATITUDE, MAX_LONGITUDE, MIN_LONGITUDE } from "../../constants/coordinate";
+import {
+	MAX_LATITUDE,
+	MIN_LATITUDE,
+	MAX_LONGITUDE,
+	MIN_LONGITUDE
+} from "../../constants/coordinate";
 
 const weatherStore = useWeatherStore();
 
@@ -18,8 +23,8 @@ function randomize(): void {
 </script>
 
 <style>
-.randomizerButton{
-	background-color: #64B5F6;
-    color: white;
+.randomizerButton {
+	background-color: #64b5f6;
+	color: white;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<br>
+	<br />
 	<v-container>
 		<v-row>
 			<v-col>
@@ -19,12 +19,10 @@
 import WeatherData from "../component/home/WeatherDataDisplay.vue";
 import WeatherRandomizer from "../component/home/WeatherRandomizer.vue";
 import WeatherInputValues from "../component/home/WeatherInputValues.vue";
-import WeatherSeeOnGoogleMapButton from "../component/home/WeatherSeeGoogleMapButton.vue"
+import WeatherSeeOnGoogleMapButton from "../component/home/WeatherSeeGoogleMapButton.vue";
 import { useWeatherStore } from "../store/weatherStore";
 
 const weatherStore = useWeatherStore();
-
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
