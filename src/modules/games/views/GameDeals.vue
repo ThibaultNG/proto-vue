@@ -26,37 +26,19 @@
 		</v-row>
 	</v-container>
 
-	<v-overlay v-model="dealsOverlay" :scrim="true">
-		<v-card class="pop-up-card bg-grey-darken-4">
-			<v-card-title
-				class="bg-blue text-h3 font-weight-bold"
-				style="line-height:50px;height:64px;"
-			>
-				{{ gameDeals?.info.title }}
-				<v-btn @click="dealsOverlay = false" icon="mdi-close" class="bg-red" style="float: right"/>
-
-			</v-card-title>
-			<v-img :src="gameDeals?.info.thumb" />
-			<v-card-text>{{ gameDeals }}</v-card-text>
-			<v-card-actions>
-				<v-btn @click="dealsOverlay = false" prepend-icon="mdi-close" class="bg-red"
-					>Close</v-btn
-				>
-			</v-card-actions>
-		</v-card>
-	</v-overlay>
+	<DealOverlay v-model:dealsOverlayIsActive="dealsOverlayIsActive" :game-deals="gameDeals" />
 </template>
 
 <script setup lang="ts">
-import type { Ref } from "vue";
 import { ref } from "vue";
 import type GameBrief from "../models/GameBrief";
 import { getDealsByGameID, getGamesByTitle } from "../service/gameService";
 import GameCard from "../component/GameCard.vue";
 import type GameDeals from "../models/GameDeals";
+import DealOverlay from "../component/DealOverlay.vue";
 
 const searchedGame = ref("");
-const dealsOverlay = ref(false);
+const dealsOverlayIsActive = ref(false);
 const gameDeals = ref<GameDeals>();
 
 const searchRules = [
@@ -67,7 +49,7 @@ const searchRules = [
 	}
 ];
 
-const gameList: Ref<GameBrief[]> = ref([]);
+const gameList = ref<GameBrief[]>([]);
 
 function search() {
 	getGamesByTitle(searchedGame.value).then((g) => (gameList.value = g));
@@ -76,19 +58,9 @@ function search() {
 function showGameDeals(gameID: number) {
 	getDealsByGameID(gameID).then((g) => {
 		gameDeals.value = g;
-		dealsOverlay.value = true;
+		dealsOverlayIsActive.value = true;
 	});
 }
 </script>
 
-<style scoped>
-.pop-up-card {
-	position: sticky;
-	margin-top: 5%;
-	margin-left: 20%;
-	margin-bottom: 10%;
-	overflow: auto;
-	width: 60%;
-	max-height: 80vh;
-}
-</style>
+<style scoped></style>
