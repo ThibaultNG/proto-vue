@@ -3,13 +3,17 @@
 		:label="'Latitude : must be between ' + MAX_LATITUDE + ' and ' + MIN_LATITUDE"
 		v-model="weatherStore.latitude"
 		type="number"
-		step="0.000001"
+		max="90"
+		min="-90"
+		step="1"
 	></v-text-field>
 	<v-text-field
 		:label="'Longitude : must be between ' + MAX_LONGITUDE + ' and ' + MIN_LONGITUDE"
 		v-model="weatherStore.longitude"
 		type="number"
-		step="0.000001"
+		max="180"
+		min="180"
+		step="1"
 	></v-text-field>
 	<v-row>
 		<v-col>
