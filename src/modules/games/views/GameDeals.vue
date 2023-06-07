@@ -30,11 +30,15 @@
 		<v-card class="pop-up-card bg-grey-darken-4">
 			<v-card-title
 				class="bg-blue text-h3 font-weight-bold"
-				style="line-height:50px;height:64px;"
+				style="line-height: 50px; height: 64px"
 			>
 				{{ gameDeals?.info.title }}
-				<v-btn @click="dealsOverlay = false" icon="mdi-close" class="bg-red" style="float: right"/>
-
+				<v-btn
+					@click="dealsOverlay = false"
+					icon="mdi-close"
+					class="bg-red"
+					style="float: right"
+				/>
 			</v-card-title>
 			<v-img :src="gameDeals?.info.thumb" />
 			<v-card-text>{{ gameDeals }}</v-card-text>

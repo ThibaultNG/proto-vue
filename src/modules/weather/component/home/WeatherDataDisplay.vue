@@ -37,8 +37,8 @@
 </template>
 
 <script lang="ts" setup>
-import WeatherDataDisplayValueIcon from "./WeatherDataDisplayValueIcon.vue";
-import { useWeatherStore } from "../store/weatherStore";
+import WeatherDataDisplayValueIcon from "../home/WeatherDataDisplayValueIcon.vue";
+import { useWeatherStore } from "../../store/weatherStore";
 
 const weatherStore = useWeatherStore();
 </script>
