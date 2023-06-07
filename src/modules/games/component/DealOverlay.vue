@@ -1,5 +1,7 @@
 <template>
-	<v-overlay :model-value="dealsOverlayIsActive" :scrim="true">
+	<v-overlay :model-value="dealsOverlayIsActive" :scrim="true"
+	@click:outside="$emit('update:dealsOverlayIsActive', ($event.target as HTMLInputElement).value)"
+	value=false>
 		<v-card class="pop-up-card bg-grey-darken-4">
 			<v-card-title
 				class="bg-blue text-h3 font-weight-bold"
@@ -7,7 +9,7 @@
 			>
 				{{ gameDeals?.info.title }}
 				<v-btn
-					value="false"
+					value=false
 					@click="$emit('update:dealsOverlayIsActive', $event.target.value)"
 					icon="mdi-close"
 					class="bg-red"
@@ -17,11 +19,11 @@
 
 			<v-img :src="gameDeals?.info.thumb" />
 
-			<v-card-text>{{ gameDeals }}</v-card-text>
+			<OfferTable :deals="gameDeals?.deals"/>
 
 			<v-card-actions>
 				<v-btn
-					value="false"
+					value=false
 					@click="$emit('update:dealsOverlayIsActive', $event.target.value)"
 					prepend-icon="mdi-close"
 					class="bg-red"
@@ -34,14 +36,15 @@
 
 <script setup lang="ts">
 import type GameDeals from "../models/GameDeals";
+import OfferTable from "./OfferTable.vue";
 
 defineProps<{
-	dealsOverlayIsActive: boolean;
+	dealsOverlayIsActive: boolean | undefined;
 	gameDeals: GameDeals | undefined;
 }>();
 
 defineEmits<{
-	(e: "update:dealsOverlayIsActive", dealsOverlayIsActive: boolean): void;
+	(e: "update:dealsOverlayIsActive", dealsOverlayIsActive: boolean | null): void;
 }>();
 </script>
 
@@ -49,10 +52,12 @@ defineEmits<{
 .pop-up-card {
 	position: sticky;
 	margin-top: 5%;
-	margin-left: 20%;
-	margin-bottom: 10%;
+	margin-bottom: 5%;
+	margin-left: 10%;
+	margin-right: 10%;
 	overflow: auto;
-	width: 60%;
+	min-width: 300px;
+	width: 80vw;
 	max-height: 80vh;
 }
 </style>

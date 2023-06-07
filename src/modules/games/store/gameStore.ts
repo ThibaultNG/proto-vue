@@ -6,6 +6,10 @@ import type Shop from "../models/Shop";
 export const useGameStore = defineStore("gameStore", () => {
 	const shops: Ref<Shop[]> = ref([]);
 
+	function getShopById(storeID : string) : Shop | undefined {
+		return shops.value.find(s=> s.storeID == storeID);
+	}
+
 	async function updateShops() {
 		getShops().then((s) => {
 			s.map((s) => {
@@ -17,5 +21,5 @@ export const useGameStore = defineStore("gameStore", () => {
 		});
 	}
 
-	return { shops, updateShops };
+	return { shops, updateShops, getShopById };
 });
