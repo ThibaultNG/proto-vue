@@ -1,4 +1,5 @@
 <template>
+	<!-- COORDINATES INPUT -->
 	<v-text-field
 		:label="'Latitude : must be between ' + MAX_LATITUDE + ' and ' + MIN_LATITUDE"
 		v-model="weatherStore.latitude"
@@ -15,6 +16,8 @@
 		:min="MIN_LONGITUDE"
 		step="1"
 	></v-text-field>
+
+	<!-- COPY PASTE BUTTONS -->
 	<v-row>
 		<v-col>
 			<v-btn
@@ -42,7 +45,7 @@ import {
 	MIN_LATITUDE,
 	MAX_LONGITUDE,
 	MIN_LONGITUDE
-} from "../../constants/coordinate";
+} from "../../constants/coordinateRestrictions";
 
 const weatherStore = useWeatherStore();
 

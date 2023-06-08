@@ -2,7 +2,12 @@ import { defineStore } from "pinia";
 import { ref, watchEffect } from "vue";
 import { getInfoWeatherService } from "../service/weatherService";
 import type WeatherData from "../models/WeatherData";
-import { MAX_LATITUDE, MAX_LONGITUDE, MIN_LATITUDE, MIN_LONGITUDE } from "../constants/coordinate";
+import {
+	MAX_LATITUDE,
+	MAX_LONGITUDE,
+	MIN_LATITUDE,
+	MIN_LONGITUDE
+} from "../constants/coordinateRestrictions";
 import type { ErrorInfo } from "../models/ErrorInfo";
 import { handleErrorFromService, setToNoError } from "../error/serviceErrorHandler";
 

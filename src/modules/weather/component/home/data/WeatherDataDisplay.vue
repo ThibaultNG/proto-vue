@@ -1,44 +1,40 @@
 <template>
 	<ul>
 		<template v-if="weatherStore.data != undefined && weatherStore.data != null">
-			<p>
-				<WeatherDataDisplayValueIcon
-					v-if="weatherStore.data?.current_weather.is_day"
-					icon="mdi-weather-sunny"
-					value="day time"
-					unit=""
-				></WeatherDataDisplayValueIcon>
-				<WeatherDataDisplayValueIcon
-					v-else-if="!weatherStore.data?.current_weather.is_day"
-					icon="mdi-weather-night"
-					value="night time"
-					unit=""
-				></WeatherDataDisplayValueIcon>
-			</p>
+			<!-- IS_DAY -->
+			<WeatherDataDisplayValueIcon
+				v-if="weatherStore.data?.current_weather.is_day"
+				icon="mdi-weather-sunny"
+				value="day time"
+				unit=""
+			></WeatherDataDisplayValueIcon>
+			<WeatherDataDisplayValueIcon
+				v-else-if="!weatherStore.data?.current_weather.is_day"
+				icon="mdi-weather-night"
+				value="night time"
+				unit=""
+			></WeatherDataDisplayValueIcon>
 			<br />
-			<p>
-				<WeatherDataDisplayValueIcon
-					icon="mdi-clock-time-one-outline"
-					:value="weatherStore.data?.current_weather.time"
-					unit=""
-				></WeatherDataDisplayValueIcon>
-			</p>
+			<!-- TIME -->
+			<WeatherDataDisplayValueIcon
+				icon="mdi-clock-time-one-outline"
+				:value="weatherStore.data?.current_weather.time"
+				unit=""
+			></WeatherDataDisplayValueIcon>
 			<br />
-			<p>
-				<WeatherDataDisplayValueIcon
-					icon="mdi-sun-thermometer-outline"
-					:value="weatherStore.data?.current_weather.temperature"
-					unit="°C"
-				></WeatherDataDisplayValueIcon>
-			</p>
+			<!-- TEMPERATURE -->
+			<WeatherDataDisplayValueIcon
+				icon="mdi-sun-thermometer-outline"
+				:value="weatherStore.data?.current_weather.temperature"
+				unit="°C"
+			></WeatherDataDisplayValueIcon>
 			<br />
-			<p>
-				<WeatherDataDisplayValueIcon
-					icon="mdi-weather-windy"
-					:value="weatherStore.data?.current_weather.windspeed"
-					unit="km/h"
-				></WeatherDataDisplayValueIcon>
-			</p>
+			<!-- WINDSPEED -->
+			<WeatherDataDisplayValueIcon
+				icon="mdi-weather-windy"
+				:value="weatherStore.data?.current_weather.windspeed"
+				unit="km/h"
+			></WeatherDataDisplayValueIcon>
 			<br />
 		</template>
 	</ul>

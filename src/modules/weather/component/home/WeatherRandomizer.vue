@@ -11,7 +11,7 @@ import {
 	MIN_LATITUDE,
 	MAX_LONGITUDE,
 	MIN_LONGITUDE
-} from "../../constants/coordinate";
+} from "../../constants/coordinateRestrictions";
 
 const weatherStore = useWeatherStore();
 

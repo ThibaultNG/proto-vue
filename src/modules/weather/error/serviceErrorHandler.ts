@@ -3,7 +3,7 @@ import {
 	INTERNAL_SERVER_ERROR,
 	NO_INTERNET_CONNECTION,
 	UNDEFINED_ERROR
-} from "../constants/error-message";
+} from "../constants/errorMessages";
 import type { ErrorInfo } from "../models/ErrorInfo";
 
 export function setToNoError(errorInfo: ErrorInfo): ErrorInfo {
