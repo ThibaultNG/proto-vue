@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 const weatherHome = () => import("../views/WeatherHome.vue");
-const weather = () => import("../Weather.vue");
+const weather = () => import("../WeatherMain.vue");
 
 export const weatherRoutes: RouteRecordRaw[] = [
 	{
