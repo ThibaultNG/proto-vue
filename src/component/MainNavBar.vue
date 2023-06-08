@@ -1,12 +1,12 @@
 <template>
-	<v-navigation-drawer v-model:rail="navDrawerPinned">
+	<v-navigation-drawer v-model:rail="isNavDrawerPinned">
 		<v-card class="mx-auto" width="300">
-			<v-list v-model:opened="open" open-strategy="single">
+			<v-list v-model:opened="openedListGroups" open-strategy="single">
 				<v-list-item prepend-icon="mdi-home" title="Home" value="Home" to="/"></v-list-item>
 
 				<v-divider />
 
-				<v-list-group v-for="group in groups" :value="group.groupName">
+				<v-list-group v-for="group in navLinkGroups" :value="group.groupName">
 					<template v-slot:activator="{ props }">
 						<v-list-item
 							v-bind="props"
@@ -35,7 +35,7 @@
 
 				<v-list-item
 					:prepend-icon="
-						navDrawerPinned ? 'mdi-chevron-double-right' : 'mdi-chevron-double-left'
+						isNavDrawerPinned ? 'mdi-chevron-double-right' : 'mdi-chevron-double-left'
 					"
 					@click="toggleNavPin"
 				>
@@ -48,19 +48,19 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { gameNavLinks } from "../modules/games/routes/gameRoutes";
-import { weatherNavLinks as weatherNavLinks } from "../modules/weather/routes/weatherRoutes";
+import { weatherNavLinks } from "../modules/weather/routes/weatherRoutes";
 
-const navDrawerPinned = ref<boolean>(false);
-const open = ref<string[]>(["Home"]);
+const isNavDrawerPinned = ref<boolean>(false);
+const openedListGroups = ref<string[]>(["Home"]);
 
-const groups = [...gameNavLinks, ...weatherNavLinks];
+const navLinkGroups = [...gameNavLinks, ...weatherNavLinks];
 
 function toggleNavPin() {
-	if (navDrawerPinned) open.value = ["Home"];
-	navDrawerPinned.value = !navDrawerPinned.value;
+	if (isNavDrawerPinned) openedListGroups.value = ["Home"];
+	isNavDrawerPinned.value = !isNavDrawerPinned.value;
 }
 
-watch(open, (newOpen) => {
-	if (newOpen[0] != undefined && newOpen[0] != "Home") navDrawerPinned.value = false;
+watch(openedListGroups, (newList) => {
+	if (newList[0] != undefined && newList[0] != "Home") isNavDrawerPinned.value = false;
 });
 </script>

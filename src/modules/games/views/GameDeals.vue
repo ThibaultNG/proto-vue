@@ -1,5 +1,7 @@
 <template>
 	<h1>Deals !</h1>
+
+	<!-- SEARCH BAR -->
 	<v-sheet max-width="1000">
 		<v-form @submit.prevent @submit="search" class="d-flex" row>
 			<v-text-field
@@ -10,6 +12,8 @@
 			<v-btn type="submit" class="mt-2 ml-10">Search</v-btn>
 		</v-form>
 	</v-sheet>
+
+	<!-- GAME TABLE -->
 	<v-container style="position: relative">
 		<v-row class="v-row-wrap align-center">
 			<v-col
@@ -21,7 +25,7 @@
 				lg="3"
 				class="d- align-center"
 			>
-				<GameCard :game="game" @show-game-deals="showGameDeals" />
+				<GameCard :game="game" @click="showGameDeals" />
 			</v-col>
 		</v-row>
 	</v-container>
@@ -51,12 +55,12 @@ const searchRules = [
 ];
 
 function search(): void {
-	getGamesByTitle(searchedGame.value).then((g) => (gameList.value = g));
+	getGamesByTitle(searchedGame.value).then((items) => (gameList.value = items));
 }
 
 function showGameDeals(gameID: number): void {
-	getDealsByGameID(gameID).then((g) => {
-		gameDeals.value = g;
+	getDealsByGameID(gameID).then((deals) => {
+		gameDeals.value = deals;
 		dealsOverlayIsActive.value = true;
 	});
 }
