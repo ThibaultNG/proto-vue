@@ -2,6 +2,9 @@
 	<br />
 	<v-container>
 		<v-row>
+			<WeatherErrorServiceDisplay></WeatherErrorServiceDisplay>
+		</v-row>
+		<v-row>
 			<v-col>
 				<WeatherInputValues></WeatherInputValues>
 				<WeatherSeeOnGoogleMapButton></WeatherSeeOnGoogleMapButton>
@@ -16,6 +19,7 @@
 </template>
 
 <script setup lang="ts">
+import WeatherErrorServiceDisplay from "../component/home/error/WeatherErrorServiceDisplay.vue";
 import WeatherData from "../component/home/data/WeatherDataDisplay.vue";
 import WeatherRandomizer from "../component/home/WeatherRandomizer.vue";
 import WeatherInputValues from "../component/home/WeatherInputValues.vue";

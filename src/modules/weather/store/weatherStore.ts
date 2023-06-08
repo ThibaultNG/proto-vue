@@ -4,6 +4,7 @@ import { getInfoWeatherService } from "../service/weatherService";
 import type WeatherData from "../models/WeatherData";
 import { MAX_LATITUDE, MAX_LONGITUDE, MIN_LATITUDE, MIN_LONGITUDE } from "../constants/coordinate";
 import type { ErrorInfo } from "../models/ErrorInfo";
+import { handleErrorFromService, setToNoError } from "../error/serviceErrorHandler";
 
 export const useWeatherStore = defineStore("weatherStore", () => {
 	const latitude = ref<number>(0);
@@ -11,7 +12,8 @@ export const useWeatherStore = defineStore("weatherStore", () => {
 	const data = ref<WeatherData>();
 	const errorInfo = ref<ErrorInfo>({
 		code: 0,
-		message: ""
+		message: "",
+		happenedXTimes: 0
 	});
 
 	watchEffect(() => {
@@ -27,33 +29,18 @@ export const useWeatherStore = defineStore("weatherStore", () => {
 		}
 	});
 
+	//TODO : see if the handling of error part should rather be dealt in service layer with a serviceHandler
+	//which would be called by store instead of the store handling the errors itself
 	watchEffect(() => {
 		getInfoWeatherService(latitude.value, longitude.value)
 			.then((response) => {
 				data.value = response.data;
-				setToNoError(errorInfo.value);
+				errorInfo.value = setToNoError(errorInfo.value);
 			})
 			.catch((error: any) => {
-				handleErrorFromService(error, errorInfo.value);
+				errorInfo.value = handleErrorFromService(error, errorInfo.value);
 			});
 	});
 
 	return { latitude, longitude, data, errorInfo };
 });
-
-function setToNoError(errorInfo: ErrorInfo) {
-	errorInfo.code = 0;
-	errorInfo.message = "";
-}
-
-function handleErrorFromService(error: any, errorInfo: ErrorInfo) {
-	if (error.response) {
-		if (error.response.status == 400) {
-			errorInfo.code = 400;
-			errorInfo.message = "Please enter correct values";
-		}
-	} else if (String(error).includes("Network Error")) {
-		errorInfo.code = -1;
-		errorInfo.message = "Error : no internet connection";
-	}
-}
