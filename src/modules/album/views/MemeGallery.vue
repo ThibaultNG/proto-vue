@@ -2,12 +2,13 @@
 	<div class="grid-container">
 		<v-img
 			v-for="meme in album.memes"
+			:key="meme['id']"
 			:src="meme['url']"
 			max-width="200px"
 			max-height="200px"
 			class="bg-transparent"
 		>
-			<template v-slot:placeholder>
+			<template #placeholder>
 				<v-row class="fill-height ma-0" align="center" justify="center">
 					<v-progress-circular indeterminate color="grey-lighten-5"></v-progress-circular>
 				</v-row>

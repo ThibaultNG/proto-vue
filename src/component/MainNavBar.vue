@@ -6,8 +6,8 @@
 
 				<v-divider />
 
-				<v-list-group v-for="group in navLinkGroups" :value="group.groupName">
-					<template v-slot:activator="{ props }">
+				<v-list-group v-for="group in navLinkGroups" :key="group.groupName" :value="group.groupName">
+					<template #activator="{ props }">
 						<v-list-item
 							v-bind="props"
 							:prepend-icon="group.groupIcon"
@@ -17,9 +17,10 @@
 
 					<v-list-group
 						v-for="item in group.itemList"
+						:key="group.groupName + item.name"
 						:value="group.groupName + item.name"
 					>
-						<template v-slot:activator="{ props }">
+						<template #activator="{ props }">
 							<v-list-item
 								v-bind="props"
 								:title="item.name"
@@ -56,7 +57,7 @@ const openedListGroups = ref<string[]>(["Home"]);
 const navLinkGroups = [...gameNavLinks, ...weatherNavLinks];
 
 function toggleNavPin() {
-	if (isNavDrawerPinned) openedListGroups.value = ["Home"];
+	if (isNavDrawerPinned.value) openedListGroups.value = ["Home"];
 	isNavDrawerPinned.value = !isNavDrawerPinned.value;
 }
 

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, type Router } from "vue-router";
-import Album from "@/modules/album/views/Album.vue";
+import Album from "@/modules/album/views/MemeGallery.vue";
 import { gameRoutes } from "@/modules/games/routes/gameRoutes";
 import { weatherRoutes } from "@/modules/weather/routes/weatherRoutes";
 import HomePageVue from "@/views/HomePage.vue";

@@ -16,23 +16,20 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from "vue";
+import { computed, ref } from "vue";
 import { getShops } from "../service/gameService";
-
-const MAX_SELECTED = 3;
 
 const shops = ref(new Array());
 const selectedShop = ref(null);
 const searchShop = ref("");
 const loading = ref(false);
 
-// const shopNames = computed(() =>
-//     shops.value[0] ? shops.value[0].map((s: { [x: string]: any }) => s["storeName"]) : []
-// );
+const shopNames = computed(() =>
+    shops.value[0] ? shops.value[0].map((s: { [x: string]: any }) => s["storeName"]) : []
+);
 
-// getShops().then((s) => shops.value.push(s));
+getShops().then((s) => shops.value.push(s));
 
-const shopNames = ["Steam", "Origin", "Epic Games", "Ubisoft"];
 </script>
 
 <style></style>

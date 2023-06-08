@@ -1,5 +1,5 @@
 <template>
-	<v-btn @click="randomize()" stacked prepend-icon="mdi-dice-5-outline" class="randomizerButton">
+	<v-btn stacked prepend-icon="mdi-dice-5-outline" class="randomizerButton" @click="randomize()">
 		<slot />
 	</v-btn>
 </template>

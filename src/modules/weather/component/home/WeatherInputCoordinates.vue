@@ -1,16 +1,16 @@
 <template>
 	<!-- COORDINATES INPUT -->
 	<v-text-field
-		:label="'Latitude : must be between ' + MAX_LATITUDE + ' and ' + MIN_LATITUDE"
 		v-model="weatherStore.latitude"
+		:label="'Latitude : must be between ' + MAX_LATITUDE + ' and ' + MIN_LATITUDE"
 		type="number"
 		:max="MAX_LATITUDE"
 		:min="MIN_LATITUDE"
 		step="1"
 	></v-text-field>
 	<v-text-field
-		:label="'Longitude : must be between ' + MAX_LONGITUDE + ' and ' + MIN_LONGITUDE"
 		v-model="weatherStore.longitude"
+		:label="'Longitude : must be between ' + MAX_LONGITUDE + ' and ' + MIN_LONGITUDE"
 		type="number"
 		:max="MAX_LONGITUDE"
 		:min="MIN_LONGITUDE"
@@ -22,16 +22,16 @@
 		<v-col>
 			<v-btn
 				class="copyPasteButtons"
-				@click="copyCoordinates"
 				prepend-icon="mdi-clipboard-arrow-down-outline"
+				@click="copyCoordinates"
 				>Copy</v-btn
 			>
 		</v-col>
 		<v-col>
 			<v-btn
 				class="copyPasteButtons"
-				@click="pasteCoordinates"
 				prepend-icon="mdi-clipboard-arrow-up-outline"
+				@click="pasteCoordinates"
 				>Paste</v-btn
 			>
 		</v-col>

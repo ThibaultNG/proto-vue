@@ -3,7 +3,7 @@
 
 	<!-- SEARCH BAR -->
 	<v-sheet max-width="1000">
-		<v-form @submit.prevent @submit="search" class="d-flex" row>
+		<v-form class="d-flex" row @submit.prevent @submit="search">
 			<v-text-field
 				v-model="searchedGame"
 				:rules="searchRules"

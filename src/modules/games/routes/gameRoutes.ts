@@ -1,4 +1,4 @@
-import GamesVue from "../Games.vue";
+import GamesVue from "../GamesMain.vue";
 import GamesHomeVue from "../views/GamesHome.vue";
 import GameDeals from "../views/GameDeals.vue";
 import GameShopList from "../views/GameShopsList.vue";

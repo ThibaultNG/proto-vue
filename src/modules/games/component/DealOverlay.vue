@@ -2,13 +2,13 @@
 	<v-overlay
 		:model-value="dealsOverlayIsActive"
 		:scrim="true"
+		value="false"
 		@click:outside="
 			emit(
 				'update:dealsOverlayIsActive',
 				new Boolean(($event.target as HTMLInputElement).value).valueOf()
 			)
 		"
-		value="false"
 	>
 		<v-card class="pop-up-card bg-grey-darken-4">
 			<v-card-title
@@ -18,10 +18,10 @@
 				{{ gameDeals?.info.title }}
 				<v-btn
 					value="false"
-					@click="emit('update:dealsOverlayIsActive', $event.target.value)"
 					icon="mdi-close"
 					class="bg-red"
 					style="float: right"
+					@click="emit('update:dealsOverlayIsActive', $event.target.value)"
 				/>
 			</v-card-title>
 
@@ -32,9 +32,9 @@
 			<v-card-actions>
 				<v-btn
 					value="false"
-					@click="emit('update:dealsOverlayIsActive', $event.target.value)"
 					prepend-icon="mdi-close"
 					class="bg-red"
+					@click="emit('update:dealsOverlayIsActive', $event.target.value)"
 					>Close</v-btn
 				>
 			</v-card-actions>
