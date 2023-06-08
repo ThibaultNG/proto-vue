@@ -3,7 +3,10 @@
 		:model-value="dealsOverlayIsActive"
 		:scrim="true"
 		@click:outside="
-			$emit('update:dealsOverlayIsActive', ($event.target as HTMLInputElement).value)
+			emit(
+				'update:dealsOverlayIsActive',
+				new Boolean(($event.target as HTMLInputElement).value).valueOf()
+			)
 		"
 		value="false"
 	>
@@ -15,7 +18,7 @@
 				{{ gameDeals?.info.title }}
 				<v-btn
 					value="false"
-					@click="$emit('update:dealsOverlayIsActive', $event.target.value)"
+					@click="emit('update:dealsOverlayIsActive', $event.target.value)"
 					icon="mdi-close"
 					class="bg-red"
 					style="float: right"
@@ -29,7 +32,7 @@
 			<v-card-actions>
 				<v-btn
 					value="false"
-					@click="$emit('update:dealsOverlayIsActive', $event.target.value)"
+					@click="emit('update:dealsOverlayIsActive', $event.target.value)"
 					prepend-icon="mdi-close"
 					class="bg-red"
 					>Close</v-btn
@@ -48,7 +51,7 @@ defineProps<{
 	gameDeals: GameDeals | undefined;
 }>();
 
-defineEmits<{
+const emit = defineEmits<{
 	(e: "update:dealsOverlayIsActive", dealsOverlayIsActive: boolean | null): void;
 }>();
 </script>

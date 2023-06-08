@@ -14,7 +14,7 @@
 				scrim="#03A9F4"
 				class="align-center justify-center"
 			>
-				<v-btn variant="flat" @click.prevent="$emit('click', game.gameID)"
+				<v-btn variant="flat" @click.prevent="emit('click', game.gameID)"
 					>See more info</v-btn
 				>
 			</v-overlay>
@@ -29,7 +29,7 @@ defineProps<{
 	game: GameBrief;
 }>();
 
-defineEmits<{
+const emit = defineEmits<{
 	(e: "click", gameID: number): void;
 }>();
 </script>
