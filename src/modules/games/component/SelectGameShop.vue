@@ -25,11 +25,10 @@ const searchShop = ref("");
 const loading = ref(false);
 
 const shopNames = computed(() =>
-    shops.value[0] ? shops.value[0].map((s: { [x: string]: any }) => s["storeName"]) : []
+	shops.value[0] ? shops.value[0].map((s: { [x: string]: any }) => s["storeName"]) : []
 );
 
 getShops().then((s) => shops.value.push(s));
-
 </script>
 
 <style></style>

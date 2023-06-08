@@ -6,7 +6,11 @@
 
 				<v-divider />
 
-				<v-list-group v-for="group in navLinkGroups" :key="group.groupName" :value="group.groupName">
+				<v-list-group
+					v-for="group in navLinkGroups"
+					:key="group.groupName"
+					:value="group.groupName"
+				>
 					<template #activator="{ props }">
 						<v-list-item
 							v-bind="props"
