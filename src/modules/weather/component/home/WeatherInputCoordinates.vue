@@ -49,7 +49,7 @@ import {
 
 const weatherStore = useWeatherStore();
 
-async function pasteCoordinates(event: any): Promise<void> {
+async function pasteCoordinates(): Promise<void> {
 	navigator.clipboard.readText().then((pastedText) => {
 		let textPieces = pastedText.split(",");
 		if (textPieces.length == 2) {
