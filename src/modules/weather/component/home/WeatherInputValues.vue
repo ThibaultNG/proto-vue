@@ -3,16 +3,16 @@
 		:label="'Latitude : must be between ' + MAX_LATITUDE + ' and ' + MIN_LATITUDE"
 		v-model="weatherStore.latitude"
 		type="number"
-		max="90"
-		min="-90"
+		:max="MAX_LATITUDE"
+		:min="MIN_LATITUDE"
 		step="1"
 	></v-text-field>
 	<v-text-field
 		:label="'Longitude : must be between ' + MAX_LONGITUDE + ' and ' + MIN_LONGITUDE"
 		v-model="weatherStore.longitude"
 		type="number"
-		max="180"
-		min="180"
+		:max="MAX_LONGITUDE"
+		:min="MIN_LONGITUDE"
 		step="1"
 	></v-text-field>
 	<v-row>
@@ -55,7 +55,6 @@ async function pasteCoordinates(event: any): Promise<void> {
 		}
 	});
 }
-function pasteCoordinatesByClick(event: any): void {}
 
 function copyCoordinates(): void {
 	navigator.clipboard.writeText(weatherStore.latitude + ", " + weatherStore.longitude);
