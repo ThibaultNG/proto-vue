@@ -5,12 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-//const props = defineProps(["icon", "value", "unit"]);
-// const props = defineProps<{
-// 	icon: string,
-// 	value: string,
-// 	unit: string
-// }>()
 const props = defineProps({
 	icon: {
 		type: String,
