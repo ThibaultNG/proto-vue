@@ -9,24 +9,24 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="deal in deals" :key="deal.dealID">
+			<tr v-for="deal in deals" :key="deal.id">
 				<td>
 					<v-img
-						:src="gameStore.getShopById(deal.storeID)?.images.logo"
+						:src="gameStore.getShopById(deal.storeId)?.logo"
 						width="50"
 						height="50"
 					></v-img>
 				</td>
 				<td>{{ deal.price }}</td>
 				<td>{{ deal.retailPrice }}</td>
-				<td>{{ deal.savings }}</td>
+				<td>{{ deal.getReduction() }}</td>
 			</tr>
 		</tbody>
 	</v-table>
 </template>
 
 <script setup lang="ts">
-import type Deal from "../models/Deal";
+import Deal from "../models/Deal";
 import { useGameStore } from "../store/gameStore";
 
 const gameStore = useGameStore();

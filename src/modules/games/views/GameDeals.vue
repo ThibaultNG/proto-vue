@@ -18,7 +18,7 @@
 		<v-row class="v-row-wrap align-center">
 			<v-col
 				v-for="game in gameList"
-				:key="game.gameID"
+				:key="game.id"
 				cols="12"
 				sm="6"
 				md="4"
@@ -30,21 +30,20 @@
 		</v-row>
 	</v-container>
 
-	<DealOverlay v-model:dealsOverlayIsActive="dealsOverlayIsActive" :game-deals="gameDeals" />
+	<DealOverlay v-model:dealsOverlayIsActive="dealsOverlayIsActive" :game="selectedGame" />
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import type GameBrief from "../models/GameBrief";
-import { getDealsByGameID, getGamesByTitle } from "../service/gameService";
+import { getDealsByGameId, getGamesByTitle } from "../service/gameService";
 import GameCard from "../component/GameCard.vue";
-import type GameDeals from "../models/GameDeals";
 import DealOverlay from "../component/DealOverlay.vue";
+import type Game from "../models/Game";
 
 const searchedGame = ref<string>("");
 const dealsOverlayIsActive = ref<boolean>(false);
-const gameDeals = ref<GameDeals>();
-const gameList = ref<GameBrief[]>([]);
+const selectedGame = ref<Game>();
+const gameList = ref<Game[]>([]);
 
 const searchRules = [
 	(input: string) => {
@@ -58,9 +57,9 @@ function search(): void {
 	getGamesByTitle(searchedGame.value).then((items) => (gameList.value = items));
 }
 
-function showGameDeals(gameID: number): void {
-	getDealsByGameID(gameID).then((deals) => {
-		gameDeals.value = deals;
+function showGameDeals(gameId: number): void {
+	getDealsByGameId(gameId).then((resGame) => {
+		selectedGame.value = resGame;
 		dealsOverlayIsActive.value = true;
 	});
 }

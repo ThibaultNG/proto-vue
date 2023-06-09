@@ -2,7 +2,7 @@
 	<v-overlay
 		:model-value="dealsOverlayIsActive"
 		:scrim="true"
-		value="false"
+		value=false
 		@click:outside="
 			emit(
 				'update:dealsOverlayIsActive',
@@ -15,9 +15,9 @@
 				class="bg-blue text-h3 font-weight-bold"
 				style="line-height: 50px; height: 64px"
 			>
-				{{ gameDeals?.info.title }}
+				{{ game?.title }}
 				<v-btn
-					value="false"
+					value=false
 					icon="mdi-close"
 					class="bg-red"
 					style="float: right"
@@ -25,13 +25,13 @@
 				/>
 			</v-card-title>
 
-			<v-img :src="gameDeals?.info.thumb" />
+			<v-img :src="game?.thumbnail" />
 
-			<OfferTable :deals="gameDeals?.deals" />
+			<OfferTable :deals="game?.deals" />
 
 			<v-card-actions>
 				<v-btn
-					value="false"
+					value=false
 					prepend-icon="mdi-close"
 					class="bg-red"
 					@click="emit('update:dealsOverlayIsActive', $event.target.value)"
@@ -43,12 +43,12 @@
 </template>
 
 <script setup lang="ts">
-import type GameDeals from "../models/GameDeals";
+import Game from "../models/Game";
 import OfferTable from "./OfferTable.vue";
 
 defineProps<{
 	dealsOverlayIsActive: boolean | undefined;
-	gameDeals: GameDeals | undefined;
+	game: Game | undefined;
 }>();
 
 const emit = defineEmits<{

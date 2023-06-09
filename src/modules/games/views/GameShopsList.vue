@@ -9,10 +9,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="shop in gameStore.shops" :key="shop.storeID">
-				<td><v-img :src="shop.images.logo" width="50" height="50"></v-img></td>
-				<td>{{ shop.storeID }}</td>
-				<td>{{ shop.storeName }}</td>
+			<tr v-for="shop in gameStore.shops" :key="shop.id">
+				<td><v-img :src="shop.logo" width="50" height="50"></v-img></td>
+				<td>{{ shop.id }}</td>
+				<td>{{ shop.name }}</td>
 			</tr>
 		</tbody>
 	</v-table>

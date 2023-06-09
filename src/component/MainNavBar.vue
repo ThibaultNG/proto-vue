@@ -6,7 +6,7 @@
 					prepend-icon="mdi-home"
 					title="Home"
 					to="/home"
-					active-class="bg-blue-darken-2"					
+					active-class="bg-blue-darken-2"
 					@click="emptyOpenedListGroup"
 				/>
 
