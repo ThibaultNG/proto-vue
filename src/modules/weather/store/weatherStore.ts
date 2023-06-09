@@ -11,7 +11,7 @@ import {
 import type { ErrorInfo } from "../models/ErrorInfo";
 import { handleErrorFromService, setToNoError } from "../error/serviceErrorHandler";
 
-const weatherStore = defineStore("weatherStore", () => {
+const useWeatherStore = defineStore("weatherStore", () => {
 	const latitude = ref<number>(0);
 	const longitude = ref<number>(0);
 	const data = ref<WeatherData>();
@@ -49,5 +49,3 @@ const weatherStore = defineStore("weatherStore", () => {
 
 	return { latitude, longitude, data, errorInfo };
 });
-
-export const useWeatherStore = reactive(weatherStore);
