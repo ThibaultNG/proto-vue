@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref, reactive, watchEffect } from "vue";
+import { ref, watchEffect } from "vue";
 import { getInfoWeatherService } from "../service/weatherService";
 import type WeatherData from "../models/WeatherData";
 import {
@@ -11,7 +11,7 @@ import {
 import type { ErrorInfo } from "../models/ErrorInfo";
 import { handleErrorFromService, setToNoError } from "../error/serviceErrorHandler";
 
-const useWeatherStore = defineStore("weatherStore", () => {
+export const useWeatherStore = defineStore("weatherStore", () => {
 	const latitude = ref<number>(0);
 	const longitude = ref<number>(0);
 	const data = ref<WeatherData>();
