@@ -2,10 +2,10 @@
 	<v-table fixed-header>
 		<thead>
 			<tr>
+				<th style="width: 50px"></th>
+				<th style="width: 50px">Price</th>
+				<th style="width: 50px">Retail price</th>
 				<th></th>
-				<th class="text-left">Price</th>
-				<th class="text-left">Retail price</th>
-				<th class="text-left">Savings</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -19,7 +19,16 @@
 				</td>
 				<td>{{ deal.price }}</td>
 				<td>{{ deal.retailPrice }}</td>
-				<td>{{ deal.getReduction() }}</td>
+				<td>
+					<v-chip
+						v-if="deal.getReduction() > 0"
+						class="ma-2 text-h6 font-weight-bold"
+						color="green"
+						text-color="white"
+					>
+						- {{ deal.getReduction() }} %
+					</v-chip>
+				</td>
 			</tr>
 		</tbody>
 	</v-table>

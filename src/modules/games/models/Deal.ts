@@ -14,7 +14,7 @@ export default class Deal {
 	}
 
 	getReduction(): number {
-		return 1 - this.price / this.retailPrice;
+		return Math.ceil((1 - this.price / this.retailPrice) * 100);
 	}
 
 	public static fromApiDealList(apiDeals: ApiDeal[]): Deal[] {
