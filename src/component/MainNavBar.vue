@@ -1,8 +1,16 @@
 <template>
 	<v-navigation-drawer v-model:rail="isNavDrawerPinned">
 		<v-card class="mx-auto" width="300">
-			<v-list v-model:opened="openedListGroups" open-strategy="single">
-				<v-list-item prepend-icon="mdi-home" title="Home" value="Home" to="/"></v-list-item>
+			<v-list v-model:opened="openedListGroups" open-strategy="multiple">
+				<v-list-item
+					prepend-icon="mdi-home"
+					title="Home"
+					to="/home"
+					active-class="bg-blue"
+					link
+					exact
+					@click="emptyOpenedListGroup"
+				></v-list-item>
 
 				<v-divider />
 
@@ -19,20 +27,15 @@
 						/>
 					</template>
 
-					<v-list-group
-						v-for="item in group.itemList"
-						:key="group.groupName + item.name"
-						:value="group.groupName + item.name"
-					>
-						<template #activator="{ props }">
-							<v-list-item
-								v-bind="props"
-								:title="item.name"
-								:to="item.link"
-								:prepend-icon="item.icon"
-							></v-list-item>
-						</template>
-					</v-list-group>
+					<template v-for="item in group.itemList" :key="group.groupName + item.name">
+						<v-list-item
+							:title="item.name"
+							:to="item.link"
+							:prepend-icon="item.icon"
+							active-class="bg-blue"
+						></v-list-item>
+					</template>
+
 					<v-divider />
 				</v-list-group>
 
@@ -56,16 +59,21 @@ import { gameNavLinks } from "../modules/games/routes/gameRoutes";
 import { weatherNavLinks } from "../modules/weather/routes/weatherRoutes";
 
 const isNavDrawerPinned = ref<boolean>(false);
-const openedListGroups = ref<string[]>(["Home"]);
+
+const openedListGroups = ref<string[]>([]);
 
 const navLinkGroups = [...gameNavLinks, ...weatherNavLinks];
 
 function toggleNavPin() {
-	if (isNavDrawerPinned.value) openedListGroups.value = ["Home"];
 	isNavDrawerPinned.value = !isNavDrawerPinned.value;
+	if (isNavDrawerPinned.value) openedListGroups.value = [];
 }
 
 watch(openedListGroups, (newList) => {
-	if (newList[0] != undefined && newList[0] != "Home") isNavDrawerPinned.value = false;
+	if (newList.length) isNavDrawerPinned.value = false;
 });
+
+function emptyOpenedListGroup() {
+	openedListGroups.value = [];
+}
 </script>
