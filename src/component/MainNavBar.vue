@@ -6,11 +6,9 @@
 					prepend-icon="mdi-home"
 					title="Home"
 					to="/home"
-					active-class="bg-blue-darken-2"
-					link
-					exact
+					active-class="bg-blue-darken-2"					
 					@click="emptyOpenedListGroup"
-				></v-list-item>
+				/>
 
 				<v-divider />
 
@@ -29,17 +27,15 @@
 						/>
 					</template>
 
-					<template v-for="item in group.itemList" :key="group.groupName + item.name">
-						<v-divider />
-
-						<v-list-item
-							:title="item.name"
-							:to="item.link"
-							:prepend-icon="item.icon"
-							active-class="bg-blue"
-							@click="setActiveGroup(group.groupName)"
-						></v-list-item>
-					</template>
+					<v-list-item
+						v-for="item in group.itemList"
+						:key="group.groupName + item.name"
+						:title="item.name"
+						:to="item.link"
+						:prepend-icon="item.icon"
+						active-class="bg-blue"
+						@click="setActiveGroup(group.groupName)"
+					/>
 
 					<v-divider />
 				</v-list-group>
@@ -51,8 +47,7 @@
 						isNavDrawerPinned ? 'mdi-chevron-double-right' : 'mdi-chevron-double-left'
 					"
 					@click="toggleNavPin"
-				>
-				</v-list-item>
+				/>
 			</v-list>
 		</v-card>
 	</v-navigation-drawer>
