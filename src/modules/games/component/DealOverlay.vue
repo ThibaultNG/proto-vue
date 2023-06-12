@@ -64,8 +64,9 @@ const emit = defineEmits<{
 	margin-left: 10%;
 	margin-right: 10%;
 	overflow: auto;
-	min-width: 300px;
+	min-width: 350px;
 	width: 80vw;
+	max-width: 550px;
 	max-height: 80vh;
 }
 </style>
