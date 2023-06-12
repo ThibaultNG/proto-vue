@@ -22,7 +22,7 @@ import { reactive } from "vue";
 import { getMemes } from "../service/memeService";
 
 const album = reactive({ memes: [] });
-getMemes().then((m) => (album.memes = m));
+getMemes().then((resMemes) => (album.memes = resMemes));
 </script>
 
 <style>

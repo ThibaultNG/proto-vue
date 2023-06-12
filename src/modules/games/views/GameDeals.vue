@@ -1,17 +1,17 @@
 <template>
 	<h1>Deals !</h1>
+	<v-divider class="mb-5"/>
 
 	<!-- SEARCH BAR -->
-	<v-sheet max-width="1000">
-		<v-form class="d-flex" row @submit.prevent @submit="search">
-			<v-text-field
-				v-model="searchedGame"
-				:rules="searchRules"
-				placeholder="Search game by title"
-			></v-text-field>
-			<v-btn type="submit" class="mt-2 ml-10">Search</v-btn>
-		</v-form>
-	</v-sheet>
+	<v-form style="display: flex; flex-wrap: wrap" @submit.prevent @submit="search">
+		<v-text-field
+			v-model="searchedGame"
+			:rules="searchRules"
+			placeholder="Search game by title"
+			style="max-width: 500px; width: 70vw"
+		></v-text-field>
+		<v-btn type="submit" class="mt-2 ml-10" color="primary">Search</v-btn>
+	</v-form>
 
 	<!-- GAME TABLE -->
 	<v-container style="position: relative">
@@ -19,10 +19,10 @@
 			<v-col
 				v-for="game in gameList"
 				:key="game.id"
-				cols="12"
-				sm="6"
-				md="4"
 				lg="3"
+				md="4"
+				sm="6"
+				xs="12"
 				class="d- align-center"
 			>
 				<GameCard :game="game" @click="showGameDeals" />
