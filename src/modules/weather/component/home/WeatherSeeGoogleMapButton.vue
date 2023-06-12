@@ -1,6 +1,6 @@
 <template>
 	<v-btn
-		class="googleMapButton"
+		class="googleMapButton bg-primary-darken-2"
 		:href="
 			'https://google.fr/maps/search/' + weatherStore.latitude + ', ' + weatherStore.longitude
 		"
@@ -22,7 +22,6 @@ const weatherStore = useWeatherStore();
 
 <style>
 .googleMapButton {
-	background-color: #1976d2;
 	color: white;
 	width: 100%;
 	margin-top: 5%;

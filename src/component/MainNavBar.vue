@@ -6,7 +6,7 @@
 					prepend-icon="mdi-home"
 					title="Home"
 					to="/home"
-					active-class="bg-blue-darken-2"
+					active-class="bg-primary-darken-2"
 					@click="emptyOpenedListGroup"
 				/>
 
@@ -33,7 +33,7 @@
 						:title="item.name"
 						:to="item.link"
 						:prepend-icon="item.icon"
-						active-class="bg-blue"
+						active-class="bg-primary"
 						@click="setActiveGroup(group.groupName)"
 					/>
 
@@ -63,12 +63,12 @@ const activeGroupName = ref<string>();
 const openedListGroups = ref<string[]>([]);
 
 function getGroupClass(groupName: string): string {
-	if (groupName == activeGroupName.value) return "bg-blue-lighten-5";
+	if (groupName == activeGroupName.value) return "bg-primary-lighten-5";
 	return "bg-white";
 }
 
 function getGroupHeaderClass(groupName: string): string {
-	if (groupName == activeGroupName.value) return "bg-blue-darken-2";
+	if (groupName == activeGroupName.value) return "bg-primary-darken-2";
 	return "bg-white";
 }
 

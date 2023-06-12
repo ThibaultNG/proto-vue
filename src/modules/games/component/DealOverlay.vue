@@ -12,7 +12,7 @@
 	>
 		<v-card class="pop-up-card bg-grey-darken-4">
 			<v-card-title
-				class="bg-blue text-h3 font-weight-bold"
+				class="bg-primary text-h3 font-weight-bold"
 				style="line-height: 50px; height: 64px"
 			>
 				{{ game?.title }}

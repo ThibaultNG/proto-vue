@@ -1,6 +1,6 @@
 <template>
 	<h1>Deals !</h1>
-	<v-divider class="mb-5"/>
+	<v-divider class="mb-5" />
 
 	<!-- SEARCH BAR -->
 	<v-form style="display: flex; flex-wrap: wrap" @submit.prevent @submit="search">

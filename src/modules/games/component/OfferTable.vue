@@ -37,7 +37,6 @@
 							color="green"
 							:href="'https://www.cheapshark.com/redirect?dealID=' + deal.id"
 						/>
-
 					</td>
 				</template>
 

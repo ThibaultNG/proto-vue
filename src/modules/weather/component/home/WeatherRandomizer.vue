@@ -1,5 +1,10 @@
 <template>
-	<v-btn stacked prepend-icon="mdi-dice-5-outline" class="randomizerButton" @click="randomize()">
+	<v-btn
+		stacked
+		prepend-icon="mdi-dice-5-outline"
+		class="randomizerButton bg-primary-lighten-1"
+		@click="randomize()"
+	>
 		<slot />
 	</v-btn>
 </template>
@@ -21,10 +26,3 @@ function randomize(): void {
 	weatherStore.longitude = Math.random() * (MAX_LONGITUDE - MIN_LONGITUDE) + MIN_LONGITUDE;
 }
 </script>
-
-<style>
-.randomizerButton {
-	background-color: #64b5f6;
-	color: white;
-}
-</style>

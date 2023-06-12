@@ -1,7 +1,7 @@
 <template>
 	<h1>Shop List</h1>
-	<v-divider class="mb-5"/>
-	
+	<v-divider class="mb-5" />
+
 	<v-table fixed-header height="60vh">
 		<thead>
 			<tr>
