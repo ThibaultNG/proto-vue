@@ -13,22 +13,21 @@ export function setToNoError(errorInfo: ErrorInfo): ErrorInfo {
 	return errorInfo;
 }
 
-//TODO : add a mapping for errorInfo.code and .message so that the code and message are linked and used together
 export function handleErrorFromService(error: any, errorInfo: ErrorInfo): ErrorInfo {
-	let errorMessage = UNDEFINED_ERROR;
-	let errorCode = -100;
+	let errorCode = UNDEFINED_ERROR.code;
+	let errorMessage = UNDEFINED_ERROR.message;
 
 	if (error.response) {
-		if (error.response.status == 400) {
-			errorCode = 400;
-			errorMessage = BAD_REQUEST;
-		} else if (error.response.status == 500) {
-			errorCode = 500;
-			errorMessage = INTERNAL_SERVER_ERROR;
+		if (error.response.status == BAD_REQUEST.code) {
+			errorCode = BAD_REQUEST.code;
+			errorMessage = BAD_REQUEST.message;
+		} else if (error.response.status == INTERNAL_SERVER_ERROR.code) {
+			errorCode = INTERNAL_SERVER_ERROR.code;
+			errorMessage = INTERNAL_SERVER_ERROR.message;
 		}
 	} else if (String(error).includes("Network Error")) {
-		errorCode = -1;
-		errorMessage = NO_INTERNET_CONNECTION;
+		errorCode = NO_INTERNET_CONNECTION.code;
+		errorMessage = NO_INTERNET_CONNECTION.message;
 	}
 
 	errorInfo.code = errorCode;
