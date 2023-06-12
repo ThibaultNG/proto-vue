@@ -4,7 +4,7 @@ import {
 	NO_INTERNET_CONNECTION,
 	UNDEFINED_ERROR
 } from "../constants/errorMessages";
-import type { ErrorInfo } from "../models/ErrorInfo";
+import type ErrorInfo  from "../models/ErrorInfo";
 
 export function setToNoError(errorInfo: ErrorInfo): ErrorInfo {
 	errorInfo.code = 0;

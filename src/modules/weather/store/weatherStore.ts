@@ -8,8 +8,9 @@ import {
 	MIN_LATITUDE,
 	MIN_LONGITUDE
 } from "../constants/coordinateRestrictions";
-import type { ErrorInfo } from "../models/ErrorInfo";
+import ErrorInfo from "../models/ErrorInfo";
 import { handleErrorFromService, setToNoError } from "../error/serviceErrorHandler";
+import type IWeatherData from "../models/api/IWeatherData";
 
 export const useWeatherStore = defineStore("weatherStore", () => {
 	const latitude = ref<number>(0);
@@ -38,8 +39,8 @@ export const useWeatherStore = defineStore("weatherStore", () => {
 	//which would be called by store instead of the store handling the errors itself
 	watchEffect(() => {
 		getInfoWeatherService(latitude.value, longitude.value)
-			.then((response) => {
-				data.value = response.data;
+			.then((response: any) => {
+				data.value = response.data as IWeatherData;
 				errorInfo.value = setToNoError(errorInfo.value);
 			})
 			.catch((error: any) => {
