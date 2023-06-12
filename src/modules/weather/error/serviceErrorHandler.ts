@@ -18,6 +18,7 @@ export function handleErrorFromService(error: any, errorInfo: ErrorInfo): ErrorI
 	let errorMessage = UNDEFINED_ERROR.message;
 
 	if (error.response) {
+		// The request was made and the server responded with a status code(!= 2XX)
 		if (error.response.status == BAD_REQUEST.code) {
 			errorCode = BAD_REQUEST.code;
 			errorMessage = BAD_REQUEST.message;
@@ -25,9 +26,12 @@ export function handleErrorFromService(error: any, errorInfo: ErrorInfo): ErrorI
 			errorCode = INTERNAL_SERVER_ERROR.code;
 			errorMessage = INTERNAL_SERVER_ERROR.message;
 		}
-	} else if (String(error).includes("Network Error")) {
-		errorCode = NO_INTERNET_CONNECTION.code;
-		errorMessage = NO_INTERNET_CONNECTION.message;
+	} else if (error.request) {
+		// The request was made but no response was received
+		if (String(error).includes("Network Error")) {
+			errorCode = NO_INTERNET_CONNECTION.code;
+			errorMessage = NO_INTERNET_CONNECTION.message;
+		}
 	}
 
 	errorInfo.code = errorCode;

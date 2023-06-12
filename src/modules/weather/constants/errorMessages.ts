@@ -1,4 +1,3 @@
-//TODO : add an object that gathers them all so that we have the choice to import all or only those we want
 export const NO_INTERNET_CONNECTION = {
 	code: -1,
 	message: "Error : no internet connection"
