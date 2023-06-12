@@ -28,7 +28,7 @@ const shopNames = computed(() =>
 	shops.value[0] ? shops.value[0].map((s: { [x: string]: any }) => s["storeName"]) : []
 );
 
-getShops().then((s) => shops.value.push(s));
+getShops().then((resShops) => shops.value.push(resShops));
 </script>
 
 <style></style>
