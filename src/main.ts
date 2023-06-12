@@ -13,12 +13,24 @@ import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
+import { vuetifyDefaultTheme } from "./config/vuetify-theme";
 
 const vuetify = createVuetify({
 	components,
 	directives,
 	display: {
 		mobileBreakpoint: "xs"
+	},
+	theme: {
+		defaultTheme: "vuetifyDefaultTheme",
+		themes: {
+			vuetifyDefaultTheme
+		},
+		variations: {
+			colors: ["primary"],
+			lighten: 5,
+			darken: 5
+		}
 	}
 });
 
