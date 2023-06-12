@@ -15,7 +15,7 @@ const props = defineProps({
 	},
 	value: {
 		type: [String, Number, Boolean, Date, Object],
-		default: ""
+		default: " --- "
 	},
 	unit: {
 		type: [String, Object],
