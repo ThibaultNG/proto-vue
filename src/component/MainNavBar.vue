@@ -77,7 +77,7 @@ function setActiveGroup(groupName: string): void {
 	activeGroupName.value = groupName;
 }
 
-const navLinkGroups : RouteGroupInfo[] = [...gameNavLinks, ...weatherNavLinks];
+const navLinkGroups: RouteGroupInfo[] = [...gameNavLinks, ...weatherNavLinks];
 
 function toggleNavPin(): void {
 	isNavDrawerPinned.value = !isNavDrawerPinned.value;
