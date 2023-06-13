@@ -27,7 +27,7 @@ const vuetify = createVuetify({
 			vuetifyDefaultTheme
 		},
 		variations: {
-			colors: ["primary"],
+			colors: ["primary","secondary"],
 			lighten: 5,
 			darken: 5
 		}

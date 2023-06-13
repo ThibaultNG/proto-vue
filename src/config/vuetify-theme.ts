@@ -4,7 +4,7 @@ export const vuetifyDefaultTheme = {
 		background: "#FFFFFF",
 		surface: "#FFFFFF",
 		primary: "#2196F3",
-		//secondary: '#FFFFFF',
+		secondary: '#B0BEC5',
 		//'secondary-darken-1': '#FFFFFF',
 		error: "#B00020",
 		info: "#2196F3",
