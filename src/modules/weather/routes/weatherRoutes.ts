@@ -1,3 +1,4 @@
+import type RouteGroupInfo from "@/router/RouteInfo";
 import type { RouteRecordRaw } from "vue-router";
 const weatherHome = () => import("../views/WeatherHome.vue");
 const weather = () => import("../WeatherMain.vue");
@@ -18,7 +19,7 @@ export const weatherRoutes: RouteRecordRaw[] = [
 	}
 ];
 
-export const weatherNavLinks = [
+export const weatherNavLinks: RouteGroupInfo[] = [
 	{
 		groupName: "Weather",
 		groupIcon: "mdi-cloud",

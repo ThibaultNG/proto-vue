@@ -57,6 +57,7 @@
 import { ref, watch } from "vue";
 import { gameNavLinks } from "../modules/games/routes/gameRoutes";
 import { weatherNavLinks } from "../modules/weather/routes/weatherRoutes";
+import type RouteGroupInfo from "@/router/RouteInfo";
 
 const isNavDrawerPinned = ref<boolean>(false);
 const activeGroupName = ref<string>();
@@ -76,7 +77,7 @@ function setActiveGroup(groupName: string): void {
 	activeGroupName.value = groupName;
 }
 
-const navLinkGroups = [...gameNavLinks, ...weatherNavLinks];
+const navLinkGroups : RouteGroupInfo[] = [...gameNavLinks, ...weatherNavLinks];
 
 function toggleNavPin(): void {
 	isNavDrawerPinned.value = !isNavDrawerPinned.value;

@@ -3,6 +3,7 @@ import GamesHomeVue from "../views/GamesHome.vue";
 import GameDeals from "../views/GameDeals.vue";
 import GameShopList from "../views/GameShopsList.vue";
 import type { RouteRecordRaw } from "vue-router";
+import type RouteGroupInfo from "@/router/RouteInfo";
 
 export const gameRoutes: RouteRecordRaw[] = [
 	{
@@ -29,7 +30,7 @@ export const gameRoutes: RouteRecordRaw[] = [
 	}
 ];
 
-export const gameNavLinks = [
+export const gameNavLinks: RouteGroupInfo[] = [
 	{
 		groupName: "Games",
 		groupIcon: "mdi-controller",
