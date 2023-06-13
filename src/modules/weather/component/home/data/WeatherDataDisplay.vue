@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts" setup>
-import WeatherDataDisplayValueIcon from "./WeatherDataDisplayValueIcon.vue";
+import WeatherDataDisplayValueIcon from "./WeatherDataDisplayItem.vue";
 import { useWeatherStore } from "../../../store/weatherStore";
 
 const weatherStore = useWeatherStore();

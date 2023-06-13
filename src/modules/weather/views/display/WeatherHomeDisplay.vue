@@ -9,7 +9,7 @@
 			<v-col>
 				<WeatherInputCoordinates></WeatherInputCoordinates>
 				<WeatherCopyPasteButtons></WeatherCopyPasteButtons>
-				<WeatherSeeOnGoogleMapButton></WeatherSeeOnGoogleMapButton>
+				<WeatherGoogleMapButton></WeatherGoogleMapButton>
 			</v-col>
 
 			<v-divider vertical></v-divider>
@@ -28,7 +28,7 @@ import WeatherErrorServiceDisplay from "../../component/home/error/WeatherErrorS
 import WeatherDataDisplay from "../../component/home/data/WeatherDataDisplay.vue";
 import WeatherRandomizer from "../../component/home/WeatherRandomizer.vue";
 import WeatherInputCoordinates from "../../component/home/WeatherInputCoordinates.vue";
-import WeatherSeeOnGoogleMapButton from "../../component/home/WeatherSeeGoogleMapButton.vue";
+import WeatherGoogleMapButton from "../../component/home/WeatherGoogleMapButton.vue";
 import WeatherCopyPasteButtons from "../../component/home/WeatherCopyPasteButtons.vue";
 </script>
 

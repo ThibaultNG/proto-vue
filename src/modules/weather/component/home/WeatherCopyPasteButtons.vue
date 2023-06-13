@@ -23,6 +23,9 @@
 import { useWeatherStore } from "../../store/weatherStore";
 
 const weatherStore = useWeatherStore();
+function copyCoordinates(): void {
+	navigator.clipboard.writeText(weatherStore.latitude + ", " + weatherStore.longitude);
+}
 async function pasteCoordinates(): Promise<void> {
 	navigator.clipboard.readText().then((pastedText) => {
 		let textPieces = pastedText.split(",");
@@ -31,10 +34,6 @@ async function pasteCoordinates(): Promise<void> {
 			weatherStore.longitude = parseFloat(textPieces[1]);
 		}
 	});
-}
-
-function copyCoordinates(): void {
-	navigator.clipboard.writeText(weatherStore.latitude + ", " + weatherStore.longitude);
 }
 </script>
 
