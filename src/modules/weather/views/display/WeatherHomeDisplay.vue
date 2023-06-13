@@ -30,6 +30,14 @@ import WeatherRandomizer from "../../component/home/WeatherRandomizer.vue";
 import WeatherInputCoordinates from "../../component/home/WeatherInputCoordinates.vue";
 import WeatherSeeOnGoogleMapButton from "../../component/home/WeatherSeeGoogleMapButton.vue";
 import WeatherCopyPasteButtons from "../../component/home/WeatherCopyPasteButtons.vue";
+import { onActivated } from "vue";
+
+onActivated(() => {
+	setTimeout(() => {
+		console.log("test");
+	}, 5000);
+	console.log("mounted");
+});
 </script>
 
 <style scoped></style>
