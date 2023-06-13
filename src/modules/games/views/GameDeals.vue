@@ -10,7 +10,8 @@
 			placeholder="Search game by title"
 			style="max-width: 500px; width: 70vw"
 		></v-text-field>
-		<v-btn type="submit" class="mt-2 ml-10" color="primary">Search</v-btn>
+		<v-btn type="submit" class="mt-2 ml-10 mr-10" color="primary">Search</v-btn>
+		<SelectCurrency />
 	</v-form>
 
 	<!-- GAME TABLE -->
@@ -40,6 +41,8 @@ import { getDealsByGameId, getGamesByTitle } from "../service/gameService";
 import GameCard from "../component/GameCard.vue";
 import DealOverlay from "../component/DealOverlay.vue";
 import type Game from "../models/Game";
+import type Deal from "../models/Deal";
+import SelectCurrency from "../component/SelectCurrency.vue";
 
 const searchedGame = ref<string>("");
 const dealsOverlayIsActive = ref<boolean>(false);
@@ -60,7 +63,7 @@ function search(): void {
 
 function showGameDeals(gameId: number): void {
 	getDealsByGameId(gameId).then((resGame) => {
-		resGame.deals?.sort((dealA, dealB) => dealA.price - dealB.price); // order by price DESC
+		resGame.deals?.sort((dealA: Deal, dealB: Deal) => dealA.price - dealB.price); // order by price DESC
 		selectedGame.value = resGame;
 		dealsOverlayIsActive.value = true;
 	});

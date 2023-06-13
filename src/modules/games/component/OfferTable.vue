@@ -19,7 +19,7 @@
 					<td>
 						<v-chip
 							class="text-decoration-line-through text-disabled"
-							:text="'$' + deal.retailPrice.toString()"
+							:text="gameStore.getPriceTag(deal.retailPrice)"
 							variant="tonal"
 							label
 						/>
@@ -30,7 +30,7 @@
 							:text="'-' + deal.getReduction() + '%'"
 						/>
 						<v-chip
-							:text="'$' + deal.price.toString()"
+							:text="gameStore.getPriceTag(deal.price)"
 							class="mt-1 ml-1 text-h6 font-weight-medium"
 							append-icon="mdi-cart-outline"
 							label
@@ -44,7 +44,7 @@
 				<template v-else>
 					<td>
 						<v-chip
-							:text="'$' + deal.price.toString()"
+							:text="gameStore.getPriceTag(deal.retailPrice)"
 							append-icon="mdi-cart-outline"
 							label
 							:href="'https://www.cheapshark.com/redirect?dealID=' + deal.id"

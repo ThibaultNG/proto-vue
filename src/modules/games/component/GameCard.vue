@@ -1,12 +1,11 @@
 <template>
 	<v-hover v-slot="{ isHovering, props }">
-		<v-card v-bind="props">
-			<div class="text-center">
-				<h3 class="headline pink--text text--accent-2">{{ game.title }}</h3>
-			</div>
+		<v-card v-bind="props" class="bg-secondary-lighten-1">
+			<v-card-title>{{ game.title }}</v-card-title>
 
 			<v-img :src="game.thumbnail" />
-			<v-card-subtitle>{{ "Price : " + game.lowestPrice + "$" }}</v-card-subtitle>
+
+			<v-card-subtitle>{{ gameStore.getPriceTag(game.lowestPrice) }}</v-card-subtitle>
 
 			<v-overlay
 				:model-value="isHovering"
@@ -22,6 +21,9 @@
 
 <script setup lang="ts">
 import Game from "../models/Game";
+import { useGameStore } from "../store/gameStore";
+
+const gameStore = useGameStore();
 
 defineProps<{
 	game: Game;
