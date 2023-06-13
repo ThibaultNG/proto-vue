@@ -7,5 +7,3 @@ import { useWeatherStore } from "@/modules/weather/store/weatherStore";
 
 const weatherStore = useWeatherStore();
 </script>
-
-<style></style>

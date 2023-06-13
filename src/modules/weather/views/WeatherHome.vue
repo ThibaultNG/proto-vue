@@ -10,9 +10,9 @@ import WeatherErrorDisplay from "./display/WeatherHomeErrorDisplay.vue";
 //TODO : put the testing code into a test
 const WeatherHomeDisplay = defineAsyncComponent({
 	loader: () =>
-		//normal one v
+		//normal case v
 		import("./display/WeatherHomeDisplay.vue"),
-	//for testing purposes of waiting v
+	//for testing waiting component v
 	// new Promise<typeof import("./display/WeatherHomeDisplay.vue")>((resolve) => {
 	// setTimeout(() => {
 	// 	resolve(import("./display/WeatherHomeDisplay.vue"));
