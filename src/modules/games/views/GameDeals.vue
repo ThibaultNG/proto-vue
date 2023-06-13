@@ -60,6 +60,7 @@ function search(): void {
 
 function showGameDeals(gameId: number): void {
 	getDealsByGameId(gameId).then((resGame) => {
+		resGame.deals?.sort((dealA, dealB) => dealA.price - dealB.price); // order by price DESC
 		selectedGame.value = resGame;
 		dealsOverlayIsActive.value = true;
 	});
