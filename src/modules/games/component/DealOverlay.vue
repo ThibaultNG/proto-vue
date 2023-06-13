@@ -3,6 +3,8 @@
 		:model-value="dealsOverlayIsActive"
 		:scrim="true"
 		:value="false"
+		class="d-flex justify-center align-center"
+		content-class="elevation-24"
 		@click:outside="
 			emit(
 				'update:dealsOverlayIsActive',
@@ -10,10 +12,10 @@
 			)
 		"
 	>
-		<v-card class="pop-up-card bg-grey-darken-4">
+		<v-card class="pop-up-card rounded-0">
 			<v-card-title
 				class="bg-primary text-h3 font-weight-bold"
-				style="line-height: 50px; height: 64px"
+				style="line-height: 50px; height: 64px; position: sticky; top: 0; z-index: 1"
 			>
 				{{ game?.title }}
 				<v-btn
@@ -28,17 +30,13 @@
 			<v-img :src="game?.thumbnail" />
 
 			<OfferTable :deals="game?.deals" />
-
-			<v-card-actions>
-				<v-btn
-					:value="false"
-					prepend-icon="mdi-close"
-					class="bg-red"
-					@click="emit('update:dealsOverlayIsActive', $event.target.value)"
-					>Close</v-btn
-				>
-			</v-card-actions>
 		</v-card>
+
+		<!-- white space at the bottom of the overlay for smoother border -->
+		<div
+			class="rounded-b-xl"
+			style="height: 20px; position: sticky; bottom: 0; z-index: 1; background: white"
+		></div>
 	</v-overlay>
 </template>
 
@@ -58,15 +56,8 @@ const emit = defineEmits<{
 
 <style scoped>
 .pop-up-card {
-	position: sticky;
-	margin-top: 5%;
-	margin-bottom: 5%;
-	margin-left: 10%;
-	margin-right: 10%;
 	overflow: auto;
-	min-width: 350px;
-	width: 80vw;
-	max-width: 550px;
 	max-height: 80vh;
+	padding-bottom: 5px;
 }
 </style>
