@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { getShops } from "../service/gameService";
-import Shop from "../models/Shop";
+import Shop from "../models/Shops";
 
 export const useGameStore = defineStore("gameStore", () => {
 	const shops = ref<Shop[]>([]);

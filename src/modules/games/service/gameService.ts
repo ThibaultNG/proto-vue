@@ -1,5 +1,5 @@
 import axios from "axios";
-import Shop from "../models/Shop";
+import Shop from "../models/Shops";
 import Game from "../models/Game";
 import type StoreInfo from "../models/api/StoreInfo";
 import type GameLookup from "../models/api/GameLookup";
