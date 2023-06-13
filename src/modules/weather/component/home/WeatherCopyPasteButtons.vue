@@ -28,7 +28,7 @@ function copyCoordinates(): void {
 }
 async function pasteCoordinates(): Promise<void> {
 	navigator.clipboard.readText().then((pastedText) => {
-		let textPieces = pastedText.split(",");
+		let textPieces: string[] = pastedText.split(",");
 		if (textPieces.length == 2) {
 			weatherStore.latitude = parseFloat(textPieces[0]);
 			weatherStore.longitude = parseFloat(textPieces[1]);

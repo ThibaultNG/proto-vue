@@ -14,8 +14,8 @@ export function setToNoError(errorInfo: ErrorInfo): ErrorInfo {
 }
 
 export function handleErrorFromService(error: any, errorInfo: ErrorInfo): ErrorInfo {
-	let errorCode = UNDEFINED_ERROR.code;
-	let errorMessage = UNDEFINED_ERROR.message;
+	let errorCode: number = UNDEFINED_ERROR.code;
+	let errorMessage: string = UNDEFINED_ERROR.message;
 
 	if (error.response) {
 		// The request was made and the server responded with a status code(!= 2XX)
