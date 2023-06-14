@@ -16,7 +16,7 @@
 		</v-row>
 	</v-container>
 
-	<NoResultsFound v-else/>
+	<NoResultsFound v-else />
 </template>
 
 <script setup lang="ts">

@@ -41,10 +41,10 @@ export function handleErrorFromService(error: any, errorInfo: ErrorInfo): ErrorI
 }
 
 function handleDuplicatedMessageCase(errorInfo: ErrorInfo, lastErrorMessage: string): ErrorInfo {
-	if (errorInfo.happenedXTimes == 0) {
+	if (errorInfo.happenedXTimes == 0 || errorInfo.happenedXTimes == undefined) {
 		//first time
 		errorInfo.message = lastErrorMessage;
-		errorInfo.happenedXTimes = errorInfo.happenedXTimes + 1;
+		errorInfo.happenedXTimes = 1;
 	} else {
 		errorInfo.message = lastErrorMessage + " (" + (errorInfo.happenedXTimes + 1) + ")";
 		errorInfo.happenedXTimes = errorInfo.happenedXTimes + 1;
