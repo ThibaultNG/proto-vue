@@ -11,13 +11,13 @@ import WeatherErrorDisplay from "./display/WeatherHomeErrorDisplay.vue";
 const WeatherHomeDisplay = defineAsyncComponent({
 	loader: () =>
 		//normal case v
-		import("./display/WeatherHomeDisplay.vue"),
-	//for testing waiting component v
-	// new Promise<typeof import("./display/WeatherHomeDisplay.vue")>((resolve) => {
-	// setTimeout(() => {
-	// 	resolve(import("./display/WeatherHomeDisplay.vue"));
-	// }, 3000); // Delay the import by 3000 milliseconds (3 seconds)
-	// }),
+		//import("./display/WeatherHomeDisplay.vue"),
+		//for testing waiting component v
+		new Promise<typeof import("./display/WeatherHomeDisplay.vue")>((resolve) => {
+			setTimeout(() => {
+				resolve(import("./display/WeatherHomeDisplay.vue"));
+			}, 3000); // Delay the import by 3000 milliseconds (3 seconds)
+		}),
 	loadingComponent: WeatherWaitingDisplay,
 	delay: 200,
 	errorComponent: WeatherErrorDisplay,

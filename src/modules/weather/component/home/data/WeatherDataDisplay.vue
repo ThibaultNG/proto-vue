@@ -14,6 +14,7 @@
 			unit=""
 		></WeatherDataDisplayValueIcon>
 		<br />
+
 		<!-- TIME -->
 		<WeatherDataDisplayValueIcon
 			icon="mdi-clock-time-one-outline"
@@ -21,6 +22,7 @@
 			unit=""
 		></WeatherDataDisplayValueIcon>
 		<br />
+
 		<!-- TEMPERATURE -->
 		<WeatherDataDisplayValueIcon
 			icon="mdi-sun-thermometer-outline"
@@ -28,6 +30,7 @@
 			unit="°C"
 		></WeatherDataDisplayValueIcon>
 		<br />
+
 		<!-- WINDSPEED -->
 		<WeatherDataDisplayValueIcon
 			icon="mdi-weather-windy"
