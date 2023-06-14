@@ -2,7 +2,7 @@
 	<v-container style="position: relative">
 		<v-row class="v-row-wrap align-center">
 			<v-col
-				v-for="n in 12"
+				v-for="n in 20"
 				:key="n"
 				cols="12"
 				lg="3"

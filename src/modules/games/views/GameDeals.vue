@@ -33,7 +33,8 @@ import type Game from "../models/Game";
 import type Deal from "../models/Deal";
 import SelectCurrency from "../component/SelectCurrency.vue";
 import LoadingTable from "../component/loading/LoadingTable.vue";
-import LoadingError from "../component/error/LoadingError.vue";
+import LoadingError from "../component/error/ConnectionError.vue";
+import type { Component } from "vue";
 
 const searchedGame = ref<string>("");
 const dealsOverlayIsActive = ref<boolean>(false);
@@ -50,15 +51,14 @@ const searchRules = [
 ];
 
 function search(): void {
-	getGamesByTitle(searchedGame.value)
-		.then((items) => (gameList.value = items))
-		.then(() => (loadTable.value = true));
+	getGamesByTitle(searchedGame.value).then((items) => {
+		gameList.value = items;
+		loadTable.value = true;
+		GameTablePlaceHolder = getTable();
+	});
 }
 
 function showGameDeals(gameId: number): void {
-	// If we click the loading skeleton or the error, it should be of type PointerEvent and not number
-	if (isNaN(gameId)) return;
-
 	getDealsByGameId(gameId).then((resGame) => {
 		resGame.deals?.sort((dealA: Deal, dealB: Deal) => dealA.price - dealB.price); // order by price DESC
 		selectedGame.value = resGame;
@@ -66,18 +66,22 @@ function showGameDeals(gameId: number): void {
 	});
 }
 
-const GameTablePlaceHolder = defineAsyncComponent({
-	loader: async () => {
-		await new Promise((r) => setTimeout(r, 2000));
-		return import("../component/GameTable.vue");
-	},
+let GameTablePlaceHolder: Component = getTable();
 
-	loadingComponent: LoadingTable,
-	delay: 0,
+function getTable() {
+	return defineAsyncComponent({
+		loader: async () => {
+			await new Promise((r) => setTimeout(r, 1000));
+			return import("../component/GameTable.vue");
+		},
 
-	errorComponent: LoadingError,
-	timeout: 5000
-});
+		loadingComponent: LoadingTable,
+		delay: 0,
+
+		errorComponent: LoadingError,
+		timeout: 5000
+	});
+}
 </script>
 
 <style scoped></style>

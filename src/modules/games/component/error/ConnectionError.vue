@@ -5,3 +5,9 @@
 		subtitle="Try again later"
 	></v-card>
 </template>
+
+<script setup lang="ts">
+defineEmits<{
+	(e: "click"): false; // Prevent @click
+}>();
+</script>
