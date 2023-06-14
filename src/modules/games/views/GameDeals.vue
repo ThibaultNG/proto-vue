@@ -15,39 +15,31 @@
 	</v-form>
 
 	<!-- GAME TABLE -->
-	<v-container style="position: relative">
-		<v-row class="v-row-wrap align-center">
-			<v-col
-				v-for="game in gameList"
-				:key="game.id"
-				cols="12"
-				lg="3"
-				md="4"
-				sm="6"
-				xs="12"
-				class="d- align-center"
-			>
-				<GameCard :game="game" @click="showGameDeals" />
-			</v-col>
-		</v-row>
-	</v-container>
+
+	<GameTablePlaceHolder
+		v-if="loadTable"
+		:game-list="gameList"
+		@click="(gameId : number) => showGameDeals(gameId)"
+	/>
 
 	<DealOverlay v-model:dealsOverlayIsActive="dealsOverlayIsActive" :game="selectedGame" />
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { defineAsyncComponent, ref } from "vue";
 import { getDealsByGameId, getGamesByTitle } from "../service/gameService";
-import GameCard from "../component/GameCard.vue";
 import DealOverlay from "../component/DealOverlay.vue";
 import type Game from "../models/Game";
 import type Deal from "../models/Deal";
 import SelectCurrency from "../component/SelectCurrency.vue";
+import LoadingTable from "../component/loading/LoadingTable.vue";
+import LoadingError from "../component/error/LoadingError.vue";
 
 const searchedGame = ref<string>("");
 const dealsOverlayIsActive = ref<boolean>(false);
-const selectedGame = ref<Game>();
 const gameList = ref<Game[]>([]);
+const selectedGame = ref<Game>();
+const loadTable = ref<boolean>(false);
 
 const searchRules = [
 	(input: string) => {
@@ -58,16 +50,34 @@ const searchRules = [
 ];
 
 function search(): void {
-	getGamesByTitle(searchedGame.value).then((items) => (gameList.value = items));
+	getGamesByTitle(searchedGame.value)
+		.then((items) => (gameList.value = items))
+		.then(() => (loadTable.value = true));
 }
 
 function showGameDeals(gameId: number): void {
+	// If we click the loading skeleton or the error, it should be of type PointerEvent and not number
+	if (isNaN(gameId)) return;
+
 	getDealsByGameId(gameId).then((resGame) => {
 		resGame.deals?.sort((dealA: Deal, dealB: Deal) => dealA.price - dealB.price); // order by price DESC
 		selectedGame.value = resGame;
 		dealsOverlayIsActive.value = true;
 	});
 }
+
+const GameTablePlaceHolder = defineAsyncComponent({
+	loader: async () => {
+		await new Promise((r) => setTimeout(r, 2000));
+		return import("../component/GameTable.vue");
+	},
+
+	loadingComponent: LoadingTable,
+	delay: 0,
+
+	errorComponent: LoadingError,
+	timeout: 5000
+});
 </script>
 
 <style scoped></style>

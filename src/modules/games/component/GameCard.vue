@@ -30,6 +30,6 @@ defineProps<{
 }>();
 
 const emit = defineEmits<{
-	(e: "click", gameID: number): void;
+	(e: "click", gameId: number): void;
 }>();
 </script>
