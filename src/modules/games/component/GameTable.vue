@@ -9,14 +9,14 @@
 				md="4"
 				sm="6"
 				xs="12"
-				class="d- align-center"
+				class="align-center"
 			>
 				<GameCard :game="game" @click="emit('click', game.id)" />
 			</v-col>
 		</v-row>
 	</v-container>
 
-	<NoResultsFound v-else/>
+	<NoResultsFound v-else />
 </template>
 
 <script setup lang="ts">
