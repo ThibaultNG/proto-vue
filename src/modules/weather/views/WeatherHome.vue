@@ -6,14 +6,15 @@
 import { defineAsyncComponent } from "vue";
 import WeatherWaitingDisplay from "./display/WeatherHomeWaitingDisplay.vue";
 import WeatherErrorDisplay from "./display/WeatherHomeErrorDisplay.vue";
+import type { Component } from "vue";
 
 //TODO : put the testing code into a test
-const WeatherHomeDisplay = defineAsyncComponent({
+const WeatherHomeDisplay: Component = defineAsyncComponent({
 	loader: () =>
 		//normal case v
 		//import("./display/WeatherHomeDisplay.vue"),
 		//for testing waiting component v
-		new Promise<typeof import("./display/WeatherHomeDisplay.vue")>((resolve) => {
+		new Promise<Component>((resolve) => {
 			setTimeout(() => {
 				resolve(import("./display/WeatherHomeDisplay.vue"));
 			}, 3000); // Delay the import by 3000 milliseconds (3 seconds)
