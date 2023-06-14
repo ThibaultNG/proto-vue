@@ -13,7 +13,7 @@ import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
-import { vuetifyDefaultTheme } from "./config/vuetify-theme";
+import { defaultLightTheme, defaultDarkTheme } from "./config/vuetify-theme";
 
 const vuetify = createVuetify({
 	components,
@@ -22,9 +22,10 @@ const vuetify = createVuetify({
 		mobileBreakpoint: "xs"
 	},
 	theme: {
-		defaultTheme: "vuetifyDefaultTheme",
+		defaultTheme: "defaultLightTheme",
 		themes: {
-			vuetifyDefaultTheme
+			defaultLightTheme,
+			defaultDarkTheme
 		},
 		variations: {
 			colors: ["primary", "secondary"],
