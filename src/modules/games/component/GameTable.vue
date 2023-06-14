@@ -1,5 +1,5 @@
 <template>
-	<v-container style="position: relative">
+	<v-container v-if="gameList.length" style="position: relative">
 		<v-row class="v-row-wrap align-center">
 			<v-col
 				v-for="game in gameList"
@@ -15,11 +15,14 @@
 			</v-col>
 		</v-row>
 	</v-container>
+
+	<NoResultsFound v-else/>
 </template>
 
 <script setup lang="ts">
 import type Game from "../models/Game";
 import GameCard from "../component/GameCard.vue";
+import NoResultsFound from "./error/NoResultsFound.vue";
 
 defineProps<{
 	gameList: Game[];
