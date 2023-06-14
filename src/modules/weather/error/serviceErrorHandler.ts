@@ -46,7 +46,7 @@ function handleDuplicatedMessageCase(errorInfo: ErrorInfo, lastErrorMessage: str
 		errorInfo.message = lastErrorMessage;
 		errorInfo.happenedXTimes = errorInfo.happenedXTimes + 1;
 	} else {
-		errorInfo.message = lastErrorMessage + " (" + errorInfo.happenedXTimes + ")";
+		errorInfo.message = lastErrorMessage + " (" + (errorInfo.happenedXTimes + 1) + ")";
 		errorInfo.happenedXTimes = errorInfo.happenedXTimes + 1;
 	}
 	return errorInfo;
