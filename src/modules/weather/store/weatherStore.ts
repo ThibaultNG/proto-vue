@@ -16,11 +16,7 @@ export const useWeatherStore = defineStore("weatherStore", () => {
 	const latitude = ref<number>(0);
 	const longitude = ref<number>(0);
 	const weather = ref<Weather>();
-	const errorInfo = ref<ErrorInfo>({
-		code: 0,
-		message: "",
-		happenedXTimes: 0
-	});
+	const errorInfo = ref<ErrorInfo>(new ErrorInfo());
 
 	watchEffect(() => {
 		if (latitude.value >= MAX_LATITUDE) {
