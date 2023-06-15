@@ -1,4 +1,6 @@
-export const MAX_LATITUDE: number = 90;
-export const MIN_LATITUDE: number = -90;
-export const MAX_LONGITUDE: number = 180;
-export const MIN_LONGITUDE: number = -180;
+export enum coordinateRestrictions {
+	MAX_LATITUDE = 90,
+	MIN_LATITUDE = -90,
+	MAX_LONGITUDE = 180,
+	MIN_LONGITUDE = -180
+}

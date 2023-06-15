@@ -11,18 +11,19 @@
 
 <script lang="ts" setup>
 import { useWeatherStore } from "../../store/weatherStore";
-import {
-	MAX_LATITUDE,
-	MIN_LATITUDE,
-	MAX_LONGITUDE,
-	MIN_LONGITUDE
-} from "../../constants/coordinateRestrictions";
+import { coordinateRestrictions } from "../../constants/coordinateRestrictions";
 
 const weatherStore = useWeatherStore();
 
 //randomize and update the coordinate values
 function randomize(): void {
-	weatherStore.latitude = Math.random() * (MAX_LATITUDE - MIN_LATITUDE) + MIN_LATITUDE;
-	weatherStore.longitude = Math.random() * (MAX_LONGITUDE - MIN_LONGITUDE) + MIN_LONGITUDE;
+	weatherStore.latitude =
+		Math.random() *
+			(coordinateRestrictions.MAX_LATITUDE - coordinateRestrictions.MIN_LATITUDE) +
+		coordinateRestrictions.MIN_LATITUDE;
+	weatherStore.longitude =
+		Math.random() *
+			(coordinateRestrictions.MAX_LONGITUDE - coordinateRestrictions.MIN_LONGITUDE) +
+		coordinateRestrictions.MIN_LONGITUDE;
 }
 </script>
