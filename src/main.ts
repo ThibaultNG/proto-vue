@@ -13,7 +13,7 @@ import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
-import { defaultLightTheme, defaultDarkTheme } from "./config/vuetify-theme";
+import { defaultDarkTheme, defaultLightTheme, wineTheme } from "./config/vuetify-theme";
 
 const vuetify = createVuetify({
 	components,
@@ -24,8 +24,9 @@ const vuetify = createVuetify({
 	theme: {
 		defaultTheme: "defaultLightTheme",
 		themes: {
+			defaultDarkTheme,
 			defaultLightTheme,
-			defaultDarkTheme
+			wineTheme //TODO : make it so that we can enumerate all the theme here without having to write them one by one
 		},
 		variations: {
 			colors: ["primary", "secondary", "warning", "error"],

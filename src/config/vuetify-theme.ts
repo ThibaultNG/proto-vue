@@ -1,25 +1,32 @@
 import type { ThemeDefinition } from "vuetify";
 
-export interface toggleTheme {
-	name: string;
+export interface themeItemHeader {
+	id: string;
+	displayedName: string;
 	icon: string;
 }
-export const themeList: toggleTheme[] = [
+export const themeItemListHeader: themeItemHeader[] = [
 	{
-		name: "defaultLightTheme",
+		id: "defaultLightTheme",
+		displayedName: "light",
 		icon: "mdi-white-balance-sunny"
 	},
 	{
-		name: "defaultDarkTheme",
+		id: "defaultDarkTheme",
+		displayedName: "dark",
 		icon: "mdi-moon-waxing-crescent"
+	},
+	{
+		id: "wineTheme",
+		displayedName: "wine",
+		icon: "mdi-glass-wine"
 	}
 ];
 
-//------------ ^ toggle themes ^ ------
+//------------ ^ change themes ^ ------
 //------------ v themes v -------------
 
 export const defaultLightTheme: ThemeDefinition = {
-	//TODO : change the name to defaultLightTheme
 	dark: false,
 	colors: {
 		background: "#FFFFFF",
@@ -41,5 +48,15 @@ export const defaultDarkTheme: ThemeDefinition = {
 		surface: "#424242",
 		primary: "#424242",
 		secondary: "#424242"
+	}
+};
+
+export const wineTheme: ThemeDefinition = {
+	dark: true,
+	colors: {
+		background: "#FFEBEE",
+		surface: "#FFEBEE",
+		primary: "#B71C1C",
+		secondary: "#B71C1C"
 	}
 };

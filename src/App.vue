@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import MainNavBar from "./component/MainNavBar.vue";
-import MainHeader from "./component/MainHeader.vue";
+import MainHeader from "./component/header/MainHeader.vue";
 import MainFooter from "./component/MainFooter.vue";
 </script>
 
