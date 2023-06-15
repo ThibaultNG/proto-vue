@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref, watchEffect } from "vue";
 import { getInfoWeatherService } from "../service/weatherService";
-import type WeatherData from "../models/WeatherData";
+import type Weather from "../models/Weather";
 import {
 	MAX_LATITUDE,
 	MAX_LONGITUDE,
@@ -10,12 +10,12 @@ import {
 } from "../constants/coordinateRestrictions";
 import ErrorInfo from "../models/ErrorInfo";
 import { handleErrorFromService, setToNoError } from "../error/serviceErrorHandler";
-import type IWeatherData from "../models/api/IWeatherData";
+import type WeatherDTO from "../models/api/WeatherDTO";
 
 export const useWeatherStore = defineStore("weatherStore", () => {
 	const latitude = ref<number>(0);
 	const longitude = ref<number>(0);
-	const data = ref<WeatherData>();
+	const weather = ref<Weather>();
 	const errorInfo = ref<ErrorInfo>({
 		code: 0,
 		message: "",
@@ -40,7 +40,7 @@ export const useWeatherStore = defineStore("weatherStore", () => {
 	watchEffect(() => {
 		getInfoWeatherService(latitude.value, longitude.value)
 			.then((response: any) => {
-				data.value = response.data as IWeatherData;
+				weather.value = response.data as WeatherDTO;
 				errorInfo.value = setToNoError(errorInfo.value);
 			})
 			.catch((error: any) => {
@@ -48,5 +48,5 @@ export const useWeatherStore = defineStore("weatherStore", () => {
 			});
 	});
 
-	return { latitude, longitude, data, errorInfo };
+	return { latitude, longitude, weather: weather, errorInfo };
 });

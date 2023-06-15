@@ -1,17 +1,17 @@
-import type IWeatherData from "./api/IWeatherData";
-import type { ICurrentWeather } from "./api/IWeatherData";
+import type WeatherDTO from "./api/WeatherDTO";
+import type { CurrentWeatherDTO } from "./api/WeatherDTO";
 
-export default class WeatherData {
+export default class Weather {
 	latitude: number;
 	longitude: number;
 	generationtime_ms: number;
 	current_weather: CurrentWeather;
 
-	constructor(weatherDataAPI: IWeatherData) {
-		this.latitude = weatherDataAPI.latitude;
-		this.longitude = weatherDataAPI.longitude;
-		this.generationtime_ms = weatherDataAPI.generationtime_ms;
-		this.current_weather = weatherDataAPI.current_weather;
+	constructor(weatherDTO: WeatherDTO) {
+		this.latitude = weatherDTO.latitude;
+		this.longitude = weatherDTO.longitude;
+		this.generationtime_ms = weatherDTO.generationtime_ms;
+		this.current_weather = weatherDTO.current_weather;
 	}
 }
 
@@ -22,7 +22,7 @@ export class CurrentWeather {
 	is_day: number;
 	time: string;
 
-	constructor(currentWeatherAPI: ICurrentWeather) {
+	constructor(currentWeatherAPI: CurrentWeatherDTO) {
 		this.temperature = currentWeatherAPI.temperature;
 		this.windspeed = currentWeatherAPI.windspeed;
 		this.winddirection = currentWeatherAPI.winddirection;

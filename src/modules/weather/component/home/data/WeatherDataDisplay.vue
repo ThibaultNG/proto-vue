@@ -2,15 +2,15 @@
 	<ul>
 		<!-- IS_DAY -->
 		<WeatherDataDisplayValueIcon
-			v-if="weatherStore.data?.current_weather.is_day"
+			v-if="weatherStore.weather?.current_weather.is_day"
 			icon="mdi-weather-sunny"
-			:value="weatherStore.data ? 'day time' : undefined"
+			:value="weatherStore.weather ? 'day time' : undefined"
 			unit=""
 		></WeatherDataDisplayValueIcon>
 		<WeatherDataDisplayValueIcon
-			v-else-if="!weatherStore.data?.current_weather.is_day"
+			v-else-if="!weatherStore.weather?.current_weather.is_day"
 			icon="mdi-weather-night"
-			:value="weatherStore.data ? 'night time' : undefined"
+			:value="weatherStore.weather ? 'night time' : undefined"
 			unit=""
 		></WeatherDataDisplayValueIcon>
 		<br />
@@ -18,7 +18,7 @@
 		<!-- TIME -->
 		<WeatherDataDisplayValueIcon
 			icon="mdi-clock-time-one-outline"
-			:value="weatherStore.data ? weatherStore.data.current_weather.time : undefined"
+			:value="weatherStore.weather ? weatherStore.weather.current_weather.time : undefined"
 			unit=""
 		></WeatherDataDisplayValueIcon>
 		<br />
@@ -26,7 +26,9 @@
 		<!-- TEMPERATURE -->
 		<WeatherDataDisplayValueIcon
 			icon="mdi-sun-thermometer-outline"
-			:value="weatherStore.data ? weatherStore.data.current_weather.temperature : undefined"
+			:value="
+				weatherStore.weather ? weatherStore.weather.current_weather.temperature : undefined
+			"
 			unit="°C"
 		></WeatherDataDisplayValueIcon>
 		<br />
@@ -34,7 +36,9 @@
 		<!-- WINDSPEED -->
 		<WeatherDataDisplayValueIcon
 			icon="mdi-weather-windy"
-			:value="weatherStore.data ? weatherStore.data.current_weather.windspeed : undefined"
+			:value="
+				weatherStore.weather ? weatherStore.weather.current_weather.windspeed : undefined
+			"
 			unit="km/h"
 		></WeatherDataDisplayValueIcon>
 		<br />

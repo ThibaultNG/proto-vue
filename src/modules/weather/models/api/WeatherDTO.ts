@@ -1,11 +1,11 @@
-export default interface IWeatherData {
+export default interface WeatherDTO {
 	latitude: number;
 	longitude: number;
 	generationtime_ms: number;
-	current_weather: ICurrentWeather;
+	current_weather: CurrentWeatherDTO;
 }
 
-export interface ICurrentWeather {
+export interface CurrentWeatherDTO {
 	temperature: number;
 	windspeed: number;
 	winddirection: number;
