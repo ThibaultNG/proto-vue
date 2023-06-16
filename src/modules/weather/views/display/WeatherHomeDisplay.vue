@@ -2,7 +2,9 @@
 	<br />
 	<v-container>
 		<v-row>
-			<WeatherErrorDisplay></WeatherErrorDisplay>
+			<WeatherErrorDisplay
+				:error-message="weatherStore.errorInfo.message"
+			></WeatherErrorDisplay>
 		</v-row>
 		<v-row>
 			<!-- LEFT -->
@@ -28,6 +30,9 @@ import WeatherDataDisplay from "../../component/home/data/WeatherDataDisplay.vue
 import WeatherInput from "../../component/home/input/WeatherInput.vue";
 import WeatherGoogleMapButton from "../../component/home/WeatherGoogleMapButton.vue";
 import WeatherCopyPasteButtons from "../../component/home/WeatherCopyPasteButtons.vue";
+
+import { useWeatherStore } from "../../store/weatherStore";
+const weatherStore = useWeatherStore();
 </script>
 
 <style scoped></style>

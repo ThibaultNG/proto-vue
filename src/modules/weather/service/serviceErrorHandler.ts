@@ -1,4 +1,5 @@
-import type ErrorInfo from "../models/ErrorInfo";
+import type { Ref } from "vue";
+import type ErrorInfo from "../models/errorInfo";
 
 const errorRecord: Record<string, ErrorInfo> = {
 	NO_INTERNET_CONNECTION: {
@@ -19,13 +20,13 @@ const errorRecord: Record<string, ErrorInfo> = {
 	}
 };
 
-export function setToNoError(errorInfo: ErrorInfo): ErrorInfo {
-	errorInfo.code = 0;
-	errorInfo.message = "";
-	errorInfo.happenedXTimes = 0;
+export function setToNoError(errorInfo: Ref<ErrorInfo>): Ref<ErrorInfo> {
+	errorInfo.value.code = 0;
+	errorInfo.value.message = "";
+	errorInfo.value.happenedXTimes = 0;
 	return errorInfo;
 }
-export function handleErrorFromService(error: any, errorInfo: ErrorInfo): ErrorInfo {
+export function handleErrorFromService(error: any, errorInfo: Ref<ErrorInfo>): Ref<ErrorInfo> {
 	let errorCode: number = errorRecord.UNDEFINED_ERROR.code;
 	let errorMessage: string = errorRecord.UNDEFINED_ERROR.message;
 
@@ -46,20 +47,24 @@ export function handleErrorFromService(error: any, errorInfo: ErrorInfo): ErrorI
 		}
 	}
 
-	errorInfo.code = errorCode;
+	errorInfo.value.code = errorCode;
 	handleDuplicatedMessageCase(errorInfo, errorMessage);
 
 	return errorInfo;
 }
 
-function handleDuplicatedMessageCase(errorInfo: ErrorInfo, lastErrorMessage: string): ErrorInfo {
-	if (errorInfo.happenedXTimes == 0 || errorInfo.happenedXTimes == undefined) {
+function handleDuplicatedMessageCase(
+	errorInfo: Ref<ErrorInfo>,
+	lastErrorMessage: string
+): Ref<ErrorInfo> {
+	if (errorInfo.value.happenedXTimes == 0 || errorInfo.value.happenedXTimes == undefined) {
 		//first time
-		errorInfo.message = lastErrorMessage;
-		errorInfo.happenedXTimes = 1;
+		errorInfo.value.message = lastErrorMessage;
+		errorInfo.value.happenedXTimes = 1;
 	} else {
-		errorInfo.message = lastErrorMessage + " (" + (errorInfo.happenedXTimes + 1) + ")";
-		errorInfo.happenedXTimes = errorInfo.happenedXTimes + 1;
+		errorInfo.value.message =
+			lastErrorMessage + " (" + (errorInfo.value.happenedXTimes + 1) + ")";
+		errorInfo.value.happenedXTimes = errorInfo.value.happenedXTimes + 1;
 	}
 	return errorInfo;
 }

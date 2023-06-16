@@ -7,11 +7,20 @@ export default class Weather {
 	generationtime_ms: number;
 	current_weather: CurrentWeather;
 
-	constructor(weatherDTO: WeatherDTO) {
-		this.latitude = weatherDTO.latitude;
-		this.longitude = weatherDTO.longitude;
-		this.generationtime_ms = weatherDTO.generationtime_ms;
-		this.current_weather = weatherDTO.current_weather;
+	constructor() {
+		this.latitude = 0;
+		this.longitude = 0;
+		this.generationtime_ms = 0;
+		this.current_weather = new CurrentWeather();
+	}
+
+	public static fromDtoToModel(weatherDTO: WeatherDTO): Weather {
+		const weather: Weather = new Weather();
+		weather.latitude = weatherDTO.latitude;
+		weather.longitude = weatherDTO.longitude;
+		weather.generationtime_ms = weatherDTO.generationtime_ms;
+		weather.current_weather = CurrentWeather.fromDtoToModel(weatherDTO.current_weather);
+		return weather;
 	}
 }
 
@@ -22,11 +31,21 @@ export class CurrentWeather {
 	is_day: number;
 	time: string;
 
-	constructor(currentWeatherAPI: CurrentWeatherDTO) {
-		this.temperature = currentWeatherAPI.temperature;
-		this.windspeed = currentWeatherAPI.windspeed;
-		this.winddirection = currentWeatherAPI.winddirection;
-		this.is_day = currentWeatherAPI.is_day;
-		this.time = currentWeatherAPI.time;
+	constructor() {
+		this.temperature = 0;
+		this.windspeed = 0;
+		this.winddirection = 0;
+		this.is_day = 0;
+		this.time = "";
+	}
+
+	public static fromDtoToModel(currentWeatherDTO: CurrentWeatherDTO): CurrentWeather {
+		const currentWeather: CurrentWeather = new CurrentWeather();
+		currentWeather.temperature = currentWeatherDTO.temperature;
+		currentWeather.windspeed = currentWeatherDTO.windspeed;
+		currentWeather.winddirection = currentWeatherDTO.winddirection;
+		currentWeather.is_day = currentWeatherDTO.is_day;
+		currentWeather.time = currentWeatherDTO.time;
+		return currentWeather;
 	}
 }

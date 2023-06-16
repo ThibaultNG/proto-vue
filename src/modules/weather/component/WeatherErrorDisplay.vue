@@ -1,9 +1,12 @@
 <template>
-	<p class="errorMessage text-error">{{ weatherStore.errorInfo.message }}</p>
+	<p class="errorMessage text-error">{{ errorMessage }}</p>
 </template>
 
 <script setup lang="ts">
-import { useWeatherStore } from "@/modules/weather/store/weatherStore";
-
-const weatherStore = useWeatherStore();
+defineProps({
+	errorMessage: {
+		type: String,
+		default: ""
+	}
+});
 </script>
