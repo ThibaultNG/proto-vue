@@ -1,5 +1,5 @@
-import GamesVue from "../GamesMain.vue";
-import GamesHomeVue from "../views/GamesHome.vue";
+import GamesMain from "../GamesMain.vue";
+import GamesHome from "../views/GamesHome.vue";
 import GameDeals from "../views/GameDeals.vue";
 import GameShopList from "../views/GameShopsList.vue";
 import type { RouteRecordRaw } from "vue-router";
@@ -8,13 +8,13 @@ import type RouteGroupInfo from "@/router/RouteInfo";
 export const gameRoutes: RouteRecordRaw[] = [
 	{
 		path: "/games",
-		component: GamesVue,
+		component: GamesMain,
 		redirect: { name: "game-home" },
 		children: [
 			{
 				path: "home",
 				name: "game-home",
-				component: GamesHomeVue
+				component: GamesHome
 			},
 			{
 				path: "deals",

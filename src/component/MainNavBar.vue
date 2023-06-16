@@ -58,10 +58,12 @@ import { ref, watch } from "vue";
 import { gameNavLinks } from "../modules/games/routes/gameRoutes";
 import { weatherNavLinks } from "../modules/weather/routes/weatherRoutes";
 import type RouteGroupInfo from "@/router/RouteInfo";
+import { editorNavLinks } from "@/modules/editor/routes/editorRoutes";
 
 const isNavDrawerPinned = ref<boolean>(false);
 const activeGroupName = ref<string>();
 const openedListGroups = ref<string[]>([]);
+const navLinkGroups: RouteGroupInfo[] = [...gameNavLinks, ...weatherNavLinks, ...editorNavLinks];
 
 function getGroupClass(groupName: string): string {
 	if (groupName == activeGroupName.value) return "bg-primary-lighten-5";
@@ -76,8 +78,6 @@ function getGroupHeaderClass(groupName: string): string {
 function setActiveGroup(groupName: string): void {
 	activeGroupName.value = groupName;
 }
-
-const navLinkGroups: RouteGroupInfo[] = [...gameNavLinks, ...weatherNavLinks];
 
 function toggleNavPin(): void {
 	isNavDrawerPinned.value = !isNavDrawerPinned.value;
