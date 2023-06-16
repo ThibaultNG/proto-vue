@@ -7,7 +7,7 @@
 		<v-row>
 			<!-- LEFT -->
 			<v-col>
-				<WeatherInputCoordinates></WeatherInputCoordinates>
+				<WeatherInput></WeatherInput>
 				<WeatherCopyPasteButtons></WeatherCopyPasteButtons>
 				<WeatherGoogleMapButton></WeatherGoogleMapButton>
 			</v-col>
@@ -17,7 +17,6 @@
 			<!-- RIGHT -->
 			<v-col>
 				<WeatherDataDisplay></WeatherDataDisplay>
-				<WeatherRandomizer>Random</WeatherRandomizer>
 			</v-col>
 		</v-row>
 	</v-container>
@@ -26,8 +25,7 @@
 <script setup lang="ts">
 import WeatherErrorServiceDisplay from "../../component/home/error/WeatherErrorServiceDisplay.vue";
 import WeatherDataDisplay from "../../component/home/data/WeatherDataDisplay.vue";
-import WeatherRandomizer from "../../component/home/WeatherRandomizer.vue";
-import WeatherInputCoordinates from "../../component/home/WeatherInputCoordinates.vue";
+import WeatherInput from "../../component/home/input/WeatherInput.vue";
 import WeatherGoogleMapButton from "../../component/home/WeatherGoogleMapButton.vue";
 import WeatherCopyPasteButtons from "../../component/home/WeatherCopyPasteButtons.vue";
 </script>

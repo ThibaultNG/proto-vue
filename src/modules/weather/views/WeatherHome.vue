@@ -17,7 +17,7 @@ const WeatherHomeDisplay: Component = defineAsyncComponent({
 		new Promise<Component>((resolve) => {
 			setTimeout(() => {
 				resolve(import("./display/WeatherHomeDisplay.vue"));
-			}, 3000); // Delay the import by 3000 milliseconds (3 seconds)
+			}, 1500); // Delay the import by 1500 milliseconds (1,5 seconds)
 		}),
 	loadingComponent: WeatherWaitingDisplay,
 	delay: 200,
