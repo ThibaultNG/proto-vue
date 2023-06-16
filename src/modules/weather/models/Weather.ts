@@ -1,5 +1,5 @@
-import type WeatherDTO from "./api/WeatherDTO";
-import type { CurrentWeatherDTO } from "./api/WeatherDTO";
+import type WeatherDTO from "./api/weatherDTO";
+import type { CurrentWeatherDTO } from "./api/weatherDTO";
 
 export default class Weather {
 	latitude: number;
