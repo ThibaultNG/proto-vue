@@ -2,7 +2,7 @@
 	<br />
 	<v-container>
 		<v-row>
-			<WeatherErrorServiceDisplay></WeatherErrorServiceDisplay>
+			<WeatherErrorDisplay></WeatherErrorDisplay>
 		</v-row>
 		<v-row>
 			<!-- LEFT -->
@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import WeatherErrorServiceDisplay from "../../component/home/error/WeatherErrorServiceDisplay.vue";
+import WeatherErrorDisplay from "../../component/WeatherErrorDisplay.vue";
 import WeatherDataDisplay from "../../component/home/data/WeatherDataDisplay.vue";
 import WeatherInput from "../../component/home/input/WeatherInput.vue";
 import WeatherGoogleMapButton from "../../component/home/WeatherGoogleMapButton.vue";
