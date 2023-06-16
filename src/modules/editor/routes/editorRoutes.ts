@@ -22,6 +22,6 @@ export const editorNavLinks: RouteGroupInfo[] = [
 	{
 		groupName: "Editor",
 		groupIcon: "mdi-file-document-edit",
-		itemList: [{ name: "editor-home", link: "/editor/home", icon: "mdi-home-edit-outline" }]
+		itemList: [{ name: "Home", link: "/editor/home", icon: "mdi-home-edit-outline" }]
 	}
 ];
