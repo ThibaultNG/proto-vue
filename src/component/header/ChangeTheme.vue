@@ -1,23 +1,33 @@
 <template>
-	<v-icon class="mr-2">{{ selectedIcon }}</v-icon>
-	<v-select
-		v-model="selectedDisplayedName"
-		class="mt-2 w-auto"
-		label="Theme"
-		:items="themeItemListHeader"
-		variant="underlined"
-	>
-		<template #item="{ item }">
-			<ChangeThemeSelectOption
-				:id="item.value.id"
-				:displayed-name="item.value.displayedName"
-				:icon="item.value.icon"
-				@clicked="(id, displayedName, icon) => updateTheme(id, displayedName, icon)"
-			>
-			</ChangeThemeSelectOption>
-			<br />
-		</template>
-	</v-select>
+	<v-container class="container">
+		<v-row class="mt-1">
+			<v-col cols="2">
+				<v-icon class="mt-5 mr-2">{{ selectedIcon }}</v-icon>
+			</v-col>
+			<v-col>
+				<v-select
+					v-model="selectedDisplayedName"
+					class="selectSize"
+					label="Theme"
+					:items="themeItemListHeader"
+					variant="underlined"
+				>
+					<template #item="{ item }">
+						<ChangeThemeSelectOption
+							:id="item.value.id"
+							:displayed-name="item.value.displayedName"
+							:icon="item.value.icon"
+							@clicked="
+								(id, displayedName, icon) => updateTheme(id, displayedName, icon)
+							"
+						>
+						</ChangeThemeSelectOption>
+						<br />
+					</template>
+				</v-select>
+			</v-col>
+		</v-row>
+	</v-container>
 </template>
 
 <script setup lang="ts">
@@ -36,3 +46,8 @@ function updateTheme(id: string, displayedName: string, icon: string): void {
 	selectedIcon.value = icon;
 }
 </script>
+<style scoped>
+.container {
+	width: 15%;
+}
+</style>
