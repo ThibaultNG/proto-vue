@@ -1,5 +1,5 @@
 <template>
-	<v-btn :prepend-icon="icon" :text="displayedName" variant="text" @click="clicked"/>
+	<v-btn :prepend-icon="icon" :text="displayedName" variant="text" @click="clicked" />
 </template>
 
 <script setup lang="ts">
