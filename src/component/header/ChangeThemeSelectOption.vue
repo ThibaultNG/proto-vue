@@ -1,8 +1,5 @@
 <template>
-	<button @click="clicked">
-		(<v-icon>{{ icon }}</v-icon
-		>) {{ displayedName }}
-	</button>
+	<v-btn :prepend-icon="icon" :text="displayedName" variant="text" @click="clicked"/>
 </template>
 
 <script setup lang="ts">
