@@ -1,6 +1,6 @@
-import Deal from "./Deal";
-import type GameBrief from "./api/GameBrief";
-import type GameLookup from "./api/GameLookup";
+import Deal from "./deal";
+import type GameDTO from "./api/gameDTO";
+import type GameLookupDTO from "./api/gameLookupDTO";
 
 export default class Game {
 	id!: number;
@@ -9,7 +9,7 @@ export default class Game {
 	thumbnail!: string;
 	deals?: Deal[];
 
-	public static fromGameBrief(gameBrief: GameBrief): Game {
+	public static fromGameBrief(gameBrief: GameDTO): Game {
 		const game: Game = new Game();
 		game.id = gameBrief.gameID;
 		game.lowestPrice = gameBrief.cheapest;
@@ -19,7 +19,7 @@ export default class Game {
 		return game;
 	}
 
-	public static fromGameLookUp(gameLookup: GameLookup, id: number): Game {
+	public static fromGameLookUp(gameLookup: GameLookupDTO, id: number): Game {
 		const game: Game = new Game();
 
 		game.id = id;

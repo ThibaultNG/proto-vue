@@ -1,4 +1,4 @@
-import Currency from "../models/Currency";
+import Currency from "../models/currency";
 
 /* SOURCE : https://fastspring.com/blog/how-to-format-30-currencies-from-countries-all-over-the-world */
 

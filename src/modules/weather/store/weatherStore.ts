@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref, watchEffect } from "vue";
 import { getInfoWeatherService } from "../service/weatherService";
-import type Weather from "../models/weather";
+import type Weather from "../models/Weather";
 import ErrorInfo from "../models/errorInfo";
 import { handleErrorFromService, setToNoError } from "../error/serviceErrorHandler";
 import type weatherDTO from "../models/api/weatherDTO";

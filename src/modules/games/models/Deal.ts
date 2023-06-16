@@ -1,4 +1,4 @@
-import type ApiDeal from "./api/ApiDeal";
+import type DealDTO from "./api/dealDTO";
 
 export default class Deal {
 	id: string;
@@ -6,7 +6,7 @@ export default class Deal {
 	price: number;
 	retailPrice: number;
 
-	constructor(deal: ApiDeal) {
+	constructor(deal: DealDTO) {
 		this.id = deal.dealID;
 		this.storeId = deal.storeID;
 		this.price = deal.price;
@@ -17,7 +17,7 @@ export default class Deal {
 		return Math.ceil((1 - this.price / this.retailPrice) * 100);
 	}
 
-	public static fromApiDealList(apiDeals: ApiDeal[]): Deal[] {
+	public static fromApiDealList(apiDeals: DealDTO[]): Deal[] {
 		const deals: Deal[] = [];
 
 		apiDeals.forEach((apiDeal) => deals.push(new Deal(apiDeal)));

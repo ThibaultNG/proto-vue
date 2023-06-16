@@ -1,4 +1,4 @@
-export default interface GameBrief {
+export default interface GameDTO {
 	gameID: number;
 	steamAppID: number;
 	cheapest: number;

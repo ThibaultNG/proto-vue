@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import Game from "../models/Game";
+import Game from "../models/game";
 import OfferTable from "./OfferTable.vue";
 
 defineProps<{

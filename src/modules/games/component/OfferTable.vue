@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import Deal from "../models/Deal";
+import Deal from "../models/deal";
 import { useGameStore } from "../store/gameStore";
 
 const gameStore = useGameStore();

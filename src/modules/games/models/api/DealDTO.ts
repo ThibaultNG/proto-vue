@@ -1,4 +1,4 @@
-export default interface ApiDeal {
+export default interface DealDTO {
 	storeID: string;
 	dealID: string;
 	price: number;

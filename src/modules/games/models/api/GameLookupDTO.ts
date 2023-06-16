@@ -1,6 +1,6 @@
-import type ApiDeal from "./ApiDeal";
+import type DealDTO from "./dealDTO";
 
-export default interface GameLookup {
+export default interface GameLookupDTO {
 	info: {
 		title: string;
 		steamAppID: string;
@@ -10,5 +10,5 @@ export default interface GameLookup {
 		price: number;
 		date: Date;
 	};
-	deals: ApiDeal[];
+	deals: DealDTO[];
 }

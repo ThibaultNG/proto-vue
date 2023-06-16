@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import type Game from "../models/Game";
+import type Game from "../models/game";
 import GameCard from "../component/GameCard.vue";
 import NoResultsFound from "./error/NoResultsFound.vue";
 

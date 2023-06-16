@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { getShops } from "../service/gameService";
-import Shop from "../models/Shop";
-import Currency from "../models/Currency";
+import Shop from "../models/shop";
+import Currency from "../models/currency";
 import { currencies } from "../constants/currencies";
 
 export const useGameStore = defineStore("gameStore", () => {

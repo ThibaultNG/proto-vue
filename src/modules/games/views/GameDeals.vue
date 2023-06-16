@@ -29,8 +29,8 @@
 import { defineAsyncComponent, ref } from "vue";
 import { getDealsByGameId, getGamesByTitle } from "../service/gameService";
 import DealOverlay from "../component/DealOverlay.vue";
-import type Game from "../models/Game";
-import type Deal from "../models/Deal";
+import type Game from "../models/game";
+import type Deal from "../models/deal";
 import SelectCurrency from "../component/SelectCurrency.vue";
 import LoadingTable from "../component/loading/LoadingTable.vue";
 import LoadingError from "../component/error/ConnectionError.vue";

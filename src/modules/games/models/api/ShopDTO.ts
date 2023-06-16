@@ -1,4 +1,4 @@
-export default interface StoreInfo {
+export default interface ShopDTO {
 	storeID: string;
 	storeName: string;
 	isActive: number;
