@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { useTheme } from "vuetify";
-import { themeItemListHeader } from "../../config/vuetify-theme";
+import { themeItemListHeader } from "../../config/vuetify-theme-switch";
 import { ref } from "vue";
 import ChangeThemeSelectOption from "./ChangeThemeSelectOption.vue";
 

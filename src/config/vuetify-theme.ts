@@ -1,30 +1,6 @@
 import type { ThemeDefinition } from "vuetify";
 
-export interface themeItemHeader {
-	id: string;
-	displayedName: string;
-	icon: string;
-}
-export const themeItemListHeader: themeItemHeader[] = [
-	{
-		id: "defaultLightTheme",
-		displayedName: "light",
-		icon: "mdi-white-balance-sunny"
-	},
-	{
-		id: "defaultDarkTheme",
-		displayedName: "dark",
-		icon: "mdi-moon-waxing-crescent"
-	},
-	{
-		id: "wineTheme",
-		displayedName: "wine",
-		icon: "mdi-glass-wine"
-	}
-];
-
-//------------ ^ change themes ^ ------
-//------------ v themes v -------------
+//ATTENTION : when adding or deleting a theme here, do not forget to also modify in vuetify-theme-switch.ts
 
 export const defaultLightTheme: ThemeDefinition = {
 	dark: false,
