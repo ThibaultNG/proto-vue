@@ -1,6 +1,6 @@
 import type { ThemeDefinition } from "vuetify";
 
-//ATTENTION : when adding or deleting a theme here, do not forget to also modify in vuetify-theme-switch.ts
+//ATTENTION : when adding or deleting a theme here, do not forget to also modify in vuetifyThemeHeader.ts
 
 export const defaultLightTheme: ThemeDefinition = {
 	dark: false,

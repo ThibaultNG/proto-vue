@@ -1,9 +1,9 @@
-export interface themeItemHeader {
+export interface headerThemeItem {
 	id: string;
 	displayedName: string;
 	icon: string;
 }
-export const themeItemListHeader: themeItemHeader[] = [
+export const headerThemeList: headerThemeItem[] = [
 	{
 		id: "defaultLightTheme",
 		displayedName: "light",

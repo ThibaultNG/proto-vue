@@ -9,7 +9,7 @@
 					v-model="selectedDisplayedName"
 					class="selectSize"
 					label="Theme"
-					:items="themeItemListHeader"
+					:items="headerThemeList"
 					variant="underlined"
 				>
 					<template #item="{ item }">
@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { useTheme } from "vuetify";
-import { themeItemListHeader } from "../../config/vuetify-theme-switch";
+import { headerThemeList } from "../../config/vuetifyThemeHeader";
 import { ref } from "vue";
 import ChangeThemeSelectOption from "./ChangeThemeSelectOption.vue";
 
@@ -42,10 +42,10 @@ updateTheme(theme.global.name.value); //first render
 
 function updateTheme(id: string): void {
 	theme.global.name.value = id;
-	for (let index: number = 0; index < themeItemListHeader.length; index++) {
-		if (themeItemListHeader[index].id == theme.global.name.value) {
-			selectedDisplayedName.value = themeItemListHeader[index].displayedName;
-			selectedIcon.value = themeItemListHeader[index].icon;
+	for (let index: number = 0; index < headerThemeList.length; index++) {
+		if (headerThemeList[index].id == theme.global.name.value) {
+			selectedDisplayedName.value = headerThemeList[index].displayedName;
+			selectedIcon.value = headerThemeList[index].icon;
 		}
 	}
 }

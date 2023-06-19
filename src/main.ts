@@ -13,7 +13,7 @@ import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
-import * as themes from "./config/vuetify-theme";
+import * as themes from "./config/vuetifyTheme";
 const vuetify = createVuetify({
 	components,
 	directives,
