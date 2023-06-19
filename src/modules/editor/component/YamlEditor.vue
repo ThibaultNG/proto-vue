@@ -10,8 +10,7 @@
 
 	<pre>
 		<code ref="codeElement" class="language-yaml" contenteditable @keydown="edit">{{ yamlCode }}</code>
-	<v-btn color="primary" @click="saveYaml">Save</v-btn>
-
+		<v-btn color="primary" @click="saveYaml">Save</v-btn>
 	</pre>
 
 	<v-file-input
@@ -35,7 +34,7 @@ import { onMounted, onUnmounted, ref } from "vue";
 import hljs from "highlight.js/lib/core";
 import yaml from "highlight.js/lib/languages/yaml";
 import "highlight.js/styles/default.css";
-import Cursor from "../models/cursor";
+import { useSelection } from "../composables/selection";
 
 hljs.configure({
 	ignoreUnescapedHTML: true
@@ -48,17 +47,14 @@ const yamlCode = ref<string>("# Config starts here\n\n# End of file");
 const showEnterWarning = ref<boolean>(false);
 const showFileError = ref<boolean>(false);
 let timeoutId: number;
-let cursorPosition: number = 0;
+const { resetCursorPosition } = useSelection(codeElement);
 
 onMounted(() => {
 	hljs.highlightAll();
-	codeElement.value?.addEventListener("click", getCursorPosition);
-	codeElement.value?.addEventListener("keydown", getCursorPosition);
 });
 
 function saveYaml() {
-	if (!codeElement.value) return;
-	yamlCode.value = codeElement.value.innerText;
+	yamlCode.value = codeElement.value!.innerText;
 }
 
 function edit(event: KeyboardEvent) {
@@ -73,15 +69,14 @@ function edit(event: KeyboardEvent) {
 	if (timeoutId) clearTimeout(timeoutId);
 	timeoutId = window.setTimeout(() => {
 		hljs.highlightAll();
-		setCursorPosition();
+		resetCursorPosition();
 	}, 2000);
 }
 
 function getFile() {
-	const reader = new FileReader();
-	const file: File | undefined = configFile.value?.[0];
+	const reader : FileReader = new FileReader();
+	const file: File = configFile.value![0];
 
-	if (!file) return;
 	reader.readAsText(file, "UTF-8");
 
 	reader.onload = (event) => {
@@ -94,24 +89,6 @@ function getFile() {
 		console.error(event);
 		showFileError.value = true;
 	};
-}
-
-function getCursorPosition(): void {
-	const selection: Selection = document.getSelection()!;
-	selection.modify("extend", "backward", "documentboundary");
-	const position: number = selection.toString().length;
-	if (selection.anchorNode != undefined) selection.collapseToEnd();
-
-	cursorPosition = position;
-}
-
-function setCursorPosition() {
-	// let offset1 = Cursor.getCurrentCursorPosition(codeElement.value!);
-	const offset: number = cursorPosition + 1;
-
-	// insert code here that does stuff to the innerHTML, such as adding/removing <span> tags
-	Cursor.setCurrentCursorPosition(offset, codeElement.value!);
-	codeElement.value!.focus();
 }
 
 onUnmounted(() => {
