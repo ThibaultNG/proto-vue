@@ -4,7 +4,7 @@ import type ErrorInfo from "../models/errorInfo";
 const errorRecordHTML: Record<string, ErrorInfo> = {
 	BAD_REQUEST: {
 		code: 400,
-		message: "Error : Please enter correct values, please try again later.."
+		message: "Error : Please enter correct values"
 	},
 	INTERNAL_SERVER_ERROR: {
 		code: 500,
@@ -46,7 +46,7 @@ export function handleErrorFromService(error: any, errorInfo: Ref<ErrorInfo>): R
 		// The request was made but no response was received
 		if (String(error).includes("Network Error")) {
 			errorCode = errorRecordOther.NO_INTERNET_CONNECTION.code;
-			errorMessage = errorRecordHTML.NO_INTERNET_CONNECTION.message;
+			errorMessage = errorRecordOther.NO_INTERNET_CONNECTION.message;
 		}
 	} else {
 		errorCode = errorRecordOther.UNDEFINED_ERROR.code;
