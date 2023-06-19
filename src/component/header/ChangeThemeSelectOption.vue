@@ -20,6 +20,6 @@ const props = defineProps({
 const emits = defineEmits(["clicked"]);
 
 function clicked() {
-	emits("clicked", props.id, props.displayedName, props.icon);
+	emits("clicked", props.id);
 }
 </script>

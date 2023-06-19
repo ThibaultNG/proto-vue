@@ -17,9 +17,7 @@
 							:id="item.value.id"
 							:displayed-name="item.value.displayedName"
 							:icon="item.value.icon"
-							@clicked="
-								(id, displayedName, icon) => updateTheme(id, displayedName, icon)
-							"
+							@clicked="(id) => updateTheme(id)"
 						>
 						</ChangeThemeSelectOption>
 						<br />
@@ -40,10 +38,16 @@ const theme = useTheme();
 let selectedDisplayedName = ref<string>();
 let selectedIcon = ref<string>();
 
-function updateTheme(id: string, displayedName: string, icon: string): void {
+updateTheme(theme.global.name.value); //first render
+
+function updateTheme(id: string): void {
 	theme.global.name.value = id;
-	selectedDisplayedName.value = displayedName;
-	selectedIcon.value = icon;
+	for (let index: number = 0; index < themeItemListHeader.length; index++) {
+		if (themeItemListHeader[index].id == theme.global.name.value) {
+			selectedDisplayedName.value = themeItemListHeader[index].displayedName;
+			selectedIcon.value = themeItemListHeader[index].icon;
+		}
+	}
 }
 </script>
 <style scoped>
