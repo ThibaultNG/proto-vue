@@ -53,11 +53,8 @@ onMounted(() => {
 });
 
 function saveYaml() {
-	console.log(codeElement);
-
 	if (!codeElement.value) return;
 	yamlCode.value = codeElement.value.innerText;
-	console.log(yamlCode.value);
 }
 
 function edit(event: KeyboardEvent) {
@@ -72,7 +69,6 @@ function edit(event: KeyboardEvent) {
 	if (timeoutId) clearTimeout(timeoutId);
 	timeoutId = window.setTimeout(() => {
 		hljs.highlightAll();
-		console.log((event.target as HTMLElement).innerText);
 	}, 2000);
 }
 
