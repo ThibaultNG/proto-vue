@@ -35,6 +35,7 @@ import { onMounted, onUnmounted, ref } from "vue";
 import hljs from "highlight.js/lib/core";
 import yaml from "highlight.js/lib/languages/yaml";
 import "highlight.js/styles/default.css";
+import Cursor from "../models/cursor";
 
 hljs.configure({
 	ignoreUnescapedHTML: true
@@ -47,9 +48,12 @@ const yamlCode = ref<string>("# Config starts here\n\n# End of file");
 const showEnterWarning = ref<boolean>(false);
 const showFileError = ref<boolean>(false);
 let timeoutId: number;
+let cursorPosition: number = 0;
 
 onMounted(() => {
 	hljs.highlightAll();
+	codeElement.value?.addEventListener("click", getCursorPosition);
+	codeElement.value?.addEventListener("keydown", getCursorPosition);
 });
 
 function saveYaml() {
@@ -69,6 +73,7 @@ function edit(event: KeyboardEvent) {
 	if (timeoutId) clearTimeout(timeoutId);
 	timeoutId = window.setTimeout(() => {
 		hljs.highlightAll();
+		setCursorPosition();
 	}, 2000);
 }
 
@@ -79,7 +84,7 @@ function getFile() {
 	if (!file) return;
 	reader.readAsText(file, "UTF-8");
 
-	reader.onload = function (event) {
+	reader.onload = (event) => {
 		yamlCode.value = event.target?.result as string;
 		window.setTimeout(() => {
 			hljs.highlightAll();
@@ -89,6 +94,24 @@ function getFile() {
 		console.error(event);
 		showFileError.value = true;
 	};
+}
+
+function getCursorPosition(): void {
+	const selection : Selection = document.getSelection()!;
+	selection.modify("extend", "backward", "documentboundary");
+	const position : number = selection.toString().length;
+	if (selection.anchorNode != undefined) selection.collapseToEnd();
+
+	cursorPosition = position;
+}
+
+function setCursorPosition() {
+	// let offset1 = Cursor.getCurrentCursorPosition(codeElement.value!);
+	const offset : number = cursorPosition + 1;
+	
+	// insert code here that does stuff to the innerHTML, such as adding/removing <span> tags
+	Cursor.setCurrentCursorPosition(offset, codeElement.value!);
+	codeElement.value!.focus();
 }
 
 onUnmounted(() => {
