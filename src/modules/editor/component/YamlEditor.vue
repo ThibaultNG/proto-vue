@@ -1,6 +1,6 @@
 <template>
 	<!-- Warning for mobile users -->
-	<v-card class="d-sm-none" color="error">
+	<v-card class="d-md-none" color="error">
 		<v-card-title class="text-wrap">This feature is not available on your device</v-card-title>
 		<v-card-text>
 			You need a keyboard to insert new lines. You can only use this feature if you can copy
@@ -9,10 +9,23 @@
 	</v-card>
 
 	<pre>
-		<code class="language-yaml" contenteditable @keydown="edit">{{ yamlCode }}</code>
+		<code ref="codeElement" class="language-yaml" contenteditable @keydown="edit">{{ yamlCode }}</code>
+	<v-btn color="primary" @click="saveYaml">Save</v-btn>
+
 	</pre>
 
-	<v-snackbar v-model="showWarning" color="warning" :timeout="2000">
+	<v-file-input
+		v-model="configFile"
+		accept=".yml,.yaml"
+		label="File input"
+		@update:model-value="getFile"
+	></v-file-input>
+
+	<v-snackbar v-model="showFileError" color="error" :timeout="10000">
+		Error : File could not be loaded
+	</v-snackbar>
+
+	<v-snackbar v-model="showEnterWarning" color="warning" :timeout="2000">
 		Use SHIFT+ENTER instead of ENTER
 	</v-snackbar>
 </template>
@@ -28,29 +41,58 @@ hljs.configure({
 });
 hljs.registerLanguage("yaml", yaml);
 
-const yamlCode = ref<string>("");
-const showWarning = ref<boolean>(false);
+const codeElement = ref<HTMLElement>();
+const configFile = ref<File[]>();
+const yamlCode = ref<string>("# Config starts here\n\n# End of file");
+const showEnterWarning = ref<boolean>(false);
+const showFileError = ref<boolean>(false);
 let timeoutId: number;
 
 onMounted(() => {
 	hljs.highlightAll();
 });
 
+function saveYaml() {
+	console.log(codeElement);
+
+	if (!codeElement.value) return;
+	yamlCode.value = codeElement.value.innerText;
+	console.log(yamlCode.value);
+}
+
 function edit(event: KeyboardEvent) {
 	// Shows a warning to the user when he tries to add a new line with Enter instead of Shift+Enter
 	if (event.key === "Enter" && !event.shiftKey) {
 		event.preventDefault();
-		showWarning.value = true;
+		showEnterWarning.value = true;
 		return;
 	}
 
 	// Highlights the text after X secs since the last input
 	if (timeoutId) clearTimeout(timeoutId);
 	timeoutId = window.setTimeout(() => {
-		// yamlCode.value = (event.target as HTMLElement).innerText;
 		hljs.highlightAll();
 		console.log((event.target as HTMLElement).innerText);
 	}, 2000);
+}
+
+function getFile() {
+	const reader = new FileReader();
+	const file: File | undefined = configFile.value?.[0];
+
+	if (!file) return;
+	reader.readAsText(file, "UTF-8");
+
+	reader.onload = function (event) {
+		yamlCode.value = event.target?.result as string;
+		window.setTimeout(() => {
+			hljs.highlightAll();
+		}, 100);
+	};
+	reader.onerror = (event) => {
+		console.error(event);
+		showFileError.value = true;
+	};
 }
 
 onUnmounted(() => {
