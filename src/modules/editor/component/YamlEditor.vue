@@ -97,9 +97,9 @@ function getFile() {
 }
 
 function getCursorPosition(): void {
-	const selection : Selection = document.getSelection()!;
+	const selection: Selection = document.getSelection()!;
 	selection.modify("extend", "backward", "documentboundary");
-	const position : number = selection.toString().length;
+	const position: number = selection.toString().length;
 	if (selection.anchorNode != undefined) selection.collapseToEnd();
 
 	cursorPosition = position;
@@ -107,8 +107,8 @@ function getCursorPosition(): void {
 
 function setCursorPosition() {
 	// let offset1 = Cursor.getCurrentCursorPosition(codeElement.value!);
-	const offset : number = cursorPosition + 1;
-	
+	const offset: number = cursorPosition + 1;
+
 	// insert code here that does stuff to the innerHTML, such as adding/removing <span> tags
 	Cursor.setCurrentCursorPosition(offset, codeElement.value!);
 	codeElement.value!.focus();
