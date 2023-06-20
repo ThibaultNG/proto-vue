@@ -13,16 +13,7 @@
 		<v-btn color="primary" @click="saveYaml">Save</v-btn>
 	</pre>
 
-	<v-file-input
-		v-model="configFile"
-		accept=".yml,.yaml"
-		label="File input"
-		@update:model-value="getFile"
-	></v-file-input>
-
-	<v-snackbar v-model="showFileError" color="error" :timeout="10000">
-		Error : File could not be loaded
-	</v-snackbar>
+	<FileInput @input="getFileContent" />
 
 	<v-snackbar v-model="showEnterWarning" color="warning" :timeout="2000">
 		Use SHIFT+ENTER instead of ENTER
@@ -32,12 +23,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useHighlight } from "../composables/highlight";
+import FileInput from "./FileInput.vue";
 
 const codeElement = ref<HTMLElement>();
-const configFile = ref<File[]>();
 const yamlCode = ref<string>("# Config starts here\n\n# End of file");
 const showEnterWarning = ref<boolean>(false);
-const showFileError = ref<boolean>(false);
 
 const { highlight, highlightOnInput } = useHighlight(codeElement, 2000);
 
@@ -58,19 +48,8 @@ function edit(event: KeyboardEvent) {
 	highlightOnInput();
 }
 
-function getFile() {
-	const reader: FileReader = new FileReader();
-	const file: File = configFile.value![0];
-
-	reader.readAsText(file, "UTF-8");
-
-	reader.onload = (event) => {
-		yamlCode.value = event.target?.result as string;
-		highlight();
-	};
-	reader.onerror = (event) => {
-		console.error(event);
-		showFileError.value = true;
-	};
+function getFileContent(content: string) {
+	yamlCode.value = content;
+	highlight();
 }
 </script>
