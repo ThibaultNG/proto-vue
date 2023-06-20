@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useHighlight } from "../composables/highlight";
-import FileInput from "./FileInput.vue";
+import FileInput from "../component/FileInput.vue";
 
 const codeElement = ref<HTMLElement>();
 const yamlCode = ref<string>("# Config starts here\n\n# End of file");
