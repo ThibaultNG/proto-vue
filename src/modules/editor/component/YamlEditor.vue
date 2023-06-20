@@ -30,31 +30,20 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
-import hljs from "highlight.js/lib/core";
-import yaml from "highlight.js/lib/languages/yaml";
-import "highlight.js/styles/default.css";
-import { useSelection } from "../composables/selection";
-
-hljs.configure({
-	ignoreUnescapedHTML: true
-});
-hljs.registerLanguage("yaml", yaml);
+import { ref } from "vue";
+import { useHighlight } from "../composables/highlight";
 
 const codeElement = ref<HTMLElement>();
 const configFile = ref<File[]>();
 const yamlCode = ref<string>("# Config starts here\n\n# End of file");
 const showEnterWarning = ref<boolean>(false);
 const showFileError = ref<boolean>(false);
-let timeoutId: number;
-const { resetCursorPosition } = useSelection(codeElement);
 
-onMounted(() => {
-	hljs.highlightAll();
-});
+const { highlight, highlightOnInput } = useHighlight(codeElement, 2000);
 
 function saveYaml() {
 	yamlCode.value = codeElement.value!.innerText;
+	highlight();
 }
 
 function edit(event: KeyboardEvent) {
@@ -65,12 +54,7 @@ function edit(event: KeyboardEvent) {
 		return;
 	}
 
-	// Highlights the text after X secs since the last input
-	if (timeoutId) clearTimeout(timeoutId);
-	timeoutId = window.setTimeout(() => {
-		hljs.highlightAll();
-		resetCursorPosition();
-	}, 2000);
+	highlightOnInput();
 }
 
 function getFile() {
@@ -81,17 +65,11 @@ function getFile() {
 
 	reader.onload = (event) => {
 		yamlCode.value = event.target?.result as string;
-		window.setTimeout(() => {
-			hljs.highlightAll();
-		}, 100);
+		highlight();
 	};
 	reader.onerror = (event) => {
 		console.error(event);
 		showFileError.value = true;
 	};
 }
-
-onUnmounted(() => {
-	hljs.unregisterLanguage("yaml");
-});
 </script>
