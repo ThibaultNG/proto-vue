@@ -43,6 +43,7 @@ const { highlight, highlightOnInput } = useHighlight(codeElement, 2000);
 
 function saveYaml() {
 	yamlCode.value = codeElement.value!.innerText;
+	// The texts turns back to normal when a new value is assigned, that is why we highlight again
 	highlight();
 }
 
