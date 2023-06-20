@@ -25,8 +25,11 @@
 		"material-design-icons-iconfont": "^6.7.0",
 		"mdi-vue3": "^7.2.96",
 		"pinia": "^2.0.36",
+		"universal-cookie": "^4.0.4",
 		"vue": "^3.3.2",
+		"vue-cookies": "^1.8.3",
 		"vue-router": "^4.2.0",
+		"vue3-cookies": "^1.0.6",
 		"vue3-google-map": "^0.15.0",
 		"vuetify": "^3.3.2"
 	},

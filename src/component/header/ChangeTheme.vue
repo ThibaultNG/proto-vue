@@ -34,6 +34,10 @@ import { headerThemeList } from "../../config/vuetifyThemeHeader";
 import { ref } from "vue";
 import ChangeThemeSelectOption from "./ChangeThemeSelectOption.vue";
 
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
+import { cookieThemeName, expirationDate } from "@/service/cookieService";
+
 const theme = useTheme();
 let selectedDisplayedName = ref<string>();
 let selectedIcon = ref<string>();
@@ -42,6 +46,8 @@ updateTheme(theme.global.name.value); //first render
 
 function updateTheme(id: string): void {
 	theme.global.name.value = id;
+	cookies.set(cookieThemeName, id, expirationDate);
+
 	for (let index: number = 0; index < headerThemeList.length; index++) {
 		if (headerThemeList[index].id == theme.global.name.value) {
 			selectedDisplayedName.value = headerThemeList[index].displayedName;
