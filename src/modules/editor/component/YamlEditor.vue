@@ -74,7 +74,7 @@ function edit(event: KeyboardEvent) {
 }
 
 function getFile() {
-	const reader : FileReader = new FileReader();
+	const reader: FileReader = new FileReader();
 	const file: File = configFile.value![0];
 
 	reader.readAsText(file, "UTF-8");
