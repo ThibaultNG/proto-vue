@@ -1,42 +1,23 @@
 import axios from "axios";
 import Shop from "../models/shop";
 import Game from "../models/game";
-import type ShopDTO from "../models/api/shopDTO";
-import type GameLookupDTO from "../models/api/gameLookupDTO";
-import type GameDTO from "../models/api/gameDTO";
 
-export const CHEAPSHARK_URL: string = "https://www.cheapshark.com";
-const API_URL: string = "/api/1.0";
-const GAME_LIST_LIMIT: number = 20;
+export const API_URL: string = "http://127.0.0.1:5000";
 
 export async function getShops(): Promise<Shop[]> {
-	return axios
-		.get(CHEAPSHARK_URL + API_URL + "/stores")
-		.then((res) => res.data as ShopDTO[])
-		.then((storeInfoList) => storeInfoList.map((storeInfoList) => new Shop(storeInfoList)));
+	return axios.get(API_URL + "/game/shops").then((res) => res.data as Shop[]);
 }
 
 export async function getGamesByTitle(title: string): Promise<Game[]> {
 	return axios
-		.get(CHEAPSHARK_URL + API_URL + "/games", {
+		.get(API_URL + "/game/games", {
 			params: {
-				title: title,
-				limit: GAME_LIST_LIMIT
+				title: title
 			}
 		})
-		.then((res) => res.data as GameDTO[])
-		.then((gameBriefList) =>
-			gameBriefList.map((gameBrief) => Game.fromGameBrief(gameBrief) as Game)
-		);
+		.then((res) => res.data as Game[]);
 }
 
 export async function getDealsByGameId(gameId: number): Promise<Game> {
-	return axios
-		.get(CHEAPSHARK_URL + API_URL + "/games", {
-			params: {
-				id: gameId
-			}
-		})
-		.then((res) => res.data as GameLookupDTO)
-		.then((gameLookUp) => Game.fromGameLookUp(gameLookUp, gameId));
+	return axios.get(API_URL + "/game/deals/" + gameId).then((res) => res.data as Game);
 }

@@ -15,7 +15,7 @@
 				</td>
 
 				<!-- REDUCTION -->
-				<template v-if="deal.getReduction() > 0">
+				<template v-if="Deal.getReduction(deal) > 0">
 					<td>
 						<v-chip
 							class="text-decoration-line-through text-disabled"
@@ -27,7 +27,7 @@
 							class="ml-1 text-h6 font-weight-bold"
 							color="green"
 							variant="elevated"
-							:text="'-' + deal.getReduction() + '%'"
+							:text="'-' + Deal.getReduction(deal) + '%'"
 						/>
 						<v-chip
 							:text="gameStore.getPriceTag(deal.price)"
