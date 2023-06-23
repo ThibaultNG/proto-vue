@@ -2,8 +2,10 @@ import axios from "axios";
 import Weather from "../models/weather";
 import type { Ref } from "vue";
 import type ErrorInfo from "../models/errorInfo";
-import type WeatherDTO from "../models/api/weatherDTO";
+import type WeatherDTO from "../models/service/weatherDTO";
 import { handleErrorFromService, setToNoError } from "./serviceErrorHandler";
+
+export const BACK_URL: string = "http://127.0.0.1:5000";
 
 export async function updateInfoWeatherService(
 	dataUpdated: Ref<Weather>,
@@ -13,7 +15,8 @@ export async function updateInfoWeatherService(
 ): Promise<any> {
 	return axios
 		.get(
-			"https://api.open-meteo.com/v1/forecast" +
+			BACK_URL +
+				"/weather/getWeatherInfo" +
 				"?latitude=" +
 				latitude +
 				"&longitude=" +
