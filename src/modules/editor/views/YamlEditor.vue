@@ -10,10 +10,28 @@
 
 	<pre>
 		<code ref="codeElement" class="language-yaml" contenteditable @keydown="edit">{{ yamlCode }}</code>
-		<v-btn color="primary" @click="saveYaml">Save</v-btn>
 	</pre>
 
-	<FileInput @input="getFileContent" />
+	<div class="mb-5">
+		<v-btn
+			prepend-icon="mdi-content-save"
+			color="primary"
+			text="Save"
+			class="mr-5"
+			@click="saveYaml"
+		/>
+		<v-btn
+			color="primary"
+			prepend-icon="mdi-cloud-download-outline"
+			text="Get from server"
+			@click="getConfigFromServer"
+		/>
+	</div>
+	<FileInput @input="setContent" />
+
+	<v-snackbar v-model="showConnectionError" color="error" :timeout="10000">
+		Could not connect to server
+	</v-snackbar>
 
 	<v-snackbar v-model="showEnterWarning" color="warning" :timeout="2000">
 		Use SHIFT+ENTER instead of ENTER
@@ -24,10 +42,12 @@
 import { ref } from "vue";
 import { useHighlight } from "../composables/highlight";
 import FileInput from "../component/FileInput.vue";
+import { getFile } from "../service/editorService";
 
 const codeElement = ref<HTMLElement>();
 const yamlCode = ref<string>("# Config starts here\n\n# End of file");
 const showEnterWarning = ref<boolean>(false);
+const showConnectionError = ref<boolean>(false);
 
 const { highlight, highlightOnInput } = useHighlight(codeElement, 2000);
 
@@ -48,8 +68,17 @@ function edit(event: KeyboardEvent) {
 	highlightOnInput();
 }
 
-function getFileContent(content: string) {
+function setContent(content: string) {
 	yamlCode.value = content;
 	highlight();
+}
+
+function getConfigFromServer(): void {
+	getFile()
+		.then((data) => setContent(data))
+		.catch((error) => {
+			console.error(error);
+			showConnectionError.value = true;
+		});
 }
 </script>
