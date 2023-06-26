@@ -12,23 +12,39 @@
 		<code ref="codeElement" class="language-yaml" contenteditable @keydown="edit">{{ yamlCode }}</code>
 	</pre>
 
-	<div class="mb-5">
-		<v-btn
-			prepend-icon="mdi-content-save"
-			color="primary"
-			text="Save"
-			class="mr-5"
-			@click="saveYaml"
-		/>
-		<v-btn
-			color="primary"
-			prepend-icon="mdi-cloud-download-outline"
-			text="Get from server"
-			@click="getConfigFromServer"
-		/>
-	</div>
-
-	<FileInput @input="setContent" />
+	<v-expansion-panels>
+		<v-expansion-panel>
+			<v-expansion-panel-title color="primary"> Save </v-expansion-panel-title>
+			<v-expansion-panel-text>
+				<v-text-field clearable label="File name"></v-text-field>
+				<v-btn
+					prepend-icon="mdi-content-save"
+					color="primary"
+					text="Save"
+					class="mr-5"
+					@click="saveYaml"
+				/>
+			</v-expansion-panel-text>
+		</v-expansion-panel>
+		<v-expansion-panel>
+			<v-expansion-panel-title color="primary-lighten-3"> Load from server</v-expansion-panel-title>
+			<v-expansion-panel-text>
+				<v-select label="File"></v-select>
+				<v-btn
+					color="primary"
+					prepend-icon="mdi-cloud-download-outline"
+					text="Get from server"
+					@click="getConfigFromServer"
+				/>
+			</v-expansion-panel-text>
+		</v-expansion-panel>
+		<v-expansion-panel>
+			<v-expansion-panel-title color="primary-lighten-3"> Upload file </v-expansion-panel-title>
+			<v-expansion-panel-text>
+				<FileInput @input="setContent" />
+			</v-expansion-panel-text>
+		</v-expansion-panel>
+	</v-expansion-panels>
 
 	<v-snackbar v-model="showConnectionError" color="error" :timeout="10000">
 		Could not connect to server

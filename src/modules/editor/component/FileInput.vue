@@ -3,6 +3,7 @@
 		v-model="files"
 		accept=".yml,.yaml"
 		label="File input"
+		hint="Choose a file from your PC"
 		@update:model-value="getFile"
 	></v-file-input>
 
