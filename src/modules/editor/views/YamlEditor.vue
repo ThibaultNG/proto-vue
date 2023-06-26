@@ -29,7 +29,7 @@
 		</v-expansion-panel>
 		<v-expansion-panel>
 			<v-expansion-panel-title color="primary-lighten-3">
-				Load from server</v-expansion-panel-title
+				Load file from server</v-expansion-panel-title
 			>
 			<v-expansion-panel-text>
 				<v-select v-model="selectedFile" :items="fileList" label="File" />
@@ -43,7 +43,7 @@
 		</v-expansion-panel>
 		<v-expansion-panel>
 			<v-expansion-panel-title color="primary-lighten-3">
-				Upload file
+				Import local file
 			</v-expansion-panel-title>
 			<v-expansion-panel-text>
 				<FileInput @input="setContent" />
