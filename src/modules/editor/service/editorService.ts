@@ -8,10 +8,11 @@ export async function getFile(fileName: string): Promise<string> {
 		.then((res) => res.data);
 }
 
-export async function saveConfig(data: string): Promise<void> {
+export async function saveConfig(fileName: string, content: string): Promise<void> {
 	axios
 		.post(API_URL + "/editor/config", {
-			data: data
+			fileName: fileName,
+			content: content
 		})
 		.catch((error) => console.error(error));
 }

@@ -12,7 +12,12 @@
 		<v-expansion-panel>
 			<v-expansion-panel-title color="primary"> Save </v-expansion-panel-title>
 			<v-expansion-panel-text>
-				<v-text-field clearable label="File name"></v-text-field>
+				<v-text-field
+					v-model="saveFileName"
+					clearable
+					label="File name"
+					:rules="fileNameRules"
+				></v-text-field>
 				<v-btn
 					prepend-icon="mdi-content-save"
 					color="primary"
@@ -27,7 +32,7 @@
 				Load from server</v-expansion-panel-title
 			>
 			<v-expansion-panel-text>
-				<v-select v-model="selectedFile" :items="fileList" label="File"></v-select>
+				<v-select v-model="selectedFile" :items="fileList" label="File" />
 				<v-btn
 					color="primary"
 					prepend-icon="mdi-cloud-download-outline"
@@ -71,16 +76,35 @@ const showEnterWarning = ref<boolean>(false);
 const showConnectionError = ref<boolean>(false);
 const fileList = ref<string[]>([]);
 const selectedFile = ref<string>();
+const saveFileName = ref<string>("");
 
-const { highlight, highlightOnInput } = useHighlight(codeElement, 2000);
+const fileNameRules = [
+	(input: string) => {
+		if (input.substring(input.length - 5) != ".yaml") {
+			console.log(input.substring(input.length - 5));
 
-editorService.getFileList().then((list) => (fileList.value = list));
+			return "File names must end with '.yaml'";
+		}
+		return true;
+	}
+];
+
+const { highlight, highlightOnInput } = useHighlight(codeElement, 1000);
+
+function refreshFileList() {
+	editorService.getFileList().then((list) => (fileList.value = list));
+}
+
+refreshFileList();
 
 function saveYaml() {
 	yamlCode.value = codeElement.value!.innerText;
 	// The texts turns back to normal when a new value is assigned, that is why we highlight again
 	highlight();
-	editorService.saveConfig(yamlCode.value);
+	editorService.saveConfig(saveFileName.value, yamlCode.value).then(() => {
+		setTimeout(() => {}, 1000);
+		refreshFileList();
+	});
 }
 
 function edit(event: KeyboardEvent) {
