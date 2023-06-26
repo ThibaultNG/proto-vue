@@ -80,9 +80,7 @@ const saveFileName = ref<string>("");
 
 const fileNameRules = [
 	(input: string) => {
-		if (input.substring(input.length - 5) != ".yaml") {
-			console.log(input.substring(input.length - 5));
-
+		if (input && input.substring(input.length - 5) != ".yaml") {
 			return "File names must end with '.yaml'";
 		}
 		return true;
