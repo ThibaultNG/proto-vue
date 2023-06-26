@@ -8,11 +8,7 @@
 		</v-card-text>
 	</v-card>
 
-	<pre>
-		<code ref="codeElement" class="language-yaml" contenteditable @keydown="edit">{{ yamlCode }}</code>
-	</pre>
-
-	<v-expansion-panels>
+	<v-expansion-panels variant="popout">
 		<v-expansion-panel>
 			<v-expansion-panel-title color="primary"> Save </v-expansion-panel-title>
 			<v-expansion-panel-text>
@@ -27,9 +23,11 @@
 			</v-expansion-panel-text>
 		</v-expansion-panel>
 		<v-expansion-panel>
-			<v-expansion-panel-title color="primary-lighten-3"> Load from server</v-expansion-panel-title>
+			<v-expansion-panel-title color="primary-lighten-3">
+				Load from server</v-expansion-panel-title
+			>
 			<v-expansion-panel-text>
-				<v-select label="File"></v-select>
+				<v-select v-model="selectedFile" :items="fileList" label="File"></v-select>
 				<v-btn
 					color="primary"
 					prepend-icon="mdi-cloud-download-outline"
@@ -39,12 +37,18 @@
 			</v-expansion-panel-text>
 		</v-expansion-panel>
 		<v-expansion-panel>
-			<v-expansion-panel-title color="primary-lighten-3"> Upload file </v-expansion-panel-title>
+			<v-expansion-panel-title color="primary-lighten-3">
+				Upload file
+			</v-expansion-panel-title>
 			<v-expansion-panel-text>
 				<FileInput @input="setContent" />
 			</v-expansion-panel-text>
 		</v-expansion-panel>
 	</v-expansion-panels>
+
+	<pre>
+		<code ref="codeElement" class="language-yaml" contenteditable @keydown="edit">{{ yamlCode }}</code>
+	</pre>
 
 	<v-snackbar v-model="showConnectionError" color="error" :timeout="10000">
 		Could not connect to server
@@ -65,8 +69,12 @@ const codeElement = ref<HTMLElement>();
 const yamlCode = ref<string>("# Config starts here\n\n# End of file");
 const showEnterWarning = ref<boolean>(false);
 const showConnectionError = ref<boolean>(false);
+const fileList = ref<string[]>([]);
+const selectedFile = ref<string>();
 
 const { highlight, highlightOnInput } = useHighlight(codeElement, 2000);
+
+editorService.getFileList().then((list) => (fileList.value = list));
 
 function saveYaml() {
 	yamlCode.value = codeElement.value!.innerText;
@@ -93,7 +101,7 @@ function setContent(content: string) {
 
 function getConfigFromServer(): void {
 	editorService
-		.getFile()
+		.getFile(selectedFile.value!)
 		.then((data) => setContent(data))
 		.catch((error) => {
 			console.error(error);
