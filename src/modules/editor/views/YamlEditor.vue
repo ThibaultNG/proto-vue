@@ -27,6 +27,7 @@
 			@click="getConfigFromServer"
 		/>
 	</div>
+
 	<FileInput @input="setContent" />
 
 	<v-snackbar v-model="showConnectionError" color="error" :timeout="10000">
@@ -42,7 +43,7 @@
 import { ref } from "vue";
 import { useHighlight } from "../composables/highlight";
 import FileInput from "../component/FileInput.vue";
-import { getFile } from "../service/editorService";
+import * as editorService from "../service/editorService";
 
 const codeElement = ref<HTMLElement>();
 const yamlCode = ref<string>("# Config starts here\n\n# End of file");
@@ -55,6 +56,7 @@ function saveYaml() {
 	yamlCode.value = codeElement.value!.innerText;
 	// The texts turns back to normal when a new value is assigned, that is why we highlight again
 	highlight();
+	editorService.saveConfig(yamlCode.value);
 }
 
 function edit(event: KeyboardEvent) {
@@ -74,7 +76,8 @@ function setContent(content: string) {
 }
 
 function getConfigFromServer(): void {
-	getFile()
+	editorService
+		.getFile()
 		.then((data) => setContent(data))
 		.catch((error) => {
 			console.error(error);
