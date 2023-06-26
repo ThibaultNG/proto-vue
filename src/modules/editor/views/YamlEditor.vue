@@ -126,7 +126,10 @@ function setContent(content: string) {
 function getConfigFromServer(): void {
 	editorService
 		.getFile(selectedFile.value!)
-		.then((data) => setContent(data))
+		.then((data) => {
+			setContent(data);
+			saveFileName.value = selectedFile.value!;
+		})
 		.catch((error) => {
 			console.error(error);
 			showConnectionError.value = true;
