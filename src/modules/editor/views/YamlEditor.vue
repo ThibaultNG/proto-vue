@@ -116,7 +116,10 @@ function edit(event: KeyboardEvent) {
 	highlightOnInput();
 }
 
-function setContent(content: string) {
+function setContent(fileName: string, content: string) {
+	console.log(fileName);
+	
+	saveFileName.value = fileName;
 	yamlCode.value = content;
 	highlight();
 }
@@ -125,8 +128,7 @@ function getConfigFromServer(): void {
 	editorService
 		.getFile(selectedFile.value!)
 		.then((data) => {
-			setContent(data);
-			saveFileName.value = selectedFile.value!;
+			setContent(selectedFile.value!, data);
 		})
 		.catch((error) => {
 			console.error(error);

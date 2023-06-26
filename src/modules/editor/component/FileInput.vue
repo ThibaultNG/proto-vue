@@ -19,7 +19,7 @@ const files = ref<File[]>();
 const showFileError = ref<boolean>(false);
 
 const emit = defineEmits<{
-	(e: "input", content: string): void;
+	(e: "input", fileName : string, content: string): void;
 }>();
 
 function getFile(): void {
@@ -29,7 +29,7 @@ function getFile(): void {
 	reader.readAsText(file, "UTF-8");
 
 	reader.onload = (event) => {
-		emit("input", event.target?.result as string);
+		emit("input", file.name, event.target?.result as string);
 	};
 	reader.onerror = (event) => {
 		console.error(event);
