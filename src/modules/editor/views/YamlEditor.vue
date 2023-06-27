@@ -117,8 +117,6 @@ function edit(event: KeyboardEvent) {
 }
 
 function setContent(fileName: string, content: string) {
-	console.log(fileName);
-
 	saveFileName.value = fileName;
 	yamlCode.value = content;
 	highlight();
