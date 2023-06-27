@@ -10,7 +10,7 @@
 			<v-container>
 				<v-row no-gutters>
 					<v-col v-for="chan in channels" :key="chan.id" cols="12" sm="6">
-						<v-card class="ma-10">
+						<v-card class="ma-1">
 							<v-card-title>{{ chan.description }}</v-card-title>
 							<v-card-subtitle>Unit : {{ chan.unitLabel }}</v-card-subtitle>
 							<v-card-text>id :{{ chan.id }}</v-card-text>
