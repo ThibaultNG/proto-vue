@@ -1,8 +1,8 @@
 <template>
 	<h1 class="text-h1 font-weight-black">HELLO WORLD !</h1>
-	<div style="display: flex; justify-content: flex-start;">
-		<FormExample  class="ma-10" style="max-width: 150px;"/>
-		<CardExample  class="ma-10" />
+	<div style="display: flex; justify-content: flex-start">
+		<FormExample class="ma-10" style="max-width: 150px" />
+		<CardExample class="ma-10" />
 		<TableExample />
 	</div>
 	<GalleryExample />

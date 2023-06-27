@@ -19,7 +19,7 @@ const files = ref<File[]>();
 const showFileError = ref<boolean>(false);
 
 const emit = defineEmits<{
-	(e: "input", fileName : string, content: string): void;
+	(e: "input", fileName: string, content: string): void;
 }>();
 
 function getFile(): void {
