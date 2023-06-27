@@ -1,9 +1,5 @@
 import { createRouter, createWebHistory, type Router } from "vue-router";
-import Album from "@/modules/album/views/MemeGallery.vue";
-import { gameRoutes } from "@/modules/games/routes/gameRoutes";
-import { weatherRoutes } from "@/modules/weather/routes/weatherRoutes";
-import HomePageVue from "@/views/HomePage.vue";
-import { editorRoutes } from "@/modules/editor/routes/editorRoutes";
+import { fooRoutes } from "@/modules/foobar/routes/foobarRoutes";
 
 const router: Router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,16 +10,9 @@ const router: Router = createRouter({
 		},
 		{
 			path: "/home",
-			component: HomePageVue
+			component: () => import("@/views/HomePage.vue")
 		},
-		{
-			path: "/album",
-			name: "album",
-			component: Album
-		},
-		...weatherRoutes,
-		...gameRoutes,
-		...editorRoutes,
+		...fooRoutes,
 		{
 			path: "/:pathMatch(.*)*",
 			component: () => import("@/views/Error404Page.vue")

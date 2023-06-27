@@ -1,6 +1,9 @@
 <template>
 	<v-app>
-		<MainHeader></MainHeader>
+		<v-app-bar color="primary-lighten-1" class="pl-10">
+			<v-icon size="x-large">mdi-vuejs</v-icon>
+			<v-app-bar-title class="text-h4">APP NAME</v-app-bar-title>
+		</v-app-bar>
 
 		<v-main>
 			<div class="main-container">
@@ -10,15 +13,17 @@
 
 		<MainNavBar />
 
-		<MainFooter></MainFooter>
+		<v-footer app>
+			<div class="text-center w-100">
+				{{ new Date().getFullYear() }} — <strong>COMPANY</strong>
+			</div>
+		</v-footer>
 	</v-app>
 </template>
 
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import MainNavBar from "./component/MainNavBar.vue";
-import MainHeader from "./component/header/MainHeader.vue";
-import MainFooter from "./component/MainFooter.vue";
 </script>
 
 <style scoped>
